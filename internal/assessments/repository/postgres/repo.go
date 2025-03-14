@@ -196,21 +196,136 @@ func (a assessmentRepository) UpdateSettings(id uint, settings *models.Assessmen
 		return err
 	}
 
-	return a.db.Model(&settings).Updates(settings).Error
+	currentSettings.RandomizeQuestions = settings.RandomizeQuestions
+	currentSettings.ShowResults = settings.ShowResults
+	currentSettings.AllowRetake = settings.AllowRetake
+	currentSettings.MaxAttempts = settings.MaxAttempts
+	currentSettings.TimeLimitEnforced = settings.TimeLimitEnforced
+	currentSettings.RequireWebcam = settings.RequireWebcam
+	currentSettings.PreventTabSwitching = settings.PreventTabSwitching
+	currentSettings.RequireIdentityVerification = settings.RequireIdentityVerification
+
+	return a.db.Save(&currentSettings).Error
 }
 
 func (a assessmentRepository) GetResults(id uint, params util.PaginationParams) ([]map[string]interface{}, int64, error) {
+	var result []map[string]interface{}
+	var total int64
 
-	return nil, 0, nil
+	// check if assessment is exist
+	var assessment models.Assessment
+	if err := a.db.First(&assessment).Error; err != nil {
+		return nil, 0, err
+	}
+
+	query := a.db.Model(&models.Attempt{}).Joins("JOIN users u ON u.id = attempts.user_id").
+		Select(`attempts.id, 
+					users.name as user, 
+					attempts.user_id as user_id,
+					DATE_FORMAT(attempts.submitted_at, '%Y-%m-%d') as date,
+					DATE_FORMAT(attempts.submitted_at, '%H:%i') as time,
+					attempts.score, 
+					attempts.duration, 
+					attempts.status,
+					attempts.submitted_at`).
+		Where("attempts.assessment_id = ? AND attempts.submitted_at IS NOT NULL", id)
+
+	// apply filter
+	if params.Filters != nil {
+		if val, ok := params.Filters["user"].(string); ok && val != "" {
+			query = query.Where("users.name LIKE ? OR users.email LIKE ?", "%"+val+"%", "%"+val+"%")
+		}
+	}
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	// apply sorting and pagination
+	if params.SortBy != "" {
+		query = query.Order(params.SortBy + " " + params.SortDir)
+	} else {
+		query = query.Order("attempts.submitted_at DESC")
+	}
+
+	// apply offset and limit
+	query = query.Offset(params.Offset).Limit(params.Limit)
+
+	if err := a.db.Find(&result).Error; err != nil {
+		return nil, 0, err
+	}
+
+	return result, total, nil
 }
 
 func (a assessmentRepository) Publish(id uint) error {
-	//TODO implement me
-	panic("implement me")
+	return a.db.Model(&models.Assessment{}).Where("id = ?", id).Update("status", "Active").Error
 }
 
 func (a assessmentRepository) Duplicate(assessment *models.Assessment) error {
 	return a.db.Transaction(func(tx *gorm.DB) error {
+		// Create a copy of the assessment
+		assessmentCopy := models.Assessment{
+			Title:        assessment.Title,
+			Subject:      assessment.Subject,
+			Description:  assessment.Description,
+			Duration:     assessment.Duration,
+			Status:       assessment.Status,
+			DueDate:      assessment.DueDate,
+			CreatedByID:  assessment.CreatedByID,
+			PassingScore: assessment.PassingScore,
+		}
+
+		if err := tx.Create(&assessmentCopy).Error; err != nil {
+			return err
+		}
+
+		// Copy the settings if they exist
+		if assessment.Settings.ID != 0 {
+			settingsCopy := models.AssessmentSettings{
+				AssessmentID:                assessmentCopy.ID,
+				RandomizeQuestions:          assessment.Settings.RandomizeQuestions,
+				ShowResults:                 assessment.Settings.ShowResults,
+				AllowRetake:                 assessment.Settings.AllowRetake,
+				MaxAttempts:                 assessment.Settings.MaxAttempts,
+				TimeLimitEnforced:           assessment.Settings.TimeLimitEnforced,
+				RequireWebcam:               assessment.Settings.RequireWebcam,
+				PreventTabSwitching:         assessment.Settings.PreventTabSwitching,
+				RequireIdentityVerification: assessment.Settings.RequireIdentityVerification,
+			}
+
+			if err := tx.Create(&settingsCopy).Error; err != nil {
+				return err
+			}
+		}
+
+		// Copy the questions if needed
+		for _, question := range assessment.Questions {
+			questionCopy := models.Question{
+				AssessmentID:  assessmentCopy.ID,
+				Type:          question.Type,
+				Text:          question.Text,
+				CorrectAnswer: question.CorrectAnswer,
+				Points:        question.Points,
+			}
+
+			if err := tx.Create(&questionCopy).Error; err != nil {
+				return err
+			}
+
+			// Copy the options for multiple-choice questions
+			for _, option := range question.Options {
+				optionCopy := models.QuestionOption{
+					QuestionID: questionCopy.ID,
+					OptionID:   option.OptionID,
+					Text:       option.Text,
+				}
+
+				if err := tx.Create(&optionCopy).Error; err != nil {
+					return err
+				}
+			}
+		}
 
 		return nil
 	})
