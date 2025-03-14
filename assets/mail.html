@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yêu cầu Check-in</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f3f4f6; margin: 0; padding: 0;">
+<table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+        <td align="center" style="padding: 40px 0;">
+            <table role="presentation" style="width: 600px; border-collapse: collapse; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <!-- Header -->
+                <tr>
+                    <td style="padding: 40px 30px; text-align: center; background-color: #4f46e5; border-radius: 8px 8px 0 0;">
+                        <h1 style="color: #ffffff; font-size: 28px; margin: 0;">Yêu cầu Check-in</h1>
+                    </td>
+                </tr>
+                <!-- Content -->
+                <tr>
+                    <td style="padding: 40px 30px;">
+                        <p style="margin: 0 0 20px 0; font-size: 16px;">Xin chào {{.TenNguoiDung}},</p>
+                        <p style="margin: 0 0 20px 0; font-size: 16px;">Bạn có một yêu cầu check-in mới. Vui lòng xem chi tiết bên dưới:</p>
+                        <table role="presentation" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <tr>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;"><strong>Loại Check-in:</strong></td>
+                                <td style="padding: 10px; border-bottom: 1px solid #e5e7eb;">{{.LoaiCheckin}}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;"><strong>Thời gian:</strong></td>
+                                <td style="padding: 10px;">{{.ThoiGian}}</td>
+                            </tr>
+                        </table>
+                        <p style="margin: 0 0 20px 0; font-size: 16px;">Vui lòng truy cập vào hệ thống và checkin trước thời gian trên.</p>
+                        <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td align="center">
+                                    <a href="{{.LinkHeThong}}" style="background-color: #4f46e5; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; display: inline-block;">Truy cập Hệ thống</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Footer -->
+                <tr>
+                    <td style="padding: 30px; text-align: center; font-size: 14px; background-color: #f3f4f6; border-radius: 0 0 8px 8px;">
+                        <p style="margin: 0; color: #6b7280;">© 2025 m3xD Check-in Dashboard. Tất cả các quyền được bảo lưu.</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
