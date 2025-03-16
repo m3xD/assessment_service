@@ -1,10 +1,10 @@
 package service
 
 import (
+	"assessment_service/internal/assessments/repository"
+	models "assessment_service/internal/model"
+	"assessment_service/internal/util"
 	"errors"
-	"secure-assessment-platform/internal/domain/models"
-	"secure-assessment-platform/internal/domain/repository"
-	"secure-assessment-platform/internal/util"
 	"time"
 )
 
@@ -24,16 +24,13 @@ type AssessmentService interface {
 
 type assessmentService struct {
 	assessmentRepo repository.AssessmentRepository
-	questionRepo   repository.QuestionRepository
 }
 
 func NewAssessmentService(
 	assessmentRepo repository.AssessmentRepository,
-	questionRepo repository.QuestionRepository,
 ) AssessmentService {
 	return &assessmentService{
 		assessmentRepo: assessmentRepo,
-		questionRepo:   questionRepo,
 	}
 }
 
@@ -202,7 +199,7 @@ func (s *assessmentService) Duplicate(id uint, newTitle string, copyQuestions, c
 	}
 
 	// Get the newly created assessment (would be the most recent one with this title)
-	assessments, err := s.assessmentRepo.List(util.PaginationParams{
+	assessments, _, err := s.assessmentRepo.List(util.PaginationParams{
 		Limit: 1,
 		Filters: map[string]interface{}{
 			"title": originalAssessment.Title,

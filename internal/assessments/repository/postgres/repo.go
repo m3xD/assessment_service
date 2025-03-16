@@ -331,6 +331,6 @@ func (a assessmentRepository) Duplicate(assessment *models.Assessment) error {
 	})
 }
 
-func newAssessmentRepository(db *gorm.DB) repository.AssessmentRepository {
+func NewAssessmentRepository(db *gorm.DB) repository.AssessmentRepository {
 	return &assessmentRepository{db: db}
 }

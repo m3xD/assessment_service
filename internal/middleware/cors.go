@@ -1,29 +1,24 @@
 package middleware
 
 import (
-	"log"
 	"net/http"
 )
 
-// CORSMiddleware thêm các header CORS vào response và xử lý preflight OPTIONS request.
+// CORSMiddleware adds CORS headers to responses
 func CORSMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		// Ghi log để debug middleware (tuỳ chọn)
-		log.Printf("CORSMiddleware: %s %s", r.Method, r.RequestURI)
-
-		// Đặt header CORS
-		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		// Set CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type")
 
-		// Nếu là preflight request (OPTIONS), trả về ngay với status OK
-		if r.Method == http.MethodOptions {
-			log.Println("OPTIONS preflight request, trả về 200 OK")
+		// Handle preflight requests
+		if r.Method == "OPTIONS" {
 			w.WriteHeader(http.StatusOK)
 			return
 		}
 
+		// Process the request
 		next.ServeHTTP(w, r)
 	})
 }

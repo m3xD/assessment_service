@@ -19,6 +19,22 @@ func ResponseOK(w http.ResponseWriter, res Response) {
 	}
 }
 
+func ResponseMap(w http.ResponseWriter, data map[string]interface{}, statusCode int) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(statusCode)
+	if err := json.NewEncoder(w).Encode(data); err != nil {
+		http.Error(w, err.Error(), statusCode)
+	}
+}
+
+func ResponseInterface(w http.ResponseWriter, data interface{}, statusCode int) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(statusCode)
+	if err := json.NewEncoder(w).Encode(data); err != nil {
+		http.Error(w, err.Error(), statusCode)
+	}
+}
+
 func ResponseError(w http.ResponseWriter, res Response) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(res.StatusCode)

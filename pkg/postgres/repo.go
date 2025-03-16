@@ -1,7 +1,7 @@
 package database
 
 import (
-	"assessment_service/internal/config"
+	"assessment_service/configs"
 	models "assessment_service/internal/model"
 	"fmt"
 
@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-func Connect(config config.DatabaseConfig) (*gorm.DB, error) {
+func Connect(config configs.DatabaseConfig) (*gorm.DB, error) {
 	dsn := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
 		config.Host,
@@ -43,6 +43,7 @@ func RunMigrations(db *gorm.DB) error {
 		&models.Answer{},
 		&models.Activity{},
 		&models.SuspiciousActivity{},
+		&models.AssessmentSettings{},
 	)
 }
 

@@ -1482,3 +1482,1140 @@
 {"level":"INFO","ts":"2025-02-19T10:59:04.728+0700","caller":"middleware/log.go:31","msg":"Completed /swagger/doc.json in 599.209µs"}
 {"level":"INFO","ts":"2025-02-19T10:59:59.036+0700","caller":"middleware/log.go:24","msg":"Started GET /swagger/doc.json from [::1]:51511"}
 {"level":"INFO","ts":"2025-02-19T10:59:59.039+0700","caller":"middleware/log.go:31","msg":"Completed /swagger/doc.json in 2.900583ms"}
+{"level":"INFO","ts":"2025-03-15T23:50:13.354+0700","caller":"api/server.go:76","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T01:33:16.995+0700","caller":"api/server.go:86","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T01:33:16.996+0700","caller":"api/server.go:96","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T01:33:28.729+0700","caller":"api/server.go:76","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T14:56:23.494+0700","caller":"api/server.go:76","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T21:44:27.578+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:58942"}
+{"level":"INFO","ts":"2025-03-16T21:44:27.579+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 1.0728ms"}
+{"level":"INFO","ts":"2025-03-16T21:44:33.644+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:58942"}
+{"level":"INFO","ts":"2025-03-16T21:44:33.644+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-16T21:48:25.376+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59228"}
+{"level":"INFO","ts":"2025-03-16T21:48:25.428+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 51.8626ms"}
+{"level":"INFO","ts":"2025-03-16T21:48:25.432+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59228"}
+{"level":"INFO","ts":"2025-03-16T21:48:25.440+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 8.1892ms"}
+{"level":"INFO","ts":"2025-03-16T21:48:39.506+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59240"}
+{"level":"INFO","ts":"2025-03-16T21:48:39.522+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 16.3298ms"}
+{"level":"INFO","ts":"2025-03-16T21:51:01.786+0700","caller":"api/server.go:86","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T21:51:01.787+0700","caller":"api/server.go:96","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T21:51:29.998+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T21:51:32.595+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59371"}
+{"level":"INFO","ts":"2025-03-16T21:51:32.620+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 24.9772ms"}
+{"level":"INFO","ts":"2025-03-16T21:51:37.526+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59371"}
+{"level":"INFO","ts":"2025-03-16T21:51:37.534+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 7.7259ms"}
+{"level":"INFO","ts":"2025-03-16T21:52:17.886+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59397"}
+{"level":"INFO","ts":"2025-03-16T21:52:17.900+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 14.0255ms"}
+{"level":"INFO","ts":"2025-03-16T21:52:23.425+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59397"}
+{"level":"INFO","ts":"2025-03-16T21:52:23.441+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 16.5951ms"}
+{"level":"INFO","ts":"2025-03-16T21:53:02.948+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59422"}
+{"level":"INFO","ts":"2025-03-16T21:53:02.957+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 9.0435ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:09.641+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59481"}
+{"level":"INFO","ts":"2025-03-16T21:54:09.650+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 8.6237ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:09.661+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59481"}
+{"level":"INFO","ts":"2025-03-16T21:54:09.665+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 3.6715ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:10.323+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59481"}
+{"level":"INFO","ts":"2025-03-16T21:54:10.335+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 12.1877ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:10.341+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59481"}
+{"level":"INFO","ts":"2025-03-16T21:54:10.347+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59484"}
+{"level":"INFO","ts":"2025-03-16T21:54:10.351+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 10.0292ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:10.365+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 18.5945ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:10.369+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59484"}
+{"level":"INFO","ts":"2025-03-16T21:54:10.371+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.2514ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:15.212+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59484"}
+{"level":"INFO","ts":"2025-03-16T21:54:15.229+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 16.9721ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:15.234+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59484"}
+{"level":"INFO","ts":"2025-03-16T21:54:15.241+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59481"}
+{"level":"INFO","ts":"2025-03-16T21:54:15.242+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 7.3631ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:15.243+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.1269ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:15.248+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59481"}
+{"level":"INFO","ts":"2025-03-16T21:54:15.250+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.6058ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.165+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59507"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.175+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 9.4716ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.184+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59507"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.185+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.0515ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.192+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59507"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.205+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 12.3324ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.626+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59507"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.634+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 7.7894ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.646+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59507"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.647+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.047ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.660+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59507"}
+{"level":"INFO","ts":"2025-03-16T21:54:39.669+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 9.4571ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:43.239+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59507"}
+{"level":"INFO","ts":"2025-03-16T21:54:43.250+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 10.8391ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:43.256+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59507"}
+{"level":"INFO","ts":"2025-03-16T21:54:43.257+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.0636ms"}
+{"level":"INFO","ts":"2025-03-16T21:54:43.262+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59507"}
+{"level":"INFO","ts":"2025-03-16T21:54:43.267+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.7196ms"}
+{"level":"INFO","ts":"2025-03-16T21:55:14.860+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59534"}
+{"level":"INFO","ts":"2025-03-16T21:55:14.869+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 9.5457ms"}
+{"level":"INFO","ts":"2025-03-16T21:55:14.878+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59534"}
+{"level":"INFO","ts":"2025-03-16T21:55:14.880+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.6024ms"}
+{"level":"INFO","ts":"2025-03-16T21:55:14.889+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59534"}
+{"level":"INFO","ts":"2025-03-16T21:55:14.894+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.9433ms"}
+{"level":"INFO","ts":"2025-03-16T21:55:15.629+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59534"}
+{"level":"INFO","ts":"2025-03-16T21:55:15.638+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 8.6023ms"}
+{"level":"INFO","ts":"2025-03-16T21:55:15.654+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59534"}
+{"level":"INFO","ts":"2025-03-16T21:55:15.655+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.1548ms"}
+{"level":"INFO","ts":"2025-03-16T21:55:15.662+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59534"}
+{"level":"INFO","ts":"2025-03-16T21:55:15.666+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.18ms"}
+{"level":"INFO","ts":"2025-03-16T21:55:19.551+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59534"}
+{"level":"INFO","ts":"2025-03-16T21:55:19.575+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 23.397ms"}
+{"level":"INFO","ts":"2025-03-16T21:55:19.584+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59534"}
+{"level":"INFO","ts":"2025-03-16T21:55:19.587+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.434ms"}
+{"level":"INFO","ts":"2025-03-16T21:55:19.594+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59534"}
+{"level":"INFO","ts":"2025-03-16T21:55:19.603+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 8.6329ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.002+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59587"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.017+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 15.237ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.028+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59587"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.030+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.5839ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.038+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59587"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.045+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 7.1509ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.627+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59587"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.633+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 5.2511ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.638+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59587"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.639+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.0481ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.645+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59587"}
+{"level":"INFO","ts":"2025-03-16T21:56:15.649+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.1565ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.659+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59601"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.675+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 15.331ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.680+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59601"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.685+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.688+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.7682ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.690+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 10.0756ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.695+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59601"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.696+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.0652ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.696+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.701+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.9927ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.704+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:31.708+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.2245ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.939+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.950+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 11.5347ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.955+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.958+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59601"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.961+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.1848ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.965+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 9.8754ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.967+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.970+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59601"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.972+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.6189ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.972+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 5.441ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.977+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:32.980+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 3.7049ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.862+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.877+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 15.0569ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.881+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.883+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59601"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.885+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.8295ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.889+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 8.3072ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.898+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.899+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:59601"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.899+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 513µs"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.902+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.4544ms"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.905+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:59600"}
+{"level":"INFO","ts":"2025-03-16T21:56:33.909+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.1931ms"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.761+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:60018"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.771+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 9.8913ms"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.775+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:60019"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.782+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 6.5964ms"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.782+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:60018"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.783+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.047ms"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.787+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:60018"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.788+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.0509ms"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.792+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:60018"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.796+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.3557ms"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.800+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:60019"}
+{"level":"INFO","ts":"2025-03-16T22:04:24.804+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.2749ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:07.082+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60135"}
+{"level":"INFO","ts":"2025-03-16T22:07:07.090+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 8.0691ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:07.093+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60136"}
+{"level":"INFO","ts":"2025-03-16T22:07:07.095+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 2.0973ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:08.634+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Active from 192.168.51.193:60136"}
+{"level":"INFO","ts":"2025-03-16T22:07:08.643+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Active in 8.9916ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:09.027+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Draft from 192.168.51.193:60136"}
+{"level":"INFO","ts":"2025-03-16T22:07:09.030+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Draft in 2.6468ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:09.540+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Expired from 192.168.51.193:60136"}
+{"level":"INFO","ts":"2025-03-16T22:07:09.547+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Expired in 7.068ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:10.333+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Draft from 192.168.51.193:60136"}
+{"level":"INFO","ts":"2025-03-16T22:07:10.340+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Draft in 6.7141ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:10.715+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Active from 192.168.51.193:60136"}
+{"level":"INFO","ts":"2025-03-16T22:07:10.718+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Active in 3.1446ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:11.153+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60136"}
+{"level":"INFO","ts":"2025-03-16T22:07:11.161+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.9556ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:51.297+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:51.301+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.2747ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:51.306+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:51.308+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 2.1636ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:53.739+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:53.747+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.7876ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:53.753+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:53.759+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.9904ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.403+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.418+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 14.4925ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.423+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.433+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.433+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 9.7603ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.434+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.0667ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.439+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.440+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.0972ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.442+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.446+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.3932ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.449+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:55.453+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.27ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.082+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.086+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.0999ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.090+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.094+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.6854ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.600+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.615+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 15.3473ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.621+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.625+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.627+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.6645ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.630+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 8.5055ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.635+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.637+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.639+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.5836ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.641+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 5.567ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.644+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:56.649+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.2633ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:58.207+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60162"}
+{"level":"INFO","ts":"2025-03-16T22:07:58.212+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.849ms"}
+{"level":"INFO","ts":"2025-03-16T22:07:58.215+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60163"}
+{"level":"INFO","ts":"2025-03-16T22:07:58.218+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 2.6801ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:27.528+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60187"}
+{"level":"INFO","ts":"2025-03-16T22:08:27.540+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 12.29ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:27.546+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:27.550+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.271ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:28.405+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Active from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:28.411+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Active in 6.2647ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:28.712+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Draft from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:28.720+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Draft in 7.5917ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:29.018+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Expired from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:29.024+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Expired in 5.7446ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:30.496+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:30.505+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 9.314ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:31.218+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Active from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:31.226+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Active in 8.0279ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:31.752+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Draft from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:31.758+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Draft in 5.4683ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:32.090+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Expired from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:32.093+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Expired in 3.4614ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:33.968+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:60187"}
+{"level":"INFO","ts":"2025-03-16T22:08:33.981+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 12.4477ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:33.986+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:33.994+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:60187"}
+{"level":"INFO","ts":"2025-03-16T22:08:33.995+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 9.2104ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:33.995+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.609ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:34.001+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:34.002+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.6004ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:34.003+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:60187"}
+{"level":"INFO","ts":"2025-03-16T22:08:34.012+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 8.7617ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:34.016+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:34.023+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 6.8778ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:41.727+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60188"}
+{"level":"INFO","ts":"2025-03-16T22:08:41.734+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.24ms"}
+{"level":"INFO","ts":"2025-03-16T22:08:41.738+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60187"}
+{"level":"INFO","ts":"2025-03-16T22:08:41.742+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.2397ms"}
+{"level":"INFO","ts":"2025-03-16T22:09:43.363+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:60245"}
+{"level":"INFO","ts":"2025-03-16T22:09:43.375+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 11.5492ms"}
+{"level":"INFO","ts":"2025-03-16T22:09:52.782+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:60245"}
+{"level":"INFO","ts":"2025-03-16T22:09:52.798+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 15.5625ms"}
+{"level":"INFO","ts":"2025-03-16T22:11:16.948+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T22:11:16.948+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T22:16:45.264+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T22:16:47.387+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:60593"}
+{"level":"INFO","ts":"2025-03-16T22:16:47.413+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 25.5312ms"}
+{"level":"INFO","ts":"2025-03-16T22:16:47.427+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:60593"}
+{"level":"INFO","ts":"2025-03-16T22:16:47.432+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 4.2724ms"}
+{"level":"INFO","ts":"2025-03-16T22:16:47.448+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:60593"}
+{"level":"INFO","ts":"2025-03-16T22:16:47.462+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 13.7727ms"}
+{"level":"INFO","ts":"2025-03-16T22:22:42.596+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60971"}
+{"level":"INFO","ts":"2025-03-16T22:22:42.601+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.1256ms"}
+{"level":"INFO","ts":"2025-03-16T22:22:42.604+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:60971"}
+{"level":"INFO","ts":"2025-03-16T22:22:42.608+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.2721ms"}
+{"level":"INFO","ts":"2025-03-16T22:22:58.837+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61049"}
+{"level":"INFO","ts":"2025-03-16T22:22:58.842+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 5.0851ms"}
+{"level":"INFO","ts":"2025-03-16T22:25:01.289+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T22:25:01.290+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T22:25:12.621+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T22:25:17.874+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61140"}
+{"level":"ERROR","ts":"2025-03-16T22:25:17.876+0700","caller":"rest/handler.go:27","msg":"[CreateAssessment] Failed to parse user ID","error":"strconv.ParseUint: parsing \"\": invalid syntax"}
+{"level":"INFO","ts":"2025-03-16T22:25:17.877+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 2.4612ms"}
+{"level":"INFO","ts":"2025-03-16T22:26:38.914+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T22:26:38.914+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T22:26:40.894+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T22:26:43.593+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61200"}
+{"level":"ERROR","ts":"2025-03-16T22:26:43.593+0700","caller":"rest/handler.go:28","msg":"[CreateAssessment] Failed to get user ID from token"}
+{"level":"INFO","ts":"2025-03-16T22:26:43.593+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 524.7µs"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.020+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61200"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.036+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 15.7574ms"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.039+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61200"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.045+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 6.3305ms"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.050+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61200"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.053+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.7015ms"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.055+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61200"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.056+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.0502ms"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.063+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61200"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.071+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 8.2652ms"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.074+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61200"}
+{"level":"INFO","ts":"2025-03-16T22:26:53.080+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 6.5705ms"}
+{"level":"INFO","ts":"2025-03-16T22:26:55.250+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61219"}
+{"level":"INFO","ts":"2025-03-16T22:26:55.258+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.9574ms"}
+{"level":"INFO","ts":"2025-03-16T22:26:55.264+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61219"}
+{"level":"INFO","ts":"2025-03-16T22:26:55.268+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.784ms"}
+{"level":"INFO","ts":"2025-03-16T22:27:07.467+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61226"}
+{"level":"ERROR","ts":"2025-03-16T22:27:07.468+0700","caller":"rest/handler.go:28","msg":"[CreateAssessment] Failed to get user ID from token"}
+{"level":"INFO","ts":"2025-03-16T22:27:07.468+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 1.3111ms"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.889+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61245"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.897+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 7.6321ms"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.899+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61245"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.907+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 7.2673ms"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.908+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61245"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.910+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.585ms"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.917+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61245"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.918+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.0455ms"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.922+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61244"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.926+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.1931ms"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.929+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61244"}
+{"level":"INFO","ts":"2025-03-16T22:27:23.934+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.7303ms"}
+{"level":"INFO","ts":"2025-03-16T22:28:05.951+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T22:28:05.951+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T22:28:08.115+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T22:28:08.393+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61450"}
+{"level":"INFO","ts":"2025-03-16T22:28:08.402+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 9.0344ms"}
+{"level":"INFO","ts":"2025-03-16T22:28:08.406+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61450"}
+{"level":"INFO","ts":"2025-03-16T22:28:08.410+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.9668ms"}
+{"level":"INFO","ts":"2025-03-16T22:28:21.880+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61458"}
+{"level":"ERROR","ts":"2025-03-16T22:28:21.881+0700","caller":"rest/handler.go:28","msg":"[CreateAssessment] Failed to get user ID from token"}
+{"level":"INFO","ts":"2025-03-16T22:28:21.881+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 521.6µs"}
+{"level":"INFO","ts":"2025-03-16T22:29:38.078+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T22:29:38.080+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T22:29:40.230+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.180+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61524"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.194+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 14.2341ms"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.197+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61524"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.205+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 8.5079ms"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.208+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61524"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.210+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.0737ms"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.214+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61524"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.215+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.5913ms"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.222+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61524"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.231+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 9.4836ms"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.235+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61524"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.239+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.3824ms"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.945+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61523"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.950+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.4459ms"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.955+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61523"}
+{"level":"INFO","ts":"2025-03-16T22:29:42.958+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.8263ms"}
+{"level":"INFO","ts":"2025-03-16T22:29:50.987+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61523"}
+{"level":"INFO","ts":"2025-03-16T22:29:50.987+0700","caller":"rest/handler.go:27","msg":"User ID","test":{"exp":1742140782,"role":"admin","userID":"7"}}
+{"level":"ERROR","ts":"2025-03-16T22:29:50.987+0700","caller":"rest/handler.go:29","msg":"[CreateAssessment] Failed to get user ID from token"}
+{"level":"INFO","ts":"2025-03-16T22:29:50.988+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 1.0519ms"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.030+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61571"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.040+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 9.4775ms"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.043+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61571"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.050+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 6.8734ms"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.051+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61570"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.054+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 3.2222ms"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.059+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61570"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.061+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.5687ms"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.064+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61571"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.069+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 5.0149ms"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.072+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61571"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.077+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 5.2788ms"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.865+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61570"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.868+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.5112ms"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.873+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61570"}
+{"level":"INFO","ts":"2025-03-16T22:30:47.876+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 2.6539ms"}
+{"level":"INFO","ts":"2025-03-16T22:30:57.180+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T22:30:57.181+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T22:31:11.799+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T22:31:18.356+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61598"}
+{"level":"INFO","ts":"2025-03-16T22:31:36.051+0700","caller":"rest/handler.go:27","msg":"User ID","test":{"exp":1742140846,"role":"admin","userID":"7"}}
+{"level":"ERROR","ts":"2025-03-16T22:31:36.051+0700","caller":"rest/handler.go:29","msg":"[CreateAssessment] Failed to get user ID from token"}
+{"level":"INFO","ts":"2025-03-16T22:31:36.052+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 17.6954748s"}
+{"level":"INFO","ts":"2025-03-16T22:31:36.090+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T22:31:36.091+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T22:33:54.790+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T22:33:58.613+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61715"}
+{"level":"INFO","ts":"2025-03-16T22:34:02.708+0700","caller":"rest/handler.go:27","msg":"User ID","test":{"exp":1742140846,"role":"admin","userID":"7"}}
+{"level":"INFO","ts":"2025-03-16T22:34:10.415+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 11.8025122s"}
+{"level":"INFO","ts":"2025-03-16T22:34:10.438+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T22:34:10.439+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T22:34:20.618+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T22:34:25.920+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61742"}
+{"level":"INFO","ts":"2025-03-16T22:34:25.927+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 6.8112ms"}
+{"level":"INFO","ts":"2025-03-16T22:35:17.622+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T22:35:17.623+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T22:35:19.687+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.362+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments from 192.168.51.193:61792"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.382+0700","caller":"middleware/log.go:31","msg":"Completed /assessments in 20.0249ms"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.415+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61792"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.423+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.6704ms"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.425+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61792"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.430+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.737ms"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.435+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61794"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.441+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.8816ms"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.444+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61794"}
+{"level":"INFO","ts":"2025-03-16T22:35:25.449+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.4055ms"}
+{"level":"INFO","ts":"2025-03-16T22:35:32.228+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61794"}
+{"level":"INFO","ts":"2025-03-16T22:35:32.234+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.4409ms"}
+{"level":"INFO","ts":"2025-03-16T22:35:32.237+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61794"}
+{"level":"INFO","ts":"2025-03-16T22:35:32.243+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.9916ms"}
+{"level":"INFO","ts":"2025-03-16T22:35:32.248+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61792"}
+{"level":"INFO","ts":"2025-03-16T22:35:32.253+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.1375ms"}
+{"level":"INFO","ts":"2025-03-16T22:35:32.256+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61792"}
+{"level":"INFO","ts":"2025-03-16T22:35:32.260+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.7047ms"}
+{"level":"INFO","ts":"2025-03-16T22:36:15.099+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61841"}
+{"level":"INFO","ts":"2025-03-16T22:36:15.103+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 3.812ms"}
+{"level":"INFO","ts":"2025-03-16T22:36:15.106+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61841"}
+{"level":"INFO","ts":"2025-03-16T22:36:15.110+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 3.7355ms"}
+{"level":"INFO","ts":"2025-03-16T22:36:15.111+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61841"}
+{"level":"INFO","ts":"2025-03-16T22:36:15.116+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.3621ms"}
+{"level":"INFO","ts":"2025-03-16T22:36:15.118+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61841"}
+{"level":"INFO","ts":"2025-03-16T22:36:15.123+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.7667ms"}
+{"level":"INFO","ts":"2025-03-16T22:36:20.895+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/results?page=0&size=10 from 192.168.51.193:61841"}
+{"level":"ERROR","ts":"2025-03-16T22:36:20.908+0700","caller":"rest/handler.go:343","msg":"[GetAssessmentResults] Failed to fetch assessment results","error":"unsupported data type: &[]: Table not set, please set it like: db.Model(&user) or db.Table(\"users\")"}
+{"level":"INFO","ts":"2025-03-16T22:36:20.908+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/results?page=0&size=10 in 12.7822ms"}
+{"level":"INFO","ts":"2025-03-16T22:36:21.986+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/results?page=0&size=10 from 192.168.51.193:61841"}
+{"level":"ERROR","ts":"2025-03-16T22:36:21.994+0700","caller":"rest/handler.go:343","msg":"[GetAssessmentResults] Failed to fetch assessment results","error":"unsupported data type: &[]: Table not set, please set it like: db.Model(&user) or db.Table(\"users\")"}
+{"level":"INFO","ts":"2025-03-16T22:36:21.994+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/results?page=0&size=10 in 8.0989ms"}
+{"level":"INFO","ts":"2025-03-16T22:36:56.332+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:61868"}
+{"level":"ERROR","ts":"2025-03-16T22:36:56.333+0700","caller":"rest/handler.go:43","msg":"Invalid input","error":"json: cannot unmarshal string into Go struct field QuestionOption.options.id of type uint"}
+{"level":"INFO","ts":"2025-03-16T22:36:56.333+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 519µs"}
+{"level":"INFO","ts":"2025-03-16T22:37:00.930+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61870"}
+{"level":"INFO","ts":"2025-03-16T22:37:00.937+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.0436ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:00.940+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61870"}
+{"level":"INFO","ts":"2025-03-16T22:37:00.943+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.1417ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:03.923+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61868"}
+{"level":"INFO","ts":"2025-03-16T22:37:03.934+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 10.0474ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:03.939+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61868"}
+{"level":"INFO","ts":"2025-03-16T22:37:03.945+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 6.6407ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:03.946+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61870"}
+{"level":"INFO","ts":"2025-03-16T22:37:03.952+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.3463ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:03.955+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61870"}
+{"level":"INFO","ts":"2025-03-16T22:37:03.959+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.0411ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:07.747+0700","caller":"middleware/log.go:24","msg":"Started PUT /assessments/6 from 192.168.51.193:61870"}
+{"level":"INFO","ts":"2025-03-16T22:37:07.781+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 33.8766ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:07.799+0700","caller":"middleware/log.go:24","msg":"Started PUT /assessments/6/settings from 192.168.51.193:61870"}
+{"level":"INFO","ts":"2025-03-16T22:37:07.815+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/settings in 15.5693ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:50.112+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:37:50.119+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.0227ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:50.124+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:37:50.130+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.58ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:52.522+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:37:52.527+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.4101ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:52.532+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:37:52.535+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.7366ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.215+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.228+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 13.4107ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.231+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.237+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.239+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.1044ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.248+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.256+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 24.1993ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.257+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 8.9816ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.261+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.265+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 4.225ms"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.270+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:37:54.277+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 7.0497ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:00.687+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:00.694+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.0762ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:00.698+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:00.703+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.4077ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:02.069+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Active from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:02.081+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Active in 12.3174ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:02.795+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Draft from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:02.807+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Draft in 12.464ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:03.473+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Expired from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:03.482+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Expired in 9.1603ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:04.014+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Draft from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:04.024+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Draft in 10.345ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:04.571+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Active from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:04.579+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Active in 8.6975ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:04.872+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:04.880+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.5661ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:05.469+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:05.480+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 10.6036ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:05.484+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:05.493+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 8.7098ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:05.494+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:38:05.501+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 7.4689ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:05.505+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:38:05.511+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 6.536ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.319+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.324+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.702ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.327+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.331+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.7533ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.834+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.844+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 10.5246ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.852+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:61904"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.859+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.861+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 9.6417ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.871+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 11.605ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.875+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:61903"}
+{"level":"INFO","ts":"2025-03-16T22:38:07.882+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 6.5983ms"}
+{"level":"INFO","ts":"2025-03-16T22:38:25.916+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:61925"}
+{"level":"ERROR","ts":"2025-03-16T22:38:25.916+0700","caller":"rest/handler.go:43","msg":"Invalid input","error":"json: cannot unmarshal string into Go struct field QuestionOption.options.id of type uint"}
+{"level":"INFO","ts":"2025-03-16T22:38:25.916+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 0s"}
+{"level":"INFO","ts":"2025-03-16T22:40:15.556+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:61988"}
+{"level":"ERROR","ts":"2025-03-16T22:40:15.557+0700","caller":"rest/handler.go:43","msg":"Invalid input","error":"json: cannot unmarshal string into Go struct field QuestionOption.options.id of type uint"}
+{"level":"INFO","ts":"2025-03-16T22:40:15.557+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 542.1µs"}
+{"level":"INFO","ts":"2025-03-16T22:47:02.870+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:62255"}
+{"level":"ERROR","ts":"2025-03-16T22:47:02.871+0700","caller":"rest/handler.go:43","msg":"Invalid input","error":"json: cannot unmarshal string into Go struct field QuestionOption.options.id of type uint"}
+{"level":"INFO","ts":"2025-03-16T22:47:02.871+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 777.2µs"}
+{"level":"INFO","ts":"2025-03-16T22:49:13.646+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62334"}
+{"level":"INFO","ts":"2025-03-16T22:49:13.651+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.5821ms"}
+{"level":"INFO","ts":"2025-03-16T22:49:13.660+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62334"}
+{"level":"INFO","ts":"2025-03-16T22:49:13.665+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.3891ms"}
+{"level":"INFO","ts":"2025-03-16T22:49:24.663+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62347"}
+{"level":"INFO","ts":"2025-03-16T22:49:24.676+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 13.5565ms"}
+{"level":"INFO","ts":"2025-03-16T22:49:24.682+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62347"}
+{"level":"INFO","ts":"2025-03-16T22:49:24.690+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.5769ms"}
+{"level":"INFO","ts":"2025-03-16T22:49:24.693+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62347"}
+{"level":"INFO","ts":"2025-03-16T22:49:24.697+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.7379ms"}
+{"level":"INFO","ts":"2025-03-16T22:49:24.701+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62347"}
+{"level":"INFO","ts":"2025-03-16T22:49:24.706+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.2617ms"}
+{"level":"INFO","ts":"2025-03-16T22:49:49.650+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62366"}
+{"level":"INFO","ts":"2025-03-16T22:49:49.657+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 6.3962ms"}
+{"level":"INFO","ts":"2025-03-16T22:49:49.665+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62366"}
+{"level":"INFO","ts":"2025-03-16T22:49:49.678+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 12.8844ms"}
+{"level":"INFO","ts":"2025-03-16T22:49:49.682+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62366"}
+{"level":"INFO","ts":"2025-03-16T22:49:49.693+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 10.8702ms"}
+{"level":"INFO","ts":"2025-03-16T22:49:49.698+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62366"}
+{"level":"INFO","ts":"2025-03-16T22:49:49.707+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 8.8127ms"}
+{"level":"INFO","ts":"2025-03-16T22:50:04.653+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62388"}
+{"level":"INFO","ts":"2025-03-16T22:50:04.660+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.5349ms"}
+{"level":"INFO","ts":"2025-03-16T22:50:04.666+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62388"}
+{"level":"INFO","ts":"2025-03-16T22:50:04.678+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 12.0016ms"}
+{"level":"INFO","ts":"2025-03-16T22:50:04.684+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62388"}
+{"level":"INFO","ts":"2025-03-16T22:50:04.693+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 9.2812ms"}
+{"level":"INFO","ts":"2025-03-16T22:50:04.697+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62388"}
+{"level":"INFO","ts":"2025-03-16T22:50:04.705+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 7.6319ms"}
+{"level":"INFO","ts":"2025-03-16T22:52:42.633+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62490"}
+{"level":"INFO","ts":"2025-03-16T22:52:42.637+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 3.7877ms"}
+{"level":"INFO","ts":"2025-03-16T22:52:42.646+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62490"}
+{"level":"INFO","ts":"2025-03-16T22:52:42.650+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.2353ms"}
+{"level":"INFO","ts":"2025-03-16T22:53:02.182+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62508"}
+{"level":"INFO","ts":"2025-03-16T22:53:02.187+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.2593ms"}
+{"level":"INFO","ts":"2025-03-16T22:53:02.189+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62508"}
+{"level":"INFO","ts":"2025-03-16T22:53:02.193+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 3.1674ms"}
+{"level":"INFO","ts":"2025-03-16T22:53:02.198+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62510"}
+{"level":"INFO","ts":"2025-03-16T22:53:02.202+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.2294ms"}
+{"level":"INFO","ts":"2025-03-16T22:53:02.205+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62510"}
+{"level":"INFO","ts":"2025-03-16T22:53:02.209+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.0075ms"}
+{"level":"INFO","ts":"2025-03-16T22:54:06.109+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62562"}
+{"level":"INFO","ts":"2025-03-16T22:54:06.114+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.3625ms"}
+{"level":"INFO","ts":"2025-03-16T22:54:06.131+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62562"}
+{"level":"INFO","ts":"2025-03-16T22:54:06.136+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.6418ms"}
+{"level":"INFO","ts":"2025-03-16T22:54:09.186+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62562"}
+{"level":"INFO","ts":"2025-03-16T22:54:09.191+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.7264ms"}
+{"level":"INFO","ts":"2025-03-16T22:54:09.195+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62562"}
+{"level":"INFO","ts":"2025-03-16T22:54:09.199+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.2987ms"}
+{"level":"INFO","ts":"2025-03-16T22:54:09.203+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62562"}
+{"level":"INFO","ts":"2025-03-16T22:54:09.208+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.765ms"}
+{"level":"INFO","ts":"2025-03-16T22:54:09.210+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62562"}
+{"level":"INFO","ts":"2025-03-16T22:54:09.215+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.2036ms"}
+{"level":"INFO","ts":"2025-03-16T22:55:15.471+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62607"}
+{"level":"INFO","ts":"2025-03-16T22:55:15.478+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 6.8324ms"}
+{"level":"INFO","ts":"2025-03-16T22:55:15.491+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62607"}
+{"level":"INFO","ts":"2025-03-16T22:55:15.498+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 6.8995ms"}
+{"level":"INFO","ts":"2025-03-16T22:57:01.269+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62695"}
+{"level":"INFO","ts":"2025-03-16T22:57:01.274+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.7017ms"}
+{"level":"INFO","ts":"2025-03-16T22:57:01.283+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62695"}
+{"level":"INFO","ts":"2025-03-16T22:57:01.288+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.7128ms"}
+{"level":"INFO","ts":"2025-03-16T22:57:56.829+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62732"}
+{"level":"INFO","ts":"2025-03-16T22:57:56.834+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.2594ms"}
+{"level":"INFO","ts":"2025-03-16T22:57:56.844+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62732"}
+{"level":"INFO","ts":"2025-03-16T22:57:56.849+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.7922ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:03.797+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62775"}
+{"level":"INFO","ts":"2025-03-16T22:59:03.800+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 3.13ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:03.807+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62775"}
+{"level":"INFO","ts":"2025-03-16T22:59:03.811+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.2622ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:06.633+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:62779"}
+{"level":"INFO","ts":"2025-03-16T22:59:06.638+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.501ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:06.641+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:62779"}
+{"level":"INFO","ts":"2025-03-16T22:59:06.645+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.8519ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:07.450+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62779"}
+{"level":"INFO","ts":"2025-03-16T22:59:07.457+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.8296ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:07.462+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62779"}
+{"level":"INFO","ts":"2025-03-16T22:59:07.466+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62775"}
+{"level":"INFO","ts":"2025-03-16T22:59:07.469+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 6.2214ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:07.475+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 9.0507ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:07.482+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62775"}
+{"level":"INFO","ts":"2025-03-16T22:59:07.488+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.4042ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:09.319+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/results?page=0&size=10 from 192.168.51.193:62775"}
+{"level":"ERROR","ts":"2025-03-16T22:59:09.324+0700","caller":"rest/handler.go:343","msg":"[GetAssessmentResults] Failed to fetch assessment results","error":"unsupported data type: &[]: Table not set, please set it like: db.Model(&user) or db.Table(\"users\")"}
+{"level":"INFO","ts":"2025-03-16T22:59:09.324+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/results?page=0&size=10 in 4.8322ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:38.878+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:38.885+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.0063ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:38.888+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:38.893+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.9244ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:38.897+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:38.897+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 528µs"}
+{"level":"INFO","ts":"2025-03-16T22:59:38.908+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:38.908+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 529.5µs"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.696+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.705+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 9.2667ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.708+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.715+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 7.2389ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.719+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.721+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.131ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.723+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.726+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.6613ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.733+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.737+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.1979ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.739+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:43.744+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.3107ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:44.910+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:44.917+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.1893ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:44.922+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:44.927+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.2718ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:46.081+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62813"}
+{"level":"INFO","ts":"2025-03-16T22:59:46.087+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.8679ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:46.090+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62813"}
+{"level":"INFO","ts":"2025-03-16T22:59:46.096+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.2468ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:46.096+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:46.101+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.7731ms"}
+{"level":"INFO","ts":"2025-03-16T22:59:46.104+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62814"}
+{"level":"INFO","ts":"2025-03-16T22:59:46.109+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.6696ms"}
+{"level":"INFO","ts":"2025-03-16T23:00:29.354+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62849"}
+{"level":"INFO","ts":"2025-03-16T23:00:29.358+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.8077ms"}
+{"level":"INFO","ts":"2025-03-16T23:00:29.368+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62849"}
+{"level":"INFO","ts":"2025-03-16T23:00:29.372+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.2114ms"}
+{"level":"INFO","ts":"2025-03-16T23:03:25.903+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62942"}
+{"level":"INFO","ts":"2025-03-16T23:03:25.924+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 20.9589ms"}
+{"level":"INFO","ts":"2025-03-16T23:03:25.946+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62942"}
+{"level":"INFO","ts":"2025-03-16T23:03:25.976+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 30.3798ms"}
+{"level":"INFO","ts":"2025-03-16T23:03:52.795+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62969"}
+{"level":"INFO","ts":"2025-03-16T23:03:52.799+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 3.2663ms"}
+{"level":"INFO","ts":"2025-03-16T23:03:52.806+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62969"}
+{"level":"INFO","ts":"2025-03-16T23:03:52.810+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.3079ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:10.667+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62992"}
+{"level":"INFO","ts":"2025-03-16T23:04:10.689+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 21.3801ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:10.698+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62992"}
+{"level":"INFO","ts":"2025-03-16T23:04:10.709+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 11.063ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:10.726+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62992"}
+{"level":"INFO","ts":"2025-03-16T23:04:10.747+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 20.731ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:10.766+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62992"}
+{"level":"INFO","ts":"2025-03-16T23:04:10.773+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 6.7712ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:12.999+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62992"}
+{"level":"INFO","ts":"2025-03-16T23:04:13.024+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 24.3153ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:13.027+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62992"}
+{"level":"INFO","ts":"2025-03-16T23:04:13.034+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 6.852ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:13.034+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62993"}
+{"level":"INFO","ts":"2025-03-16T23:04:13.041+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 6.631ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:13.044+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62993"}
+{"level":"INFO","ts":"2025-03-16T23:04:13.049+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.2728ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:21.353+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62993"}
+{"level":"INFO","ts":"2025-03-16T23:04:21.358+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.29ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:21.361+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:62993"}
+{"level":"INFO","ts":"2025-03-16T23:04:21.366+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.8302ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:21.369+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62993"}
+{"level":"INFO","ts":"2025-03-16T23:04:21.375+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 6.8746ms"}
+{"level":"INFO","ts":"2025-03-16T23:04:21.379+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:62993"}
+{"level":"INFO","ts":"2025-03-16T23:04:21.386+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 6.3206ms"}
+{"level":"INFO","ts":"2025-03-16T23:13:14.645+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63377"}
+{"level":"INFO","ts":"2025-03-16T23:13:14.650+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.3528ms"}
+{"level":"INFO","ts":"2025-03-16T23:13:14.653+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63378"}
+{"level":"INFO","ts":"2025-03-16T23:13:14.658+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.8383ms"}
+{"level":"INFO","ts":"2025-03-16T23:13:14.661+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63377"}
+{"level":"INFO","ts":"2025-03-16T23:13:14.667+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.7954ms"}
+{"level":"INFO","ts":"2025-03-16T23:13:14.670+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63378"}
+{"level":"INFO","ts":"2025-03-16T23:13:14.675+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.4729ms"}
+{"level":"INFO","ts":"2025-03-16T23:14:32.682+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63448"}
+{"level":"INFO","ts":"2025-03-16T23:14:32.692+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 9.0248ms"}
+{"level":"INFO","ts":"2025-03-16T23:14:32.703+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63448"}
+{"level":"INFO","ts":"2025-03-16T23:14:32.711+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 7.7935ms"}
+{"level":"INFO","ts":"2025-03-16T23:15:00.671+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63470"}
+{"level":"INFO","ts":"2025-03-16T23:15:00.681+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 10.2445ms"}
+{"level":"INFO","ts":"2025-03-16T23:15:00.694+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63470"}
+{"level":"INFO","ts":"2025-03-16T23:15:00.698+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 3.8222ms"}
+{"level":"INFO","ts":"2025-03-16T23:15:32.652+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63497"}
+{"level":"INFO","ts":"2025-03-16T23:15:32.661+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 8.9867ms"}
+{"level":"INFO","ts":"2025-03-16T23:15:32.675+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63497"}
+{"level":"INFO","ts":"2025-03-16T23:15:32.680+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.7724ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:20.244+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:20.253+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 9.0455ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:20.258+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:20.261+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 3.6884ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:20.269+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:20.269+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 0s"}
+{"level":"INFO","ts":"2025-03-16T23:25:20.274+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:20.274+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 0s"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.019+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.026+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 7.1684ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.029+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:63894"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.035+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 6.2907ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.036+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.038+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.1104ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.041+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.043+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.104ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.047+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.051+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.1871ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.054+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:27.059+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.7205ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.156+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:63894"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.161+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.2466ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.166+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.169+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.0636ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.710+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.717+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 6.7717ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.720+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63894"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.725+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.764ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.738+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63893"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.742+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 3.6297ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.745+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63894"}
+{"level":"INFO","ts":"2025-03-16T23:25:28.750+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.2329ms"}
+{"level":"INFO","ts":"2025-03-16T23:25:38.046+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:63894"}
+{"level":"ERROR","ts":"2025-03-16T23:25:38.068+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:25:38.069+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 22.828ms"}
+{"level":"INFO","ts":"2025-03-16T23:26:11.653+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:63928"}
+{"level":"INFO","ts":"2025-03-16T23:26:11.659+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 6.131ms"}
+{"level":"INFO","ts":"2025-03-16T23:26:11.668+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:63928"}
+{"level":"INFO","ts":"2025-03-16T23:26:11.673+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.7533ms"}
+{"level":"INFO","ts":"2025-03-16T23:26:26.535+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:63940"}
+{"level":"ERROR","ts":"2025-03-16T23:26:26.550+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:26:26.550+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 15.155ms"}
+{"level":"INFO","ts":"2025-03-16T23:28:27.183+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:64028"}
+{"level":"INFO","ts":"2025-03-16T23:28:27.190+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.3774ms"}
+{"level":"INFO","ts":"2025-03-16T23:28:27.195+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:64027"}
+{"level":"INFO","ts":"2025-03-16T23:28:27.199+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 4.217ms"}
+{"level":"INFO","ts":"2025-03-16T23:28:27.201+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:64028"}
+{"level":"INFO","ts":"2025-03-16T23:28:27.208+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 6.6847ms"}
+{"level":"INFO","ts":"2025-03-16T23:28:27.212+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:64027"}
+{"level":"INFO","ts":"2025-03-16T23:28:27.217+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.3153ms"}
+{"level":"INFO","ts":"2025-03-16T23:28:33.004+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64027"}
+{"level":"ERROR","ts":"2025-03-16T23:28:33.017+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:28:33.017+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 13.3185ms"}
+{"level":"INFO","ts":"2025-03-16T23:29:34.365+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:29:34.367+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:29:36.315+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:29:39.749+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64098"}
+{"level":"ERROR","ts":"2025-03-16T23:29:39.767+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:29:39.767+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 17.4991ms"}
+{"level":"INFO","ts":"2025-03-16T23:30:19.383+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:30:19.384+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:30:22.728+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:30:24.148+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64136"}
+{"level":"ERROR","ts":"2025-03-16T23:30:35.141+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:30:35.141+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 10.9927222s"}
+{"level":"INFO","ts":"2025-03-16T23:30:35.171+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:30:35.172+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:31:43.209+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:31:46.043+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64204"}
+{"level":"ERROR","ts":"2025-03-16T23:32:17.907+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:32:17.909+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 31.8656359s"}
+{"level":"INFO","ts":"2025-03-16T23:32:17.963+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:32:17.974+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:32:39.634+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:32:41.005+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64244"}
+{"level":"ERROR","ts":"2025-03-16T23:32:41.025+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:32:41.025+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 20.3ms"}
+{"level":"INFO","ts":"2025-03-16T23:32:46.331+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:32:46.332+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:32:48.762+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:32:49.984+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64261"}
+{"level":"ERROR","ts":"2025-03-16T23:34:31.000+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:34:31.000+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 1m41.0156468s"}
+{"level":"INFO","ts":"2025-03-16T23:34:31.017+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:34:31.017+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:34:33.872+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:34:34.730+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:34:34.731+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:34:37.694+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:34:38.364+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64365"}
+{"level":"ERROR","ts":"2025-03-16T23:34:54.009+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:34:54.009+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 15.6449743s"}
+{"level":"INFO","ts":"2025-03-16T23:34:54.033+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:34:54.033+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:34:56.712+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:34:57.896+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64381"}
+{"level":"ERROR","ts":"2025-03-16T23:34:57.913+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:34:57.914+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 17.3935ms"}
+{"level":"INFO","ts":"2025-03-16T23:34:58.672+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64381"}
+{"level":"ERROR","ts":"2025-03-16T23:34:58.681+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:34:58.681+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 9.4849ms"}
+{"level":"INFO","ts":"2025-03-16T23:36:50.177+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:36:50.177+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:37:04.498+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:37:04.520+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64484"}
+{"level":"INFO","ts":"2025-03-16T23:37:13.227+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64500"}
+{"level":"INFO","ts":"2025-03-16T23:37:15.727+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64490"}
+{"level":"INFO","ts":"2025-03-16T23:37:15.727+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64486"}
+{"level":"ERROR","ts":"2025-03-16T23:39:04.653+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:39:04.653+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 2m0.1333851s"}
+{"level":"ERROR","ts":"2025-03-16T23:39:04.687+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:39:04.687+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 1m48.9602177s"}
+{"level":"ERROR","ts":"2025-03-16T23:39:04.688+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:39:04.688+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 1m48.9613942s"}
+{"level":"ERROR","ts":"2025-03-16T23:39:04.696+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:39:04.696+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 1m51.4687456s"}
+{"level":"INFO","ts":"2025-03-16T23:39:04.708+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:39:04.709+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:39:07.808+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:39:08.523+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64584"}
+{"level":"ERROR","ts":"2025-03-16T23:39:57.865+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:39:57.865+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 49.34251s"}
+{"level":"INFO","ts":"2025-03-16T23:39:57.896+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:39:57.896+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:42:58.183+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:42:58.265+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64752"}
+{"level":"ERROR","ts":"2025-03-16T23:42:58.315+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:42:58.315+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 50.2843ms"}
+{"level":"INFO","ts":"2025-03-16T23:43:07.525+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:43:07.526+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:43:09.848+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:43:10.504+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64772"}
+{"level":"ERROR","ts":"2025-03-16T23:43:43.752+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:43:43.753+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 33.2493728s"}
+{"level":"INFO","ts":"2025-03-16T23:43:43.807+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:43:43.809+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:43:46.880+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:43:47.845+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64810"}
+{"level":"ERROR","ts":"2025-03-16T23:45:04.792+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:45:04.792+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 1m16.9477406s"}
+{"level":"INFO","ts":"2025-03-16T23:45:04.824+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:45:04.824+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:45:40.527+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:45:44.850+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64919"}
+{"level":"ERROR","ts":"2025-03-16T23:46:29.830+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:46:29.833+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 44.9823142s"}
+{"level":"INFO","ts":"2025-03-16T23:46:29.843+0700","caller":"middleware/log.go:24","msg":"Started PUT /assessments/6 from 192.168.51.193:64940"}
+{"level":"INFO","ts":"2025-03-16T23:46:29.844+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/results?page=0&size=10 from 192.168.51.193:64945"}
+{"level":"INFO","ts":"2025-03-16T23:46:29.878+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"ERROR","ts":"2025-03-16T23:46:29.882+0700","caller":"rest/handler.go:343","msg":"[GetAssessmentResults] Failed to fetch assessment results","error":"unsupported data type: &[]: Table not set, please set it like: db.Model(&user) or db.Table(\"users\")"}
+{"level":"INFO","ts":"2025-03-16T23:46:29.882+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/results?page=0&size=10 in 38.2988ms"}
+{"level":"INFO","ts":"2025-03-16T23:46:29.885+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 42.6109ms"}
+{"level":"INFO","ts":"2025-03-16T23:46:29.887+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:46:47.945+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:46:49.002+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:64979"}
+{"level":"ERROR","ts":"2025-03-16T23:46:49.022+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:46:49.022+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 19.4239ms"}
+{"level":"INFO","ts":"2025-03-16T23:50:03.869+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:50:03.869+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:50:06.199+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:50:21.107+0700","caller":"middleware/log.go:24","msg":"Started PUT /assessments/6 from 192.168.51.193:65131"}
+{"level":"INFO","ts":"2025-03-16T23:50:21.145+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 37.9875ms"}
+{"level":"INFO","ts":"2025-03-16T23:50:21.156+0700","caller":"middleware/log.go:24","msg":"Started PUT /assessments/6/settings from 192.168.51.193:65131"}
+{"level":"INFO","ts":"2025-03-16T23:50:21.172+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/settings in 16.4274ms"}
+{"level":"INFO","ts":"2025-03-16T23:50:30.634+0700","caller":"middleware/log.go:24","msg":"Started PUT /assessments/6 from 192.168.51.193:65131"}
+{"level":"INFO","ts":"2025-03-16T23:50:30.671+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 36.9875ms"}
+{"level":"INFO","ts":"2025-03-16T23:50:30.686+0700","caller":"middleware/log.go:24","msg":"Started PUT /assessments/6/settings from 192.168.51.193:65131"}
+{"level":"INFO","ts":"2025-03-16T23:50:30.698+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/settings in 12.5721ms"}
+{"level":"INFO","ts":"2025-03-16T23:50:33.239+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/results?page=0&size=10 from 192.168.51.193:65131"}
+{"level":"ERROR","ts":"2025-03-16T23:50:33.251+0700","caller":"rest/handler.go:343","msg":"[GetAssessmentResults] Failed to fetch assessment results","error":"unsupported data type: &[]: Table not set, please set it like: db.Model(&user) or db.Table(\"users\")"}
+{"level":"INFO","ts":"2025-03-16T23:50:33.251+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/results?page=0&size=10 in 12.5652ms"}
+{"level":"INFO","ts":"2025-03-16T23:50:47.491+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:50:47.491+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:50:49.457+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:50:59.255+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65176"}
+{"level":"ERROR","ts":"2025-03-16T23:50:59.278+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:50:59.278+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 22.6315ms"}
+{"level":"INFO","ts":"2025-03-16T23:53:31.945+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:53:31.945+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:53:34.527+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:53:35.593+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65277"}
+{"level":"ERROR","ts":"2025-03-16T23:54:37.226+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:54:37.227+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 1m1.6336992s"}
+{"level":"INFO","ts":"2025-03-16T23:54:37.257+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:54:37.258+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:54:54.871+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:55:02.016+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65344"}
+{"level":"ERROR","ts":"2025-03-16T23:55:02.055+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:55:02.056+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 39.6551ms"}
+{"level":"INFO","ts":"2025-03-16T23:55:06.266+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:55:06.267+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:55:08.883+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:55:13.722+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65362"}
+{"level":"ERROR","ts":"2025-03-16T23:55:21.437+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:55:21.438+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 7.7162253s"}
+{"level":"INFO","ts":"2025-03-16T23:55:21.470+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:55:21.471+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:55:23.789+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:55:24.167+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65376"}
+{"level":"ERROR","ts":"2025-03-16T23:55:53.663+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:55:53.663+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 29.4967642s"}
+{"level":"INFO","ts":"2025-03-16T23:55:53.688+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:55:53.688+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:55:56.785+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:55:58.514+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:55:58.514+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 0s"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.824+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.839+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 14.6441ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.841+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:65415"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.850+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 8.7729ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.850+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.854+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 3.7335ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.857+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:65415"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.859+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.1106ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.862+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:65415"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.870+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 7.8677ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.873+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:56:04.877+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.1398ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:10.995+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.002+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 6.9546ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.005+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:65415"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.010+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.012+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.6107ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.019+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.023+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 3.6673ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.025+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 20.0722ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.030+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:65415"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.034+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 4.2283ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.049+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:65415"}
+{"level":"INFO","ts":"2025-03-16T23:56:11.057+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 7.8523ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:12.063+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:56:12.075+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 11.8892ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:12.079+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:65415"}
+{"level":"INFO","ts":"2025-03-16T23:56:12.084+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.7991ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:14.357+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:65415"}
+{"level":"INFO","ts":"2025-03-16T23:56:14.374+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 16.6718ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:14.378+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:56:14.385+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.1116ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:14.387+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:65415"}
+{"level":"INFO","ts":"2025-03-16T23:56:14.392+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.2724ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:14.396+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:65401"}
+{"level":"INFO","ts":"2025-03-16T23:56:14.403+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 7.951ms"}
+{"level":"INFO","ts":"2025-03-16T23:56:20.680+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65401"}
+{"level":"ERROR","ts":"2025-03-16T23:56:20.693+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:56:20.694+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 13.4939ms"}
+{"level":"INFO","ts":"2025-03-16T23:57:22.346+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:57:22.346+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:57:25.065+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:57:28.717+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65477"}
+{"level":"ERROR","ts":"2025-03-16T23:57:28.739+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:57:28.739+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 22.6993ms"}
+{"level":"INFO","ts":"2025-03-16T23:57:45.984+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-16T23:57:45.985+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-16T23:57:49.014+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-16T23:57:50.656+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65495"}
+{"level":"ERROR","ts":"2025-03-16T23:57:50.671+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:57:50.671+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 15.2677ms"}
+{"level":"INFO","ts":"2025-03-16T23:58:05.623+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:65516"}
+{"level":"ERROR","ts":"2025-03-16T23:58:05.639+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-16T23:58:05.639+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 15.8118ms"}
+{"level":"INFO","ts":"2025-03-17T00:00:03.067+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-17T00:00:03.068+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-17T00:00:13.128+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-17T00:00:13.771+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-17T00:00:13.772+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-17T00:00:16.786+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-17T00:00:19.485+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:49253"}
+{"level":"ERROR","ts":"2025-03-17T00:03:41.384+0700","caller":"rest/handler.go:61","msg":"Failed to add question","error":"ERROR: duplicate key value violates unique constraint \"question_options_pkey\" (SQLSTATE 23505)"}
+{"level":"INFO","ts":"2025-03-17T00:03:41.384+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 3m21.89952s"}
+{"level":"INFO","ts":"2025-03-17T00:03:41.409+0700","caller":"api/server.go:90","msg":"Shutting down server..."}
+{"level":"INFO","ts":"2025-03-17T00:03:41.410+0700","caller":"api/server.go:100","msg":"Server exited properly"}
+{"level":"INFO","ts":"2025-03-17T00:04:34.090+0700","caller":"api/server.go:80","msg":"Server running on port 8080"}
+{"level":"INFO","ts":"2025-03-17T00:04:38.504+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:49490"}
+{"level":"INFO","ts":"2025-03-17T00:04:38.539+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 34.5129ms"}
+{"level":"INFO","ts":"2025-03-17T00:04:57.455+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:49510"}
+{"level":"INFO","ts":"2025-03-17T00:04:57.462+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.4597ms"}
+{"level":"INFO","ts":"2025-03-17T00:04:57.466+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:49510"}
+{"level":"INFO","ts":"2025-03-17T00:04:57.471+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 5.6718ms"}
+{"level":"INFO","ts":"2025-03-17T00:04:57.477+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:49511"}
+{"level":"INFO","ts":"2025-03-17T00:04:57.485+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 8.1318ms"}
+{"level":"INFO","ts":"2025-03-17T00:04:57.487+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:49511"}
+{"level":"INFO","ts":"2025-03-17T00:04:57.493+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.7824ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:04.407+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:49716"}
+{"level":"INFO","ts":"2025-03-17T00:08:04.415+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.7097ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:04.418+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:49717"}
+{"level":"INFO","ts":"2025-03-17T00:08:04.426+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.1748ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:04.427+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:49716"}
+{"level":"INFO","ts":"2025-03-17T00:08:04.471+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 44.0558ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:04.475+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:49717"}
+{"level":"INFO","ts":"2025-03-17T00:08:04.483+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 7.533ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.116+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:49733"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.121+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.4795ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.124+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:49732"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.127+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.2312ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.764+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:49733"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.772+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 8.2547ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.776+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:49732"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.782+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 6.4408ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.783+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:49733"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.791+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 8.401ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.793+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:49732"}
+{"level":"INFO","ts":"2025-03-17T00:08:32.798+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 4.977ms"}
+{"level":"INFO","ts":"2025-03-17T00:08:45.541+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/questions from 192.168.51.193:49748"}
+{"level":"INFO","ts":"2025-03-17T00:08:45.562+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 21.669ms"}
+{"level":"INFO","ts":"2025-03-17T00:09:21.929+0700","caller":"middleware/log.go:24","msg":"Started POST /assessments/6/publish from 192.168.51.193:49775"}
+{"level":"INFO","ts":"2025-03-17T00:09:21.965+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/publish in 36.1382ms"}
+{"level":"INFO","ts":"2025-03-17T00:09:24.884+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:49775"}
+{"level":"INFO","ts":"2025-03-17T00:09:24.891+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 6.4192ms"}
+{"level":"INFO","ts":"2025-03-17T00:09:24.896+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:49778"}
+{"level":"INFO","ts":"2025-03-17T00:09:24.901+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.4894ms"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.906+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:49778"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.920+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 13.8914ms"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.923+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:49775"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.929+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:49778"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.930+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 6.2905ms"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.946+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 17.6964ms"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.949+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:49775"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.950+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.582ms"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.955+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:49775"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.965+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 9.927ms"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.968+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:49778"}
+{"level":"INFO","ts":"2025-03-17T00:09:26.972+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.181ms"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.516+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50077"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.528+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 11.564ms"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.531+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50078"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.537+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50077"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.540+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 8.811ms"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.543+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 5.4142ms"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.548+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50077"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.551+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.7505ms"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.553+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50078"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.565+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 12.3888ms"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.568+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50077"}
+{"level":"INFO","ts":"2025-03-17T00:10:16.575+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 6.7148ms"}
+{"level":"INFO","ts":"2025-03-17T00:10:32.943+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50090"}
+{"level":"INFO","ts":"2025-03-17T00:10:32.944+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 526.5µs"}
+{"level":"INFO","ts":"2025-03-17T00:10:32.947+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50091"}
+{"level":"INFO","ts":"2025-03-17T00:10:32.947+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 525.1µs"}
+{"level":"INFO","ts":"2025-03-17T00:11:48.261+0700","caller":"middleware/log.go:24","msg":"Started GET /student/assessments/available?page=0&size=10 from 192.168.51.193:50151"}
+{"level":"INFO","ts":"2025-03-17T00:11:48.261+0700","caller":"middleware/log.go:31","msg":"Completed /student/assessments/available?page=0&size=10 in 518.9µs"}
+{"level":"INFO","ts":"2025-03-17T00:11:58.537+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50161"}
+{"level":"INFO","ts":"2025-03-17T00:11:58.538+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 523.9µs"}
+{"level":"INFO","ts":"2025-03-17T00:11:58.540+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50160"}
+{"level":"INFO","ts":"2025-03-17T00:11:58.541+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:12:11.966+0700","caller":"middleware/log.go:24","msg":"Started GET /student/assessments/available?page=0&size=10 from 192.168.51.193:50160"}
+{"level":"INFO","ts":"2025-03-17T00:12:11.966+0700","caller":"middleware/log.go:31","msg":"Completed /student/assessments/available?page=0&size=10 in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:12:11.972+0700","caller":"middleware/log.go:24","msg":"Started GET /student/assessments/available?page=0&size=10 from 192.168.51.193:50160"}
+{"level":"INFO","ts":"2025-03-17T00:12:11.972+0700","caller":"middleware/log.go:31","msg":"Completed /student/assessments/available?page=0&size=10 in 532.1µs"}
+{"level":"INFO","ts":"2025-03-17T00:13:13.573+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50225"}
+{"level":"INFO","ts":"2025-03-17T00:13:13.573+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 516.5µs"}
+{"level":"INFO","ts":"2025-03-17T00:13:13.576+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50224"}
+{"level":"INFO","ts":"2025-03-17T00:13:13.576+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 516µs"}
+{"level":"INFO","ts":"2025-03-17T00:13:40.107+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50258"}
+{"level":"INFO","ts":"2025-03-17T00:13:40.108+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 543.9µs"}
+{"level":"INFO","ts":"2025-03-17T00:13:40.111+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50257"}
+{"level":"INFO","ts":"2025-03-17T00:13:40.111+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:15:24.996+0700","caller":"middleware/log.go:24","msg":"Started GET /student/assessments/available?page=0&size=10 from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:24.996+0700","caller":"middleware/log.go:31","msg":"Completed /student/assessments/available?page=0&size=10 in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:15:24.999+0700","caller":"middleware/log.go:24","msg":"Started GET /student/assessments/available?page=0&size=10 from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:24.999+0700","caller":"middleware/log.go:31","msg":"Completed /student/assessments/available?page=0&size=10 in 526.6µs"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.802+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50565"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.811+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 8.1618ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.813+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50565"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.819+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 5.7234ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.819+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.821+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.5886ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.824+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.827+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.6255ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.834+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.844+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 10.5042ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.848+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:32.853+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 5.3488ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:35.928+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:35.934+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.9188ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:35.937+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:35.942+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.1602ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.762+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.769+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 6.8999ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.772+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.778+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50565"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.778+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 5.9426ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.780+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.8761ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.783+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50565"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.785+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.307ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.790+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.793+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 3.6536ms"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.796+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50546"}
+{"level":"INFO","ts":"2025-03-17T00:15:45.800+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.2007ms"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.487+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50605"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.495+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 7.9805ms"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.498+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50605"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.503+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 5.2674ms"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.504+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50604"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.507+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.6358ms"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.510+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50604"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.512+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.1146ms"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.515+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50605"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.519+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.2539ms"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.522+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50605"}
+{"level":"INFO","ts":"2025-03-17T00:16:21.526+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.4356ms"}
+{"level":"INFO","ts":"2025-03-17T00:17:21.316+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50650"}
+{"level":"INFO","ts":"2025-03-17T00:17:21.316+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 518.6µs"}
+{"level":"INFO","ts":"2025-03-17T00:17:21.319+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50650"}
+{"level":"INFO","ts":"2025-03-17T00:17:21.319+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:18:32.337+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50691"}
+{"level":"INFO","ts":"2025-03-17T00:18:32.338+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 648.8µs"}
+{"level":"INFO","ts":"2025-03-17T00:18:32.341+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50691"}
+{"level":"INFO","ts":"2025-03-17T00:18:32.341+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:18:48.115+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50708"}
+{"level":"INFO","ts":"2025-03-17T00:18:48.116+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 535.7µs"}
+{"level":"INFO","ts":"2025-03-17T00:18:48.119+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50708"}
+{"level":"INFO","ts":"2025-03-17T00:18:48.119+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:19:19.066+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50738"}
+{"level":"INFO","ts":"2025-03-17T00:19:19.066+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:19:19.069+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50738"}
+{"level":"INFO","ts":"2025-03-17T00:19:19.069+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:19:20.026+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50738"}
+{"level":"INFO","ts":"2025-03-17T00:19:20.026+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 602.5µs"}
+{"level":"INFO","ts":"2025-03-17T00:19:20.031+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50738"}
+{"level":"INFO","ts":"2025-03-17T00:19:20.032+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 524.6µs"}
+{"level":"INFO","ts":"2025-03-17T00:19:30.398+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50746"}
+{"level":"INFO","ts":"2025-03-17T00:19:30.398+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:19:30.401+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50746"}
+{"level":"INFO","ts":"2025-03-17T00:19:30.402+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 532.6µs"}
+{"level":"INFO","ts":"2025-03-17T00:19:47.822+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50762"}
+{"level":"INFO","ts":"2025-03-17T00:19:47.822+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 0s"}
+{"level":"INFO","ts":"2025-03-17T00:19:47.825+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50762"}
+{"level":"INFO","ts":"2025-03-17T00:19:47.825+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 672.7µs"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.337+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50932"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.343+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 6.1277ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.345+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/statistics from 192.168.51.193:50932"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.350+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50931"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.350+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/statistics in 5.2933ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.352+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 1.5788ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.354+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/recent?limit=5 from 192.168.51.193:50931"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.357+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/recent?limit=5 in 2.4586ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.360+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50931"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.363+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 3.671ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.365+0700","caller":"middleware/log.go:24","msg":"Started GET /analytics/user-activity?limit=10 from 192.168.51.193:50931"}
+{"level":"INFO","ts":"2025-03-17T00:22:16.370+0700","caller":"middleware/log.go:31","msg":"Completed /analytics/user-activity?limit=10 in 4.2262ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:41.113+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:41.122+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 8.3935ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:41.126+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:41.129+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.7426ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:43.196+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:43.203+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 7.3831ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:43.207+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:43.211+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.2033ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:44.189+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:44.198+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 8.0831ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:44.201+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:44.207+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.8426ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:45.031+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:45.035+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 3.7017ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:45.038+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:45.041+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 2.7193ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:46.468+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Active from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:46.479+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Active in 11.8405ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:46.906+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Draft from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:46.913+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Draft in 6.4863ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:47.339+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Expired from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:47.347+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Expired in 7.2196ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:48.139+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Draft from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:48.149+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Draft in 9.4727ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:48.792+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc&status=Active from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:48.811+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc&status=Active in 18.4384ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:52.705+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:52.719+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 13.5695ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:52.723+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6 from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:52.730+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 7.0944ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:52.732+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:52.742+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 9.4597ms"}
+{"level":"INFO","ts":"2025-03-17T00:22:52.744+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/questions from 192.168.51.193:50953"}
+{"level":"INFO","ts":"2025-03-17T00:22:52.750+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/questions in 5.8305ms"}
+{"level":"INFO","ts":"2025-03-17T00:23:00.327+0700","caller":"middleware/log.go:24","msg":"Started PUT /assessments/6 from 192.168.51.193:50953"}
+{"level":"ERROR","ts":"2025-03-17T00:23:00.328+0700","caller":"rest/handler.go:142","msg":"[UpdateAssessment] Failed to decode request body","error":"json: cannot unmarshal string into Go struct field .passingScore of type float64"}
+{"level":"INFO","ts":"2025-03-17T00:23:00.328+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6 in 1.1799ms"}
+{"level":"INFO","ts":"2025-03-17T00:23:16.734+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments/6/results?page=0&size=10 from 192.168.51.193:50976"}
+{"level":"ERROR","ts":"2025-03-17T00:23:16.748+0700","caller":"rest/handler.go:343","msg":"[GetAssessmentResults] Failed to fetch assessment results","error":"unsupported data type: &[]: Table not set, please set it like: db.Model(&user) or db.Table(\"users\")"}
+{"level":"INFO","ts":"2025-03-17T00:23:16.748+0700","caller":"middleware/log.go:31","msg":"Completed /assessments/6/results?page=0&size=10 in 14.6387ms"}
+{"level":"INFO","ts":"2025-03-17T00:23:20.138+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50979"}
+{"level":"INFO","ts":"2025-03-17T00:23:20.143+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 5.3141ms"}
+{"level":"INFO","ts":"2025-03-17T00:23:20.147+0700","caller":"middleware/log.go:24","msg":"Started GET /assessments?page=0&size=10&sort=createdAt,desc from 192.168.51.193:50979"}
+{"level":"INFO","ts":"2025-03-17T00:23:20.151+0700","caller":"middleware/log.go:31","msg":"Completed /assessments?page=0&size=10&sort=createdAt,desc in 4.2452ms"}
