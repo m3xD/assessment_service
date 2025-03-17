@@ -60,7 +60,7 @@ func Load() (*Config, error) {
 			SSLMode:  getEnv("DB_SSL_MODE", "disable"),
 		},
 		Auth: AuthConfig{
-			JWTSecret:           getEnv("JWT_SECRET", "your-secret-key"),
+			JWTSecret:           getEnv("JWT_SECRET", "access-sap-secrets"),
 			AccessTokenExpiry:   getDurationEnv("ACCESS_TOKEN_EXPIRY", 30*time.Minute),
 			RefreshTokenExpiry:  getDurationEnv("REFRESH_TOKEN_EXPIRY", 7*24*time.Hour),
 			PasswordResetExpiry: getDurationEnv("PASSWORD_RESET_EXPIRY", 24*time.Hour),

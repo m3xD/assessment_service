@@ -1,1 +1,1 @@
-web: exam_service
+web: assessment_service
