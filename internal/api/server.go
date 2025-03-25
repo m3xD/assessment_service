@@ -64,9 +64,14 @@ func (s *Server) Run() error {
 		s.log,
 	)
 
+	var port string
+	if os.Getenv("PORT") == "" {
+		port = "8080"
+	}
+
 	// Configure server
 	srv := &http.Server{
-		Addr: ":" + s.config.Server.Port,
+		Addr: ":" + port,
 		Handler: handlers.CORS(
 			handlers.AllowedOrigins([]string{"*"}),
 			handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"}),
@@ -77,7 +82,7 @@ func (s *Server) Run() error {
 
 	// Run server in a goroutine
 	go func() {
-		s.log.Info(fmt.Sprintf("Server running on port %s", s.config.Server.Port))
+		s.log.Info(fmt.Sprintf("Server running on port %s", port))
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			s.log.Fatal("Failed to start server", zap.Error(err))
 		}
