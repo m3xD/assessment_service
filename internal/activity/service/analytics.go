@@ -222,7 +222,7 @@ func (s *analyticsService) GetDashboardSummary() (map[string]interface{}, error)
 			"active":      assessmentStats["activeAssessments"],
 			"draft":       assessmentStats["draftAssessments"],
 			"expired":     assessmentStats["expiredAssessments"],
-			"newThisWeek": 3, // Placeholder - need to implement this in repository
+			"newThisWeek": newThisWeek, // Placeholder - need to implement this in repository
 		},
 		"activity": map[string]interface{}{
 			"assessmentAttempts": map[string]interface{}{

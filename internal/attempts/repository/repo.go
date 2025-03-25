@@ -369,7 +369,7 @@ func (r *attemptRepository) GetAssessmentCompletionRates() (map[string]interface
 		SELECT 
 			id, title, total_attempts, completed_attempts, total_users,
 			CASE WHEN total_attempts > 0 THEN 
-				ROUND((completed_attempts::float / total_attempts::float) * 100, 2)
+				ROUND((completed_attempts::numeric / total_attempts::numeric) * 100, 2)
 			ELSE
 				0
 			END as completion_rate
@@ -523,7 +523,7 @@ func (r *attemptRepository) GetMostChallengingAssessments(limit int) ([]map[stri
 		SELECT 
 			id, title, total_attempts, passed_attempts, avg_score,
 			CASE WHEN total_attempts > 0 THEN 
-				ROUND((passed_attempts::float / total_attempts::float) * 100, 2)
+				ROUND((passed_attempts::numeric / total_attempts::numeric) * 100, 2)
 			ELSE 0 END as pass_rate
 		FROM assessment_stats
 		ORDER BY pass_rate ASC
@@ -579,7 +579,7 @@ func (r *attemptRepository) GetMostSuccessfulAssessments(limit int) ([]map[strin
 		SELECT 
 			id, title, total_attempts, passed_attempts, avg_score,
 			CASE WHEN total_attempts > 0 THEN 
-				ROUND((passed_attempts::float / total_attempts::float) * 100, 2)
+				ROUND((passed_attempts::numeric / total_attempts::numeric) * 100, 2)
 			ELSE 0 END as pass_rate
 		FROM assessment_stats
 		ORDER BY pass_rate DESC
@@ -618,7 +618,7 @@ func (r *attemptRepository) GetPassRate() (float64, error) {
 		SELECT
 			CASE WHEN COUNT(*) > 0 THEN
 				ROUND(
-					(COUNT(CASE WHEN att.score >= a.passing_score THEN 1 END)::float / COUNT(*)::float) * 100,
+					(COUNT(CASE WHEN att.score >= a.passing_score THEN 1 END)::numeric / COUNT(*)::numeric) * 100,
 					2
 				)
 			ELSE 0 END as pass_rate
