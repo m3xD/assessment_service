@@ -6,6 +6,7 @@ import (
 	repository3 "assessment_service/internal/attempts/repository"
 	models "assessment_service/internal/model"
 	"assessment_service/internal/users/repository"
+	"go.uber.org/zap"
 	"time"
 )
 
@@ -25,6 +26,7 @@ type analyticsService struct {
 	assessmentRepo repository2.AssessmentRepository
 	attemptRepo    repository3.AttemptRepository
 	activityRepo   repository4.ActivityRepository
+	log            *zap.Logger
 }
 
 func NewAnalyticsService(
@@ -32,12 +34,14 @@ func NewAnalyticsService(
 	assessmentRepo repository2.AssessmentRepository,
 	attemptRepo repository3.AttemptRepository,
 	activityRepo repository4.ActivityRepository,
+	log *zap.Logger,
 ) AnalyticsService {
 	return &analyticsService{
 		userRepo:       userRepo,
 		assessmentRepo: assessmentRepo,
 		attemptRepo:    attemptRepo,
 		activityRepo:   activityRepo,
+		log:            log,
 	}
 }
 
@@ -45,30 +49,35 @@ func (s *analyticsService) GetUserActivityAnalytics() (map[string]interface{}, e
 	// Get daily active users for the past week
 	dailyActiveUsers, err := s.activityRepo.GetDailyActiveUsers(7)
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetUserActivityAnalytics] failed to get daily active users", zap.Error(err))
 		return nil, err
 	}
 
 	// Get activity by hour of day
 	activityByHour, err := s.activityRepo.GetActivityByHour()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetUserActivityAnalytics] failed to get activity by hour", zap.Error(err))
 		return nil, err
 	}
 
 	// Get activity by type
 	activityByType, err := s.activityRepo.GetActivityByType()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetUserActivityAnalytics] failed to get activity by type", zap.Error(err))
 		return nil, err
 	}
 
 	// Get total active users
 	totalActiveUsers, err := s.activityRepo.GetTotalActiveUsers()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetUserActivityAnalytics] failed to get total active users", zap.Error(err))
 		return nil, err
 	}
 
 	// Get new users in last week
 	newUsersLastWeek, err := s.userRepo.GetNewUsersCount(7)
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetUserActivityAnalytics] failed to get new users last week", zap.Error(err))
 		return nil, err
 	}
 
@@ -85,30 +94,35 @@ func (s *analyticsService) GetAssessmentPerformanceAnalytics() (map[string]inter
 	// Get assessment completion rates
 	completionRates, err := s.attemptRepo.GetAssessmentCompletionRates()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetAssessmentPerformanceAnalytics] failed to get assessment completion rates", zap.Error(err))
 		return nil, err
 	}
 
 	// Get score distribution
 	scoreDistribution, err := s.attemptRepo.GetScoreDistribution()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetAssessmentPerformanceAnalytics] failed to get score distribution", zap.Error(err))
 		return nil, err
 	}
 
 	// Get average time spent
 	averageTimeSpent, err := s.attemptRepo.GetAverageTimeSpent()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetAssessmentPerformanceAnalytics] failed to get average time spent", zap.Error(err))
 		return nil, err
 	}
 
 	// Get most challenging assessments
 	mostChallenging, err := s.attemptRepo.GetMostChallengingAssessments(2)
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetAssessmentPerformanceAnalytics] failed to get most challenging assessments", zap.Error(err))
 		return nil, err
 	}
 
 	// Get most successful assessments
 	mostSuccessful, err := s.attemptRepo.GetMostSuccessfulAssessments(2)
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetAssessmentPerformanceAnalytics] failed to get most successful assessments", zap.Error(err))
 		return nil, err
 	}
 
@@ -134,6 +148,7 @@ func (s *analyticsService) TrackAssessmentSession(sessionData *models.SessionDat
 	// Validate assessment exists
 	_, err := s.assessmentRepo.FindByID(sessionData.AssessmentID)
 	if err != nil {
+		s.log.Error("[AnalyticsService][TrackAssessmentSession] assessment not found", zap.Error(err))
 		return err
 	}
 
@@ -163,50 +178,59 @@ func (s *analyticsService) GetDashboardSummary() (map[string]interface{}, error)
 	// Get user stats
 	totalUsers, err := s.userRepo.CountAll()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetDashboardSummary] failed to get total users", zap.Error(err))
 		return nil, err
 	}
 
 	activeUsers, inactiveUsers, err := s.userRepo.GetUserStats()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetDashboardSummary] failed to get user stats", zap.Error(err))
 		return nil, err
 	}
 
 	newThisWeek, err := s.userRepo.GetNewUsersCount(7)
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetDashboardSummary] failed to get new users this week", zap.Error(err))
 		return nil, err
 	}
 
 	// Get assessment stats
 	assessmentStats, err := s.assessmentRepo.GetStatistics()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetDashboardSummary] failed to get assessment stats", zap.Error(err))
 		return nil, err
 	}
 
 	// Get attempt stats
 	totalAttempts, err := s.attemptRepo.CountAll()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetDashboardSummary] failed to get total attempts", zap.Error(err))
 		return nil, err
 	}
 
 	attemptsThisWeek, err := s.attemptRepo.CountByPeriod(7)
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetDashboardSummary] failed to get attempts this week", zap.Error(err))
 		return nil, err
 	}
 
 	passRate, err := s.attemptRepo.GetPassRate()
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetDashboardSummary] failed to get pass rate", zap.Error(err))
 		return nil, err
 	}
 
 	// Get users online
 	usersOnline, err := s.activityRepo.GetActiveUsers(15) // active in last 15 minutes
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetDashboardSummary] failed to get users online", zap.Error(err))
 		return nil, err
 	}
 
 	// Get recent suspicious activity
 	recentSuspicious, err := s.attemptRepo.CountRecentSuspiciousActivity(24) // last 24 hours
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetDashboardSummary] failed to get recent suspicious activity", zap.Error(err))
 		return nil, err
 	}
 
@@ -240,6 +264,7 @@ func (s *analyticsService) GetActivityTimeline() (map[string]interface{}, error)
 	// Get recent activity (last 48 hours)
 	timeline, err := s.activityRepo.GetRecentActivity(48)
 	if err != nil {
+		s.log.Error("[AnalyticsService][GetActivityTimeline] failed to get recent activity", zap.Error(err))
 		return nil, err
 	}
 

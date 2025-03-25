@@ -53,7 +53,7 @@ func (s *Server) Run() error {
 	assessmentService := service.NewAssessmentService(assessmentRepo)
 	questionService := service2.NewQuestionService(questionRepo, assessmentRepo)
 	studentService := service3.NewStudentService(assessmentRepo, attemptRepo, questionRepo, userRepo)
-	analyticsService := service4.NewAnalyticsService(userRepo, assessmentRepo, attemptRepo, activityRepo)
+	analyticsService := service4.NewAnalyticsService(userRepo, assessmentRepo, attemptRepo, activityRepo, s.log)
 
 	// Set up routes
 	s.router = SetupRoutes(
