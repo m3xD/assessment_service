@@ -64,10 +64,7 @@ func (s *Server) Run() error {
 		s.log,
 	)
 
-	var port string
-	if os.Getenv("PORT") == "" {
-		port = "8080"
-	}
+	port := getEnv("PORT", "8080")
 
 	// Configure server
 	srv := &http.Server{
@@ -104,4 +101,11 @@ func (s *Server) Run() error {
 
 	s.log.Info("Server exited properly")
 	return nil
+}
+
+func getEnv(key, fallback string) string {
+	if value, exists := os.LookupEnv(key); exists {
+		return value
+	}
+	return fallback
 }
