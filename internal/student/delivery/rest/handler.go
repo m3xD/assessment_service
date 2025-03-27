@@ -22,7 +22,7 @@ func NewStudentHandler(studentService service.StudentService) *StudentHandler {
 
 func (h *StudentHandler) GetAvailableAssessments(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context (set by auth middleware)
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
@@ -52,7 +52,7 @@ func (h *StudentHandler) GetAvailableAssessments(w http.ResponseWriter, r *http.
 
 func (h *StudentHandler) StartAssessment(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
@@ -101,7 +101,7 @@ func (h *StudentHandler) StartAssessment(w http.ResponseWriter, r *http.Request)
 
 func (h *StudentHandler) GetAssessmentResultsHistory(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
@@ -135,7 +135,7 @@ func (h *StudentHandler) GetAssessmentResultsHistory(w http.ResponseWriter, r *h
 
 func (h *StudentHandler) GetAttemptDetails(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
@@ -169,7 +169,7 @@ func (h *StudentHandler) GetAttemptDetails(w http.ResponseWriter, r *http.Reques
 
 func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
@@ -239,7 +239,7 @@ func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 
 func (h *StudentHandler) SubmitAssessment(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
@@ -273,7 +273,7 @@ func (h *StudentHandler) SubmitAssessment(w http.ResponseWriter, r *http.Request
 
 func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
