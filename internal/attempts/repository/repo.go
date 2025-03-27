@@ -187,7 +187,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 			"assessment_settings.time_limit_enforced, assessment_settings.require_webcam, assessment_settings.prevent_tab_switching, "+
 			"assessment_settings.require_identity_verification, "+
 			"(?) AS attempt_count", attemptCountSubquery).
-		Joins("JOIN users ON assessments.created_by_id = users.id").
+		// Joins("JOIN users ON assessments.created_by_id = users.id").
 		Joins("LEFT JOIN assessment_settings ON assessments.id = assessment_settings.assessment_id").
 		Where("assessments.status = ? AND assessments.created_at <= ? AND (assessments.due_date IS NULL OR assessments.due_date >= ?)",
 			"Active", time.Now(), time.Now())
