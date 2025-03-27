@@ -185,7 +185,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 			"assessments.created_at, users.name AS creator_name, assessment_settings.randomize_questions, "+
 			"assessment_settings.show_results, assessment_settings.allow_retake, assessment_settings.max_attempts, "+
 			"assessment_settings.time_limit_enforced, assessment_settings.require_webcam, assessment_settings.prevent_tab_switching, "+
-			"assessment_settings.require_identity_verification"+
+			"assessment_settings.require_identity_verification, "+
 			"(?) AS attempt_count", attemptCountSubquery).
 		Joins("JOIN users ON assessments.created_by_id = users.id").
 		Joins("LEFT JOIN assessment_settings ON assessments.id = assessment_settings.assessment_id").
