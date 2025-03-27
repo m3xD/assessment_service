@@ -34,8 +34,18 @@ func (h *StudentHandler) GetAvailableAssessments(w http.ResponseWriter, r *http.
 	// Parse pagination parameters
 	params := util.GetPaginationParams(r)
 
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
+
 	// Get available assessments
-	assessments, total, err := h.studentService.GetAvailableAssessments(userID.(uint), params)
+	assessments, total, err := h.studentService.GetAvailableAssessments(uint(userIDUnit), params)
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
@@ -61,6 +71,16 @@ func (h *StudentHandler) StartAssessment(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
+
 	// Get assessment ID from path
 	id, err := strconv.ParseUint(mux.Vars(r)["id"], 10, 32)
 	if err != nil {
@@ -72,7 +92,7 @@ func (h *StudentHandler) StartAssessment(w http.ResponseWriter, r *http.Request)
 	}
 
 	// Start assessment
-	attempt, questions, settings, assessment, err := h.studentService.StartAssessment(userID.(uint), uint(id))
+	attempt, questions, settings, assessment, err := h.studentService.StartAssessment(uint(userIDUnit), uint(id))
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
@@ -110,6 +130,16 @@ func (h *StudentHandler) GetAssessmentResultsHistory(w http.ResponseWriter, r *h
 		return
 	}
 
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
+
 	// Get assessment ID from path
 	id, err := strconv.ParseUint(mux.Vars(r)["id"], 10, 32)
 	if err != nil {
@@ -121,7 +151,7 @@ func (h *StudentHandler) GetAssessmentResultsHistory(w http.ResponseWriter, r *h
 	}
 
 	// Get results
-	results, err := h.studentService.GetAssessmentResultsHistory(userID.(uint), uint(id))
+	results, err := h.studentService.GetAssessmentResultsHistory(uint(userIDUnit), uint(id))
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
@@ -143,6 +173,15 @@ func (h *StudentHandler) GetAttemptDetails(w http.ResponseWriter, r *http.Reques
 		}, http.StatusUnauthorized)
 		return
 	}
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
 
 	// Get attempt ID from path
 	id, err := strconv.ParseUint(mux.Vars(r)["attemptId"], 10, 32)
@@ -155,7 +194,7 @@ func (h *StudentHandler) GetAttemptDetails(w http.ResponseWriter, r *http.Reques
 	}
 
 	// Get attempt details
-	details, err := h.studentService.GetAttemptDetails(uint(id), userID.(uint))
+	details, err := h.studentService.GetAttemptDetails(uint(id), uint(userIDUnit))
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
@@ -175,6 +214,15 @@ func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 			"status":  "UNAUTHORIZED",
 			"message": "User ID not found in context",
 		}, http.StatusUnauthorized)
+		return
+	}
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
 		return
 	}
 
@@ -222,7 +270,7 @@ func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Save answer
-	err = h.studentService.SaveAnswer(uint(attemptID), req.QuestionID, answerStr, userID.(uint))
+	err = h.studentService.SaveAnswer(uint(attemptID), req.QuestionID, answerStr, uint(userIDUnit))
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
@@ -247,6 +295,15 @@ func (h *StudentHandler) SubmitAssessment(w http.ResponseWriter, r *http.Request
 		}, http.StatusUnauthorized)
 		return
 	}
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
 
 	// Get attempt ID from path
 	attemptID, err := strconv.ParseUint(mux.Vars(r)["attemptId"], 10, 32)
@@ -259,7 +316,7 @@ func (h *StudentHandler) SubmitAssessment(w http.ResponseWriter, r *http.Request
 	}
 
 	// Submit assessment
-	result, err := h.studentService.SubmitAssessment(uint(attemptID), userID.(uint))
+	result, err := h.studentService.SubmitAssessment(uint(attemptID), uint(userIDUnit))
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
@@ -279,6 +336,15 @@ func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Reque
 			"status":  "UNAUTHORIZED",
 			"message": "User ID not found in context",
 		}, http.StatusUnauthorized)
+		return
+	}
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
 		return
 	}
 
@@ -323,7 +389,7 @@ func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Reque
 	}
 
 	// Submit event
-	result, err := h.studentService.SubmitMonitorEvent(uint(attemptID), req.EventType, req.Details, imageData, userID.(uint))
+	result, err := h.studentService.SubmitMonitorEvent(uint(attemptID), req.EventType, req.Details, imageData, uint(userIDUnit))
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
