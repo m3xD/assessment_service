@@ -181,7 +181,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 	// Base query
 	query := r.db.Table("assessments").
 		Select("assessments.id, assessments.title, assessments.description, assessments.subject, "+
-			"assessments.duration, assessments.passing_score, assessments.end_date, "+
+			"assessments.duration, assessments.passing_score, assessments.due_date, "+
 			"assessments.created_at, users.name AS creator_name, assessment_settings.randomize_questions, "+
 			"assessment_settings.show_results, assessment_settings.allow_retake, assessment_settings.max_attempts, "+
 			"assessment_settings.time_limit_enforced, assessment_settings.require_webcam, assessment_settings.prevent_tab_switching, "+
@@ -189,7 +189,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 			"(?) AS attempt_count", attemptCountSubquery).
 		Joins("JOIN users ON assessments.created_by_id = users.id").
 		Joins("LEFT JOIN assessment_settings ON assessments.id = assessment_settings.assessment_id").
-		Where("assessments.status = ? AND assessments.created_at <= ? AND (assessments.end_date IS NULL OR assessments.end_date >= ?)",
+		Where("assessments.status = ? AND assessments.created_at <= ? AND (assessments.due_date IS NULL OR assessments.due_date >= ?)",
 			"Active", time.Now(), time.Now())
 
 	// Apply search filter if provided
@@ -229,14 +229,14 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 		var id, creatorName, title, description, subject string
 		var duration int
 		var passingScore float64
-		var endDate, createdAt time.Time
-		var shuffleQuestions, showResults, allowRetake, timeLimitEnforcer, requireWebcam, preventTabSwitching, requireIdentiyVerification bool
+		var dueDate, createdAt time.Time
+		var shuffleQuestions, showResults, allowRetake, timeLimitEnforcer, requireWebcam, preventTabSwitching, requireIdentifyVerification bool
 		var maxAttempts, attemptCount int
 
 		err := rows.Scan(
 			&id, &title, &description, &subject, &duration, &passingScore,
-			&endDate, &createdAt, &creatorName, &shuffleQuestions,
-			&showResults, &allowRetake, &timeLimitEnforcer, &requireWebcam, &preventTabSwitching, &requireIdentiyVerification, &maxAttempts, &attemptCount,
+			&dueDate, &createdAt, &creatorName, &shuffleQuestions,
+			&showResults, &allowRetake, &maxAttempts, &timeLimitEnforcer, &requireWebcam, &preventTabSwitching, &requireIdentifyVerification, &attemptCount,
 		)
 		if err != nil {
 			return nil, 0, fmt.Errorf("error scanning assessment row: %w", err)
@@ -250,7 +250,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 			"subject":                       subject,
 			"duration":                      duration,
 			"passing_score":                 passingScore,
-			"end_date":                      endDate,
+			"due_date":                      dueDate,
 			"created_at":                    createdAt,
 			"creator_name":                  creatorName,
 			"shuffle_questions":             shuffleQuestions,
@@ -259,7 +259,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 			"time_limit_enforcer":           timeLimitEnforcer,
 			"require_webcam":                requireWebcam,
 			"prevent_tab_switching":         preventTabSwitching,
-			"require_identity_verification": requireIdentiyVerification,
+			"require_identity_verification": requireIdentifyVerification,
 			"max_attempts":                  maxAttempts,
 			"attempt_count":                 attemptCount,
 			"can_attempt":                   maxAttempts == 0 || attemptCount < maxAttempts,
