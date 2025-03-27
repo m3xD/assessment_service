@@ -189,7 +189,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 			"(?) AS attempt_count", attemptCountSubquery).
 		Joins("JOIN users ON assessments.created_by_id = users.id").
 		Joins("LEFT JOIN assessment_settings ON assessments.id = assessment_settings.assessment_id").
-		Where("assessments.status = ? AND assessments.start_date <= ? AND (assessments.end_date IS NULL OR assessments.end_date >= ?)",
+		Where("assessments.status = ? AND assessments.created_at <= ? AND (assessments.end_date IS NULL OR assessments.end_date >= ?)",
 			"Active", time.Now(), time.Now())
 
 	// Apply search filter if provided
