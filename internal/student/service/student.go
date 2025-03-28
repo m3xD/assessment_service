@@ -67,7 +67,7 @@ func (s *studentService) StartAssessment(userID, assessmentID uint) (*models.Att
 		return nil, nil, nil, nil, errors.New("assessment not found")
 	}
 
-	if assessment.Status != "active" {
+	if assessment.Status != "Active" {
 		return nil, nil, nil, nil, errors.New("assessment is not active")
 	}
 
