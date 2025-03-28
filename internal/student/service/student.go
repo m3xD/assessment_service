@@ -67,7 +67,7 @@ func (s *studentService) StartAssessment(userID, assessmentID uint) (*models.Att
 		return nil, nil, nil, nil, errors.New("assessment not found")
 	}
 
-	if assessment.Status != "Active" {
+	if assessment.Status != "published" {
 		return nil, nil, nil, nil, errors.New("assessment is not active")
 	}
 
@@ -75,6 +75,8 @@ func (s *studentService) StartAssessment(userID, assessmentID uint) (*models.Att
 	if assessment.DueDate != nil && assessment.DueDate.Before(time.Now()) {
 		return nil, nil, nil, nil, errors.New("assessment due date has passed")
 	}
+
+	// Check if user is taking assessment
 
 	// Check if user has remaining attempts
 	if assessment.Settings.AllowRetake {

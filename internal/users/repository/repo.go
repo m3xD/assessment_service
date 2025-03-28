@@ -108,11 +108,11 @@ func (r *userRepository) UpdateLastLogin(id uint) error {
 func (r *userRepository) GetUserStats() (int64, int64, error) {
 	var activeCount, inactiveCount int64
 
-	if err := r.db.Model(&models.User{}).Where("status = ?", "Active").Count(&activeCount).Error; err != nil {
+	if err := r.db.Model(&models.User{}).Where("status = ?", "active").Count(&activeCount).Error; err != nil {
 		return 0, 0, err
 	}
 
-	if err := r.db.Model(&models.User{}).Where("status = ?", "Inactive").Count(&inactiveCount).Error; err != nil {
+	if err := r.db.Model(&models.User{}).Where("status = ?", "inactive").Count(&inactiveCount).Error; err != nil {
 		return 0, 0, err
 	}
 

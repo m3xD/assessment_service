@@ -276,7 +276,7 @@ func (r *attemptRepository) HasCompletedAssessment(userID, assessmentID uint) (b
 	var count int64
 
 	result := r.db.Model(&models.Attempt{}).
-		Where("user_id = ? AND assessment_id = ? AND status = ?", userID, assessmentID, "Completed").
+		Where("user_id = ? AND assessment_id = ? AND status = ?", userID, assessmentID, "completed").
 		Count(&count)
 
 	if result.Error != nil {
