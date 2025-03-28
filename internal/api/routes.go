@@ -35,7 +35,7 @@ func SetupRoutes(
 	assessmentHandler := assessment_handler.NewAssessmentHandler(assessmentService, log)
 	questionHandler := question_handler.NewQuestionHandler(questionService, log)
 	analyticsHandler := rest.NewAnalyticsHandler(analyticsService)
-	studentHandler := rest2.NewStudentHandler(studentService)
+	studentHandler := rest2.NewStudentHandler(studentService, log)
 
 	assessmentsRouter := router.PathPrefix("/assessments").Subrouter()
 	{
