@@ -33,16 +33,17 @@ func (r *questionRepository) Create(question *models.Question) error {
 			return err
 		}
 
-		question.Options = temp
-		// Create options if any
-		for i := range question.Options {
-			question.Options[i].QuestionID = question.ID
-		}
+		if question.Type != "essay" {
+			question.Options = temp
+			// Create options if any
+			for i := range question.Options {
+				question.Options[i].QuestionID = question.ID
+			}
 
-		if err := tx.Create(question.Options).Error; err != nil {
-			return err
+			if err := tx.Create(question.Options).Error; err != nil {
+				return err
+			}
 		}
-
 		return nil
 	})
 }
