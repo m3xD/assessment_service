@@ -190,7 +190,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 		Joins("JOIN users ON assessments.created_by_id = users.id").
 		Joins("LEFT JOIN assessment_settings ON assessments.id = assessment_settings.assessment_id").
 		Where("assessments.status = ? AND assessments.created_at <= ? AND (assessments.due_date IS NULL OR assessments.due_date >= ?)",
-			"published", time.Now(), time.Now())
+			"Active", time.Now(), time.Now())
 
 	// Apply search filter if provided
 	if search, ok := params.Filters["search"].(string); ok && search != "" {
