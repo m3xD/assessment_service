@@ -258,7 +258,7 @@ func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 
 	// Parse request
 	var req struct {
-		QuestionID uint        `json:"questionId" binding:"required"`
+		QuestionID string      `json:"questionId" binding:"required"`
 		Answer     interface{} `json:"answer" binding:"required"`
 	}
 
@@ -291,8 +291,18 @@ func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// convert string to unit
+	questionIDUnit, err := strconv.ParseUint(req.QuestionID, 10, 32)
+	if err != nil {
+		h.log.Error("[SaveAnswer] failed to convert questionID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert questionID",
+		}, http.StatusBadRequest)
+	}
+
 	// Save answer
-	err = h.studentService.SaveAnswer(uint(attemptID), req.QuestionID, answerStr, uint(userIDUnit))
+	err = h.studentService.SaveAnswer(uint(attemptID), uint(questionIDUnit), answerStr, uint(userIDUnit))
 	if err != nil {
 		h.log.Error("[SaveAnswer] failed to save answer", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
