@@ -304,20 +304,22 @@ func (r *attemptRepository) CountAttemptsByUserAndAssessment(userID, assessmentI
 // FindCompletedAttemptsByUserAndAssessment finds all completed attempts by a user for a specific assessment
 func (r *attemptRepository) FindCompletedAttemptsByUserAndAssessment(userID, assessmentID uint) ([]map[string]interface{}, error) {
 	type Result struct {
-		ID           uint      `gorm:"column:id"`
-		StartedAt    time.Time `gorm:"column:started_at"`
-		SubmittedAt  time.Time `gorm:"column:submitted_at"`
+		AssessmentID uint      `gorm:"column:assessment_id" json:"assessmentId"`
+		ID           uint      `gorm:"column:id" json:"attemptId"`
+		StartedAt    time.Time `gorm:"column:started_at" json:"startedAt"`
+		SubmittedAt  time.Time `gorm:"column:submitted_at" json:"submittedAt"`
 		Score        float64   `gorm:"column:score"`
 		Duration     int       `gorm:"column:duration"`
 		Status       string    `gorm:"column:status"`
 		Title        string    `gorm:"column:title"`
-		PassingScore float64   `gorm:"column:passing_score"`
+		PassingScore float64   `gorm:"column:passing_score" json:"passingScore"`
+		Feedback     string    `gorm:"column:feedback" json:"feedback"`
 	}
 
 	var results []Result
 
 	err := r.db.Table("attempts").
-		Select("attempts.id, attempts.started_at, attempts.submitted_at, attempts.score, attempts.duration, attempts.status, assessments.title, assessments.passing_score").
+		Select("attempts.id, attempts.assessment_id, attempts.started_at, attempts.submitted_at, attempts.score, attempts.duration, attempts.status, assessments.title, assessments.passing_score, attempts.feedback").
 		Joins("JOIN assessments ON attempts.assessment_id = assessments.id").
 		Where("attempts.user_id = ? AND attempts.assessment_id = ? AND attempts.deleted_at IS NULL", userID, assessmentID).
 		Order("attempts.submitted_at DESC").
@@ -331,15 +333,17 @@ func (r *attemptRepository) FindCompletedAttemptsByUserAndAssessment(userID, ass
 	resultMaps := make([]map[string]interface{}, len(results))
 	for i, r := range results {
 		resultMaps[i] = map[string]interface{}{
-			"id":            r.ID,
-			"started_at":    r.StartedAt,
-			"submitted_at":  r.SubmittedAt,
-			"score":         r.Score,
-			"duration":      r.Duration,
-			"status":        r.Status,
-			"title":         r.Title,
-			"passing_score": r.PassingScore,
-			"passed":        r.Score >= r.PassingScore,
+			"assessmentId": r.AssessmentID,
+			"attemptId":    r.ID,
+			"startedAt":    r.StartedAt,
+			"submittedAt":  r.SubmittedAt,
+			"score":        r.Score,
+			"duration":     r.Duration,
+			"status":       r.Status,
+			"title":        r.Title,
+			"passingScore": r.PassingScore,
+			// "passed":       r.Score >= r.PassingScore,
+			"feedback": r.Feedback,
 		}
 	}
 

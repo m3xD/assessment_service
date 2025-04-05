@@ -22,6 +22,7 @@ type Attempt struct {
 	CreatedAt    time.Time      `json:"createdAt" gorm:"autoCreateTime"`
 	UpdatedAt    time.Time      `json:"updatedAt" gorm:"autoUpdateTime"`
 	DeletedAt    gorm.DeletedAt `json:"-" gorm:"index"`
+	Feedback     string         `json:"feedback"`
 }
 
 type Answer struct {
