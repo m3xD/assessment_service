@@ -7,6 +7,7 @@ import (
 	"assessment_service/internal/assessments/repository/postgres"
 	"assessment_service/internal/assessments/service"
 	repository4 "assessment_service/internal/attempts/repository"
+	"assessment_service/internal/cronjob"
 	repository3 "assessment_service/internal/questions/repository"
 	service2 "assessment_service/internal/questions/service"
 	service3 "assessment_service/internal/student/service"
@@ -15,8 +16,10 @@ import (
 	"fmt"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	"github.com/robfig/cron/v3"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
+	"log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -52,7 +55,7 @@ func (s *Server) Run() error {
 	// Initialize services
 	assessmentService := service.NewAssessmentService(assessmentRepo)
 	questionService := service2.NewQuestionService(questionRepo, assessmentRepo)
-	studentService := service3.NewStudentService(assessmentRepo, attemptRepo, questionRepo, userRepo)
+	studentService := service3.NewStudentService(assessmentRepo, attemptRepo, questionRepo, userRepo, s.log)
 	analyticsService := service4.NewAnalyticsService(userRepo, assessmentRepo, attemptRepo, activityRepo, s.log)
 
 	// Set up routes
@@ -84,6 +87,16 @@ func (s *Server) Run() error {
 			s.log.Fatal("Failed to start server", zap.Error(err))
 		}
 	}()
+
+	// setup go-routine for check expired attempts
+	cronJob := cron.New(
+		cron.WithLogger(
+			cron.VerbosePrintfLogger(log.New(os.Stdout, "CRON: ", log.LstdFlags))),
+		cron.WithChain(
+			cron.Recover(cron.DefaultLogger), // Tự động phục hồi nếu có panic
+		))
+	cronJobService := cronjob.NewCronJobService(studentService, s.log, cronJob)
+	cronJobService.StartAutoSubmit()
 
 	// Wait for interrupt signal
 	quit := make(chan os.Signal, 1)

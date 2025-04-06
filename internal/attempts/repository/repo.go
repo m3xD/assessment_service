@@ -46,6 +46,10 @@ type AttemptRepository interface {
 	SaveSuspiciousActivity(activity *models.SuspiciousActivity) error
 	CountRecentSuspiciousActivity(hours int) (int64, error)
 	FindSuspiciousActivitiesByAttemptID(attemptID uint) ([]models.SuspiciousActivity, error)
+
+	// Check status of student
+	ExpiredAttempt() ([]models.Attempt, error)
+	IsUserInAttempt(userID uint) (bool, error)
 }
 
 type attemptRepository struct {
@@ -715,4 +719,27 @@ func (r *attemptRepository) FindSuspiciousActivitiesByAttemptID(attemptID uint) 
 	}
 
 	return activities, nil
+}
+
+func (r *attemptRepository) ExpiredAttempt() ([]models.Attempt, error) {
+	// check if any attempt is in progress
+	var attempts []models.Attempt
+
+	err := r.db.Model(&models.Attempt{}).Where("status = ?", "In Progress").Find(&attempts).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return attempts, nil
+}
+
+func (r *attemptRepository) IsUserInAttempt(userID uint) (bool, error) {
+	var count int64
+
+	err := r.db.Model(&models.Attempt{}).Where("status = ? AND user_id = ?", "In Progress", userID).Count(&count).Error
+	if err != nil {
+		return false, err
+	}
+
+	return count > 0, nil
 }

@@ -105,7 +105,7 @@ func (h *StudentHandler) StartAssessment(w http.ResponseWriter, r *http.Request)
 		h.log.Error("[StartAssessment] failed to start assessment", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
-			"message": "Failed to start assessment",
+			"message": "Failed to start assessment " + err.Error(),
 		}, http.StatusInternalServerError)
 		return
 	}
