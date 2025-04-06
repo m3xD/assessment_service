@@ -526,15 +526,16 @@ func (s *studentService) AutoSubmitAssessment() error {
 	}
 
 	for _, val := range expiredAttempts {
-		if (val.Status == "In Progress" || val.SubmittedAt == nil) && val.Duration != nil && (time.Now().Sub(val.StartedAt).Minutes() > float64(*val.Duration)) {
+		// Get assessment details
+		assessment, err := s.assessmentRepo.FindByID(val.AssessmentID)
+		if err != nil {
+			return err
+		}
+
+		if (val.Status == "In Progress" || val.SubmittedAt == nil) && (time.Now().Sub(val.StartedAt).Minutes() > float64(assessment.Duration)) {
 			// auto submit attempt
 			// Get all questions for this assessment
 			questions, err := s.questionRepo.FindByAssessmentID(val.AssessmentID)
-			if err != nil {
-				return err
-			}
-			// Get assessment details
-			assessment, err := s.assessmentRepo.FindByID(val.AssessmentID)
 			if err != nil {
 				return err
 			}
