@@ -182,11 +182,11 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 	}
 
 	var req struct {
-		AssessmentID string     `json:"assessmentId" binding:"required"`
-		Type         string     `json:"type" binding:"required"`
-		Details      string     `json:"details"`
-		Timestamp    *time.Time `json:"timestamp"`
-		UserAgent    string     `json:"userAgent"`
+		AssessmentID string `json:"assessmentId" binding:"required"`
+		Type         string `json:"type" binding:"required"`
+		Details      string `json:"details"`
+		Timestamp    string `json:"timestamp"`
+		UserAgent    string `json:"userAgent"`
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -223,8 +223,16 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 		Details:      req.Details,
 	}
 
-	if req.Timestamp != nil {
-		activity.Timestamp = *req.Timestamp
+	if req.Timestamp != "" {
+		timestamp, err := time.Parse(time.RFC3339, req.Timestamp)
+		if err != nil {
+			util.ResponseMap(w, map[string]interface{}{
+				"status":  "BAD_REQUEST",
+				"message": "Invalid timestamp format",
+			}, http.StatusBadRequest)
+			return
+		}
+		activity.Timestamp = timestamp
 	} else {
 		activity.Timestamp = time.Now()
 	}
