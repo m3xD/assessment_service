@@ -172,7 +172,7 @@ func (h *AnalyticsHandler) TrackAssessmentSession(w http.ResponseWriter, r *http
 func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
 	claims, _ := r.Context().Value("user").(jwt.MapClaims)
-	userID, exists := claims["id"]
+	userID, exists := claims["userID"]
 	if !exists {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
