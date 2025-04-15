@@ -182,7 +182,7 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 	}
 
 	var req struct {
-		AssessmentID uint       `json:"assessmentId" binding:"required"`
+		AssessmentID string     `json:"assessmentId" binding:"required"`
 		Type         string     `json:"type" binding:"required"`
 		Details      string     `json:"details"`
 		Timestamp    *time.Time `json:"timestamp"`
@@ -197,10 +197,28 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 		return
 	}
 
+	assIDUINT, err := strconv.ParseUint(req.AssessmentID, 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid assessment ID",
+		}, http.StatusBadRequest)
+		return
+	}
+
+	userIDUINT, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid user ID",
+		}, http.StatusBadRequest)
+		return
+	}
+
 	// Create suspicious activity
 	activity := &models.SuspiciousActivity{
-		UserID:       userID.(uint),
-		AssessmentID: req.AssessmentID,
+		UserID:       uint(userIDUINT),
+		AssessmentID: uint(assIDUINT),
 		Type:         req.Type,
 		Details:      req.Details,
 	}
