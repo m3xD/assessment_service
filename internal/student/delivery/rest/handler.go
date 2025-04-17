@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/gorilla/mux"
+	"go.uber.org/zap"
 	"net/http"
 	"strconv"
 	"time"
@@ -14,16 +15,18 @@ import (
 
 type StudentHandler struct {
 	studentService service.StudentService
+	log            *zap.Logger
 }
 
-func NewStudentHandler(studentService service.StudentService) *StudentHandler {
-	return &StudentHandler{studentService: studentService}
+func NewStudentHandler(studentService service.StudentService, log *zap.Logger) *StudentHandler {
+	return &StudentHandler{studentService: studentService, log: log}
 }
 
 func (h *StudentHandler) GetAvailableAssessments(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context (set by auth middleware)
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
+		h.log.Error("[GetAvailableAssessments] userID not found in context")
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
 			"message": "User ID not found in context",
@@ -34,9 +37,21 @@ func (h *StudentHandler) GetAvailableAssessments(w http.ResponseWriter, r *http.
 	// Parse pagination parameters
 	params := util.GetPaginationParams(r)
 
-	// Get available assessments
-	assessments, total, err := h.studentService.GetAvailableAssessments(userID.(uint), params)
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
 	if err != nil {
+		h.log.Error("[GetAvailableAssessments] failed to convert userID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
+
+	// Get available assessments
+	assessments, total, err := h.studentService.GetAvailableAssessments(uint(userIDUnit), params)
+	if err != nil {
+		h.log.Error("[GetAvailableAssessments] failed to fetch available assessments", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
 			"message": "Failed to fetch available assessments",
@@ -52,8 +67,9 @@ func (h *StudentHandler) GetAvailableAssessments(w http.ResponseWriter, r *http.
 
 func (h *StudentHandler) StartAssessment(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
+		h.log.Error("[StartAssessment] userID not found in context")
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
 			"message": "User ID not found in context",
@@ -61,9 +77,21 @@ func (h *StudentHandler) StartAssessment(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		h.log.Error("[StartAssessment] failed to convert userID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
+
 	// Get assessment ID from path
 	id, err := strconv.ParseUint(mux.Vars(r)["id"], 10, 32)
 	if err != nil {
+		h.log.Error("[StartAssessment] invalid assessment ID", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
 			"message": "Invalid assessment ID",
@@ -72,11 +100,12 @@ func (h *StudentHandler) StartAssessment(w http.ResponseWriter, r *http.Request)
 	}
 
 	// Start assessment
-	attempt, questions, settings, assessment, err := h.studentService.StartAssessment(userID.(uint), uint(id))
+	attempt, questions, settings, assessment, err := h.studentService.StartAssessment(uint(userIDUnit), uint(id))
 	if err != nil {
+		h.log.Error("[StartAssessment] failed to start assessment", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
-			"message": "Failed to start assessment",
+			"message": "Failed to start assessment " + err.Error(),
 		}, http.StatusInternalServerError)
 		return
 	}
@@ -101,8 +130,9 @@ func (h *StudentHandler) StartAssessment(w http.ResponseWriter, r *http.Request)
 
 func (h *StudentHandler) GetAssessmentResultsHistory(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
+		h.log.Error("[GetAssessmentResultsHistory] userID not found in context")
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
 			"message": "User ID not found in context",
@@ -110,9 +140,21 @@ func (h *StudentHandler) GetAssessmentResultsHistory(w http.ResponseWriter, r *h
 		return
 	}
 
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		h.log.Error("[GetAssessmentResultsHistory] failed to convert userID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
+
 	// Get assessment ID from path
 	id, err := strconv.ParseUint(mux.Vars(r)["id"], 10, 32)
 	if err != nil {
+		h.log.Error("[GetAssessmentResultsHistory] invalid assessment ID", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
 			"message": "Invalid assessment ID",
@@ -121,8 +163,9 @@ func (h *StudentHandler) GetAssessmentResultsHistory(w http.ResponseWriter, r *h
 	}
 
 	// Get results
-	results, err := h.studentService.GetAssessmentResultsHistory(userID.(uint), uint(id))
+	results, err := h.studentService.GetAssessmentResultsHistory(uint(userIDUnit), uint(id))
 	if err != nil {
+		h.log.Error("[GetAssessmentResultsHistory] failed to fetch assessment results", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
 			"message": "Failed to fetch assessment results",
@@ -135,18 +178,30 @@ func (h *StudentHandler) GetAssessmentResultsHistory(w http.ResponseWriter, r *h
 
 func (h *StudentHandler) GetAttemptDetails(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
+		h.log.Error("[GetAttemptDetails] userID not found in context")
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
 			"message": "User ID not found in context",
 		}, http.StatusUnauthorized)
 		return
 	}
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		h.log.Error("[GetAttemptDetails] failed to convert userID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
 
 	// Get attempt ID from path
 	id, err := strconv.ParseUint(mux.Vars(r)["attemptId"], 10, 32)
 	if err != nil {
+		h.log.Error("[GetAttemptDetails] invalid attempt ID", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
 			"message": "Invalid attempt ID",
@@ -155,8 +210,9 @@ func (h *StudentHandler) GetAttemptDetails(w http.ResponseWriter, r *http.Reques
 	}
 
 	// Get attempt details
-	details, err := h.studentService.GetAttemptDetails(uint(id), userID.(uint))
+	details, err := h.studentService.GetAttemptDetails(uint(id), uint(userIDUnit))
 	if err != nil {
+		h.log.Error("[GetAttemptDetails] failed to fetch attempt details", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
 			"message": "Failed to fetch attempt details",
@@ -169,18 +225,30 @@ func (h *StudentHandler) GetAttemptDetails(w http.ResponseWriter, r *http.Reques
 
 func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
+		h.log.Error("[SaveAnswer] userID not found in context")
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
 			"message": "User ID not found in context",
 		}, http.StatusUnauthorized)
 		return
 	}
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		h.log.Error("[SaveAnswer] failed to convert userID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
 
 	// Get attempt ID from path
 	attemptID, err := strconv.ParseUint(mux.Vars(r)["attemptId"], 10, 32)
 	if err != nil {
+		h.log.Error("[SaveAnswer] invalid attempt ID", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
 			"message": "Invalid attempt ID",
@@ -190,11 +258,12 @@ func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 
 	// Parse request
 	var req struct {
-		QuestionID uint        `json:"questionId" binding:"required"`
+		QuestionID string      `json:"questionId" binding:"required"`
 		Answer     interface{} `json:"answer" binding:"required"`
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		h.log.Error("[SaveAnswer] invalid input", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
 			"message": "Invalid input",
@@ -214,6 +283,7 @@ func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 			answerStr = "false"
 		}
 	default:
+		h.log.Error("[SaveAnswer] invalid answer type", zap.Any("answer", req.Answer))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
 			"message": "Invalid answer type, must be boolean or string",
@@ -221,9 +291,20 @@ func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Save answer
-	err = h.studentService.SaveAnswer(uint(attemptID), req.QuestionID, answerStr, userID.(uint))
+	// convert string to unit
+	questionIDUnit, err := strconv.ParseUint(req.QuestionID, 10, 32)
 	if err != nil {
+		h.log.Error("[SaveAnswer] failed to convert questionID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert questionID",
+		}, http.StatusBadRequest)
+	}
+
+	// Save answer
+	err = h.studentService.SaveAnswer(uint(attemptID), uint(questionIDUnit), answerStr, uint(userIDUnit))
+	if err != nil {
+		h.log.Error("[SaveAnswer] failed to save answer", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
 			"message": "Failed to save answer",
@@ -239,18 +320,30 @@ func (h *StudentHandler) SaveAnswer(w http.ResponseWriter, r *http.Request) {
 
 func (h *StudentHandler) SubmitAssessment(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
+		h.log.Error("[SubmitAssessment] userID not found in context")
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
 			"message": "User ID not found in context",
 		}, http.StatusUnauthorized)
 		return
 	}
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		h.log.Error("[SubmitAssessment] failed to convert userID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
 
 	// Get attempt ID from path
 	attemptID, err := strconv.ParseUint(mux.Vars(r)["attemptId"], 10, 32)
 	if err != nil {
+		h.log.Error("[SubmitAssessment] invalid attempt ID", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
 			"message": "Invalid attempt ID",
@@ -259,8 +352,9 @@ func (h *StudentHandler) SubmitAssessment(w http.ResponseWriter, r *http.Request
 	}
 
 	// Submit assessment
-	result, err := h.studentService.SubmitAssessment(uint(attemptID), userID.(uint))
+	result, err := h.studentService.SubmitAssessment(uint(attemptID), uint(userIDUnit))
 	if err != nil {
+		h.log.Error("[SubmitAssessment] failed to submit assessment", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
 			"message": "Failed to submit assessment",
@@ -273,18 +367,30 @@ func (h *StudentHandler) SubmitAssessment(w http.ResponseWriter, r *http.Request
 
 func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["id"]
+	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
 	if !exists {
+		h.log.Error("[SubmitMonitorEvent] userID not found in context")
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
 			"message": "User ID not found in context",
 		}, http.StatusUnauthorized)
 		return
 	}
+	// parse userID to unit
+	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		h.log.Error("[SubmitMonitorEvent] failed to convert userID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to convert userID",
+		}, http.StatusInternalServerError)
+		return
+	}
 
 	// Get attempt ID from path
 	attemptID, err := strconv.ParseUint(mux.Vars(r)["attemptId"], 10, 32)
 	if err != nil {
+		h.log.Error("[SubmitMonitorEvent] invalid attempt ID", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
 			"message": "Invalid attempt ID",
@@ -301,6 +407,7 @@ func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Reque
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		h.log.Error("[SubmitMonitorEvent] invalid input", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
 			"message": "Invalid input",
@@ -314,6 +421,7 @@ func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Reque
 	if req.ImageData != "" {
 		imageData, decodeErr = base64.StdEncoding.DecodeString(req.ImageData)
 		if decodeErr != nil {
+			h.log.Error("[SubmitMonitorEvent] failed to decode image data", zap.Error(decodeErr))
 			util.ResponseMap(w, map[string]interface{}{
 				"status":  "BAD_REQUEST",
 				"message": "Invalid image data",
@@ -323,8 +431,9 @@ func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Reque
 	}
 
 	// Submit event
-	result, err := h.studentService.SubmitMonitorEvent(uint(attemptID), req.EventType, req.Details, imageData, userID.(uint))
+	result, err := h.studentService.SubmitMonitorEvent(uint(attemptID), req.EventType, req.Details, imageData, uint(userIDUnit))
 	if err != nil {
+		h.log.Error("[SubmitMonitorEvent] failed to submit monitor event", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",
 			"message": "Failed to submit monitor event",

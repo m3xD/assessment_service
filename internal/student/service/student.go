@@ -9,7 +9,7 @@ import (
 	"assessment_service/internal/util"
 	"errors"
 	"fmt"
-
+	"go.uber.org/zap"
 	"time"
 )
 
@@ -21,6 +21,7 @@ type StudentService interface {
 	SaveAnswer(attemptID, questionID uint, answer string, userID uint) error
 	SubmitAssessment(attemptID, userID uint) (*map[string]interface{}, error)
 	SubmitMonitorEvent(attemptID uint, eventType string, details map[string]interface{}, imageData []byte, userID uint) (*map[string]interface{}, error)
+	AutoSubmitAssessment() error
 }
 
 type studentService struct {
@@ -28,6 +29,7 @@ type studentService struct {
 	attemptRepo    repository2.AttemptRepository
 	questionRepo   repository3.QuestionRepository
 	userRepo       repository4.UserRepository
+	log            *zap.Logger
 }
 
 func NewStudentService(
@@ -35,12 +37,14 @@ func NewStudentService(
 	attemptRepo repository2.AttemptRepository,
 	questionRepo repository3.QuestionRepository,
 	userRepo repository4.UserRepository,
+	log *zap.Logger,
 ) StudentService {
 	return &studentService{
 		assessmentRepo: assessmentRepo,
 		attemptRepo:    attemptRepo,
 		questionRepo:   questionRepo,
 		userRepo:       userRepo,
+		log:            log,
 	}
 }
 
@@ -74,6 +78,16 @@ func (s *studentService) StartAssessment(userID, assessmentID uint) (*models.Att
 	// Check if due date has passed
 	if assessment.DueDate != nil && assessment.DueDate.Before(time.Now()) {
 		return nil, nil, nil, nil, errors.New("assessment due date has passed")
+	}
+
+	// Check if user is taking assessment
+	isInAttempt, err := s.attemptRepo.IsUserInAttempt(userID)
+	if err != nil {
+		return nil, nil, nil, nil, err
+	}
+
+	if isInAttempt {
+		return nil, nil, nil, nil, errors.New("you are already taking an assessment")
 	}
 
 	// Check if user has remaining attempts
@@ -317,57 +331,7 @@ func (s *studentService) SubmitAssessment(attemptID, userID uint) (*map[string]i
 		return nil, err
 	}
 
-	// Calculate score
-	totalQuestions := len(questions)
-	correctAnswers := 0
-	incorrectAnswers := 0
-	unanswered := 0
-	essayQuestions := 0
-	totalPoints := 0.0
-	earnedPoints := 0.0
-
-	for _, q := range questions {
-		totalPoints += q.Points
-
-		answer, err := s.attemptRepo.FindAnswerByAttemptAndQuestion(attemptID, q.ID)
-		if err != nil || answer == nil {
-			unanswered++
-			continue
-		}
-
-		if q.Type == "essay" {
-			essayQuestions++
-		} else if answer.IsCorrect != nil {
-			if *answer.IsCorrect {
-				correctAnswers++
-				earnedPoints += q.Points
-			} else {
-				incorrectAnswers++
-			}
-		}
-	}
-
-	// Calculate percentage score
-	var score float64
-	if totalPoints > 0 {
-		score = (earnedPoints / totalPoints) * 100
-	}
-
-	// Determine pass/fail status
-	status := "Failed"
-	if score >= assessment.PassingScore {
-		status = "Passed"
-	}
-
-	// Calculate duration
-	now := time.Now()
-	duration := int(now.Sub(attempt.StartedAt).Minutes())
-
-	// Generate feedback
-	feedback := "Thank you for completing the assessment."
-	if essayQuestions > 0 {
-		feedback += " Your essay will be graded manually."
-	}
+	totalQuestions, correctAnswers, incorrectAnswers, unanswered, essayQuestions, score, status, now, duration, feedback := judgmentAssessment(questions, attempt.Answers, assessment, attempt)
 
 	// Update attempt
 	attempt.SubmittedAt = &now
@@ -402,6 +366,69 @@ func (s *studentService) SubmitAssessment(attemptID, userID uint) (*map[string]i
 	}
 
 	return &result, nil
+}
+
+func judgmentAssessment(questions []models.Question, answers []models.Answer, assessment *models.Assessment, attempt *models.Attempt) (int, int, int, int, int, float64, string, time.Time, int, string) {
+	// Calculate score
+	totalQuestions := len(questions)
+	correctAnswers := 0
+	incorrectAnswers := 0
+	unanswered := 0
+	essayQuestions := 0
+	totalPoints := 0.0
+	earnedPoints := 0.0
+
+	for _, q := range questions {
+		totalPoints += q.Points
+
+		isAnswered := false
+		for _, val := range answers {
+			if val.QuestionID == q.ID {
+				isAnswered = true
+
+				if q.Type == "essay" {
+					essayQuestions++
+				} else if val.IsCorrect != nil {
+					if *val.IsCorrect {
+						correctAnswers++
+						earnedPoints += q.Points
+					} else {
+						incorrectAnswers++
+					}
+				}
+
+				break // break out of the loop once we find the answer
+			}
+		}
+
+		if !isAnswered {
+			unanswered++
+			continue
+		}
+	}
+
+	// Calculate percentage score
+	var score float64
+	if totalPoints > 0 {
+		score = (earnedPoints / totalPoints) * 100
+	}
+
+	// Determine pass/fail status
+	status := "Failed"
+	if score >= assessment.PassingScore {
+		status = "Passed"
+	}
+
+	// Calculate duration
+	now := time.Now()
+	duration := int(now.Sub(attempt.StartedAt).Minutes())
+
+	// Generate feedback
+	feedback := "Thank you for completing the assessment."
+	if essayQuestions > 0 {
+		feedback += " Your essay will be graded manually."
+	}
+	return totalQuestions, correctAnswers, incorrectAnswers, unanswered, essayQuestions, score, status, now, duration, feedback
 }
 
 func (s *studentService) SubmitMonitorEvent(attemptID uint, eventType string, details map[string]interface{}, imageData []byte, userID uint) (*map[string]interface{}, error) {
@@ -488,4 +515,48 @@ func eventTypeToDetails(eventType string, details map[string]interface{}) string
 	default:
 		return fmt.Sprintf("%s detected", eventType)
 	}
+}
+
+func (s *studentService) AutoSubmitAssessment() error {
+	// Get all expired attempts
+	expiredAttempts, err := s.attemptRepo.ExpiredAttempt()
+	if err != nil {
+		s.log.Error("failed to find expired attempts", zap.Error(err))
+		return err
+	}
+
+	for _, val := range expiredAttempts {
+		// Get assessment details
+		assessment, err := s.assessmentRepo.FindByID(val.AssessmentID)
+		if err != nil {
+			return err
+		}
+
+		if (val.Status == "In Progress" || val.SubmittedAt == nil) && (time.Now().Sub(val.StartedAt).Minutes() > float64(assessment.Duration)) {
+			// auto submit attempt
+			// Get all questions for this assessment
+			questions, err := s.questionRepo.FindByAssessmentID(val.AssessmentID)
+			if err != nil {
+				return err
+			}
+
+			_, _, _,
+				_, _,
+				score, status, now, duration,
+				_ := judgmentAssessment(questions, val.Answers, assessment, &val)
+			// Update attempt
+			val.SubmittedAt = &now
+			val.EndedAt = &now
+			val.Score = &score
+			val.Duration = &duration
+			val.Status = status
+
+			err = s.attemptRepo.Update(&val)
+			if err != nil {
+				s.log.Error("failed to update attempt status", zap.Error(err))
+				return err
+			}
+		}
+	}
+	return nil
 }

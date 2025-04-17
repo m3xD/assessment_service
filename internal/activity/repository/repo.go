@@ -228,7 +228,7 @@ func (r *activityRepository) GetActiveUsers(minutes int) (int64, error) {
 
 	// Get count of unique users active in the past X minutes
 	err := r.db.Model(&models.Activity{}).
-		Where("timestamp >= NOW() - INTERVAL '? minutes'", minutes).
+		Where("timestamp >= NOW() - INTERVAL " + fmt.Sprintf("'%d minutes'", minutes)).
 		Distinct("user_id").
 		Count(&count).Error
 

@@ -25,10 +25,10 @@ func main() {
 	}
 
 	// Run database migrations
-	err = database.RunMigrations(db)
+	/*err = database.RunMigrations(db)
 	if err != nil {
 		log.Fatal("failed to run migrations:", zap.Error(err))
-	}
+	}*/
 
 	server := api.NewServer(cfg, db, log)
 

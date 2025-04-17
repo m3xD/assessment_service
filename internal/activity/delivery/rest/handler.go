@@ -172,7 +172,7 @@ func (h *AnalyticsHandler) TrackAssessmentSession(w http.ResponseWriter, r *http
 func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.Request) {
 	// Get user ID from context
 	claims, _ := r.Context().Value("user").(jwt.MapClaims)
-	userID, exists := claims["id"]
+	userID, exists := claims["userID"]
 	if !exists {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "UNAUTHORIZED",
@@ -182,11 +182,11 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 	}
 
 	var req struct {
-		AssessmentID uint       `json:"assessmentId" binding:"required"`
-		Type         string     `json:"type" binding:"required"`
-		Details      string     `json:"details"`
-		Timestamp    *time.Time `json:"timestamp"`
-		UserAgent    string     `json:"userAgent"`
+		AssessmentID string `json:"assessmentId" binding:"required"`
+		Type         string `json:"type" binding:"required"`
+		Details      string `json:"details"`
+		Timestamp    string `json:"timestamp"`
+		UserAgent    string `json:"userAgent"`
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -197,16 +197,42 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 		return
 	}
 
+	assIDUINT, err := strconv.ParseUint(req.AssessmentID, 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid assessment ID",
+		}, http.StatusBadRequest)
+		return
+	}
+
+	userIDUINT, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid user ID",
+		}, http.StatusBadRequest)
+		return
+	}
+
 	// Create suspicious activity
 	activity := &models.SuspiciousActivity{
-		UserID:       userID.(uint),
-		AssessmentID: req.AssessmentID,
+		UserID:       uint(userIDUINT),
+		AssessmentID: uint(assIDUINT),
 		Type:         req.Type,
 		Details:      req.Details,
 	}
 
-	if req.Timestamp != nil {
-		activity.Timestamp = *req.Timestamp
+	if req.Timestamp != "" {
+		timestamp, err := time.Parse(time.RFC3339, req.Timestamp)
+		if err != nil {
+			util.ResponseMap(w, map[string]interface{}{
+				"status":  "BAD_REQUEST",
+				"message": "Invalid timestamp format",
+			}, http.StatusBadRequest)
+			return
+		}
+		activity.Timestamp = timestamp
 	} else {
 		activity.Timestamp = time.Now()
 	}

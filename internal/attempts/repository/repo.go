@@ -46,6 +46,10 @@ type AttemptRepository interface {
 	SaveSuspiciousActivity(activity *models.SuspiciousActivity) error
 	CountRecentSuspiciousActivity(hours int) (int64, error)
 	FindSuspiciousActivitiesByAttemptID(attemptID uint) ([]models.SuspiciousActivity, error)
+
+	// Check status of student
+	ExpiredAttempt() ([]models.Attempt, error)
+	IsUserInAttempt(userID uint) (bool, error)
 }
 
 type attemptRepository struct {
@@ -181,13 +185,15 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 	// Base query
 	query := r.db.Table("assessments").
 		Select("assessments.id, assessments.title, assessments.description, assessments.subject, "+
-			"assessments.duration, assessments.passing_score, assessments.start_date, assessments.end_date, "+
-			"assessments.created_at, users.name AS creator_name, assessment_settings.shuffle_questions, "+
-			"assessment_settings.show_results, assessment_settings.proctor_enabled, assessment_settings.max_attempts, "+
+			"assessments.duration, assessments.passing_score, assessments.due_date, "+
+			"assessments.created_at, users.name AS creator_name, assessment_settings.randomize_questions, "+
+			"assessment_settings.show_results, assessment_settings.allow_retake, assessment_settings.max_attempts, "+
+			"assessment_settings.time_limit_enforced, assessment_settings.require_webcam, assessment_settings.prevent_tab_switching, "+
+			"assessment_settings.require_identity_verification, "+
 			"(?) AS attempt_count", attemptCountSubquery).
-		Joins("JOIN users ON assessments.creator_id = users.id").
+		Joins("JOIN users ON assessments.created_by_id = users.id").
 		Joins("LEFT JOIN assessment_settings ON assessments.id = assessment_settings.assessment_id").
-		Where("assessments.status = ? AND assessments.start_date <= ? AND (assessments.end_date IS NULL OR assessments.end_date >= ?)",
+		Where("assessments.status = ? AND assessments.created_at <= ? AND (assessments.due_date IS NULL OR assessments.due_date >= ?)",
 			"Active", time.Now(), time.Now())
 
 	// Apply search filter if provided
@@ -209,7 +215,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 	if params.SortBy != "" {
 		query = query.Order(fmt.Sprintf("%s %s", params.SortBy, params.SortDir))
 	} else {
-		query = query.Order("assessments.start_date DESC")
+		query = query.Order("assessments.created_at DESC")
 	}
 
 	// Apply pagination
@@ -227,14 +233,14 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 		var id, creatorName, title, description, subject string
 		var duration int
 		var passingScore float64
-		var startDate, endDate, createdAt time.Time
-		var shuffleQuestions, showResults, proctorEnabled bool
+		var dueDate, createdAt time.Time
+		var shuffleQuestions, showResults, allowRetake, timeLimitEnforcer, requireWebcam, preventTabSwitching, requireIdentifyVerification bool
 		var maxAttempts, attemptCount int
 
 		err := rows.Scan(
 			&id, &title, &description, &subject, &duration, &passingScore,
-			&startDate, &endDate, &createdAt, &creatorName, &shuffleQuestions,
-			&showResults, &proctorEnabled, &maxAttempts, &attemptCount,
+			&dueDate, &createdAt, &creatorName, &shuffleQuestions,
+			&showResults, &allowRetake, &maxAttempts, &timeLimitEnforcer, &requireWebcam, &preventTabSwitching, &requireIdentifyVerification, &attemptCount,
 		)
 		if err != nil {
 			return nil, 0, fmt.Errorf("error scanning assessment row: %w", err)
@@ -242,22 +248,25 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 
 		// Create a result map
 		result := map[string]interface{}{
-			"id":                id,
-			"title":             title,
-			"description":       description,
-			"subject":           subject,
-			"duration":          duration,
-			"passing_score":     passingScore,
-			"start_date":        startDate,
-			"end_date":          endDate,
-			"created_at":        createdAt,
-			"creator_name":      creatorName,
-			"shuffle_questions": shuffleQuestions,
-			"show_results":      showResults,
-			"proctor_enabled":   proctorEnabled,
-			"max_attempts":      maxAttempts,
-			"attempt_count":     attemptCount,
-			"can_attempt":       maxAttempts == 0 || attemptCount < maxAttempts,
+			"id":                            id,
+			"title":                         title,
+			"description":                   description,
+			"subject":                       subject,
+			"duration":                      duration,
+			"passing_score":                 passingScore,
+			"due_date":                      dueDate,
+			"created_at":                    createdAt,
+			"creator_name":                  creatorName,
+			"shuffle_questions":             shuffleQuestions,
+			"show_results":                  showResults,
+			"allow_retake":                  allowRetake,
+			"time_limit_enforcer":           timeLimitEnforcer,
+			"require_webcam":                requireWebcam,
+			"prevent_tab_switching":         preventTabSwitching,
+			"require_identity_verification": requireIdentifyVerification,
+			"max_attempts":                  maxAttempts,
+			"attempt_count":                 attemptCount,
+			"can_attempt":                   maxAttempts == 0 || attemptCount < maxAttempts,
 		}
 
 		results = append(results, result)
@@ -271,7 +280,7 @@ func (r *attemptRepository) HasCompletedAssessment(userID, assessmentID uint) (b
 	var count int64
 
 	result := r.db.Model(&models.Attempt{}).
-		Where("user_id = ? AND assessment_id = ? AND status = ?", userID, assessmentID, "Completed").
+		Where("user_id = ? AND assessment_id = ? AND status = ?", userID, assessmentID, "completed").
 		Count(&count)
 
 	if result.Error != nil {
@@ -299,20 +308,22 @@ func (r *attemptRepository) CountAttemptsByUserAndAssessment(userID, assessmentI
 // FindCompletedAttemptsByUserAndAssessment finds all completed attempts by a user for a specific assessment
 func (r *attemptRepository) FindCompletedAttemptsByUserAndAssessment(userID, assessmentID uint) ([]map[string]interface{}, error) {
 	type Result struct {
-		ID           uint      `gorm:"column:id"`
-		StartedAt    time.Time `gorm:"column:started_at"`
-		SubmittedAt  time.Time `gorm:"column:submitted_at"`
+		AssessmentID uint      `gorm:"column:assessment_id" json:"assessmentId"`
+		ID           uint      `gorm:"column:id" json:"attemptId"`
+		StartedAt    time.Time `gorm:"column:started_at" json:"startedAt"`
+		SubmittedAt  time.Time `gorm:"column:submitted_at" json:"submittedAt"`
 		Score        float64   `gorm:"column:score"`
 		Duration     int       `gorm:"column:duration"`
 		Status       string    `gorm:"column:status"`
 		Title        string    `gorm:"column:title"`
-		PassingScore float64   `gorm:"column:passing_score"`
+		PassingScore float64   `gorm:"column:passing_score" json:"passingScore"`
+		Feedback     string    `gorm:"column:feedback" json:"feedback"`
 	}
 
 	var results []Result
 
 	err := r.db.Table("attempts").
-		Select("attempts.id, attempts.started_at, attempts.submitted_at, attempts.score, attempts.duration, attempts.status, assessments.title, assessments.passing_score").
+		Select("attempts.id, attempts.assessment_id, attempts.started_at, attempts.submitted_at, attempts.score, attempts.duration, attempts.status, assessments.title, assessments.passing_score, attempts.feedback").
 		Joins("JOIN assessments ON attempts.assessment_id = assessments.id").
 		Where("attempts.user_id = ? AND attempts.assessment_id = ? AND attempts.deleted_at IS NULL", userID, assessmentID).
 		Order("attempts.submitted_at DESC").
@@ -326,15 +337,17 @@ func (r *attemptRepository) FindCompletedAttemptsByUserAndAssessment(userID, ass
 	resultMaps := make([]map[string]interface{}, len(results))
 	for i, r := range results {
 		resultMaps[i] = map[string]interface{}{
-			"id":            r.ID,
-			"started_at":    r.StartedAt,
-			"submitted_at":  r.SubmittedAt,
-			"score":         r.Score,
-			"duration":      r.Duration,
-			"status":        r.Status,
-			"title":         r.Title,
-			"passing_score": r.PassingScore,
-			"passed":        r.Score >= r.PassingScore,
+			"assessmentId": r.AssessmentID,
+			"attemptId":    r.ID,
+			"startedAt":    r.StartedAt,
+			"submittedAt":  r.SubmittedAt,
+			"score":        r.Score,
+			"duration":     r.Duration,
+			"status":       r.Status,
+			"title":        r.Title,
+			"passingScore": r.PassingScore,
+			// "passed":       r.Score >= r.PassingScore,
+			"feedback": r.Feedback,
 		}
 	}
 
@@ -369,7 +382,7 @@ func (r *attemptRepository) GetAssessmentCompletionRates() (map[string]interface
 		SELECT 
 			id, title, total_attempts, completed_attempts, total_users,
 			CASE WHEN total_attempts > 0 THEN 
-				ROUND((completed_attempts::float / total_attempts::float) * 100, 2)
+				ROUND((completed_attempts::numeric / total_attempts::numeric) * 100, 2)
 			ELSE
 				0
 			END as completion_rate
@@ -523,7 +536,7 @@ func (r *attemptRepository) GetMostChallengingAssessments(limit int) ([]map[stri
 		SELECT 
 			id, title, total_attempts, passed_attempts, avg_score,
 			CASE WHEN total_attempts > 0 THEN 
-				ROUND((passed_attempts::float / total_attempts::float) * 100, 2)
+				ROUND((passed_attempts::numeric / total_attempts::numeric) * 100, 2)
 			ELSE 0 END as pass_rate
 		FROM assessment_stats
 		ORDER BY pass_rate ASC
@@ -579,7 +592,7 @@ func (r *attemptRepository) GetMostSuccessfulAssessments(limit int) ([]map[strin
 		SELECT 
 			id, title, total_attempts, passed_attempts, avg_score,
 			CASE WHEN total_attempts > 0 THEN 
-				ROUND((passed_attempts::float / total_attempts::float) * 100, 2)
+				ROUND((passed_attempts::numeric / total_attempts::numeric) * 100, 2)
 			ELSE 0 END as pass_rate
 		FROM assessment_stats
 		ORDER BY pass_rate DESC
@@ -618,7 +631,7 @@ func (r *attemptRepository) GetPassRate() (float64, error) {
 		SELECT
 			CASE WHEN COUNT(*) > 0 THEN
 				ROUND(
-					(COUNT(CASE WHEN att.score >= a.passing_score THEN 1 END)::float / COUNT(*)::float) * 100,
+					(COUNT(CASE WHEN att.score >= a.passing_score THEN 1 END)::numeric / COUNT(*)::numeric) * 100,
 					2
 				)
 			ELSE 0 END as pass_rate
@@ -706,4 +719,27 @@ func (r *attemptRepository) FindSuspiciousActivitiesByAttemptID(attemptID uint) 
 	}
 
 	return activities, nil
+}
+
+func (r *attemptRepository) ExpiredAttempt() ([]models.Attempt, error) {
+	// check if any attempt is in progress
+	var attempts []models.Attempt
+
+	err := r.db.Model(&models.Attempt{}).Where("status = ?", "In Progress").Find(&attempts).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return attempts, nil
+}
+
+func (r *attemptRepository) IsUserInAttempt(userID uint) (bool, error) {
+	var count int64
+
+	err := r.db.Model(&models.Attempt{}).Where("status = ? AND user_id = ?", "In Progress", userID).Count(&count).Error
+	if err != nil {
+		return false, err
+	}
+
+	return count > 0, nil
 }
