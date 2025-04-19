@@ -13,6 +13,7 @@ import (
 	"assessment_service/internal/util"
 	"github.com/gorilla/mux"
 	"go.uber.org/zap"
+	"net/http"
 )
 
 func SetupRoutes(
@@ -30,6 +31,11 @@ func SetupRoutes(
 	router.Use(loggingMiddleware.LoggingMiddleware)
 	router.Use(authMiddleware.AuthMiddleware())
 	router.Use(middleware.CORSMiddleware)
+
+	router.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("Welcome to the Assessment Service!"))
+	})
 	// router.Use(authMiddleware.OwnerMiddleware())
 	// Assessments
 	assessmentHandler := assessment_handler.NewAssessmentHandler(assessmentService, log)
