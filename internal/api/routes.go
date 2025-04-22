@@ -94,8 +94,9 @@ func SetupRoutes(
 	adminRouter.HandleFunc("/dashboard/activity", analyticsHandler.GetActivityTimeline).Methods("GET")
 	adminRouter.HandleFunc("/system/status", analyticsHandler.GetSystemStatus).Methods("GET")
 	adminRouter.HandleFunc("/attempt/grade", attemptHandler.GradeAttempt).Methods("POST")
-	adminRouter.HandleFunc("/attempts/{assessmentID:[0-9]+}", attemptHandler.GetListAttemptByUserAndAssessment).Methods("GET")
-	adminRouter.HandleFunc("/attempts/{attemptID:[0-9]+}", attemptHandler.GetAttemptDetail).Methods("GET")
+	adminRouter.HandleFunc("/attempts/{assessmentID:[0-9]+}/users/{userID:[0-9]+}", attemptHandler.GetListAttemptByUserAndAssessment).Methods("GET")
+	adminRouter.HandleFunc("/attempt/{attemptID:[0-9]+}/users/{userID:[0-9]+}", attemptHandler.GetAttemptDetail).Methods("GET")
+	adminRouter.HandleFunc("/users/{userID:[0-9]+}/attempts", studentHandler.GetAllAttemptForUser).Methods("GET")
 
 	// Student routes (for taking assessments)
 	studentRouter := router.PathPrefix("/student").Subrouter()
@@ -106,6 +107,6 @@ func SetupRoutes(
 	studentRouter.HandleFunc("/attempts/{attemptId:[0-9]+}/answers", studentHandler.SaveAnswer).Methods("POST")
 	studentRouter.HandleFunc("/attempts/{attemptId:[0-9]+}/submit", studentHandler.SubmitAssessment).Methods("POST")
 	studentRouter.HandleFunc("/attempts/{attemptId:[0-9]+}/monitor", studentHandler.SubmitMonitorEvent).Methods("POST")
-	studentRouter.HandleFunc("/attempts", studentHandler.GetAllAttemptForUser).Methods("GET")
+
 	return router
 }

@@ -5,7 +5,6 @@ import (
 	models "assessment_service/internal/model"
 	"assessment_service/internal/util"
 	"encoding/json"
-	"github.com/golang-jwt/jwt/v5"
 	"github.com/gorilla/mux"
 	"go.uber.org/zap"
 	"net/http"
@@ -25,23 +24,13 @@ func NewAttemptHandler(attemptService service.AttemptService, log *zap.Logger) *
 }
 
 func (h *AttemptHandler) GetListAttemptByUserAndAssessment(w http.ResponseWriter, r *http.Request) {
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
-	if !exists {
-		h.log.Error("[GetListAttemptByUserAndAssessment] userID not found in context")
-		util.ResponseMap(w, map[string]interface{}{
-			"status":  "UNAUTHORIZED",
-			"message": "User ID not found in context",
-		}, http.StatusUnauthorized)
-		return
-	}
-	// parse userID to unit
-	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	userID, err := strconv.ParseUint(mux.Vars(r)["userID"], 10, 32)
 	if err != nil {
-		h.log.Error("[GetListAttemptByUserAndAssessment] failed to convert userID", zap.Error(err))
+		h.log.Error("[GetListAttemptByUserAndAssessment] invalid user ID", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
-			"status":  "ERROR",
-			"message": "Failed to convert userID",
-		}, http.StatusInternalServerError)
+			"status":  "BAD_REQUEST",
+			"message": "Invalid userID",
+		}, http.StatusBadRequest)
 		return
 	}
 
@@ -58,11 +47,7 @@ func (h *AttemptHandler) GetListAttemptByUserAndAssessment(w http.ResponseWriter
 
 	params := util.GetPaginationParams(r)
 
-	if params.Limit == 0 {
-		params.Limit = 10
-	}
-
-	attempts, total, err := h.attemptService.GetListAttemptByUserAndAssessment(uint(userIDUnit), uint(id), params)
+	attempts, total, err := h.attemptService.GetListAttemptByUserAndAssessment(uint(userID), uint(id), params)
 	if err != nil {
 		h.log.Error("[GetListAttemptByUserAndAssessment] failed to get attempts", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{

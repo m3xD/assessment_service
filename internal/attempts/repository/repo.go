@@ -750,7 +750,7 @@ func (r *attemptRepository) GetAllAttemptByUserId(userID uint, params util.Pagin
 	var attempts []models.Attempt
 	var total int64
 	query := r.db.Model(&models.Attempt{}).
-		Joins("users u ON u.id = attempts.user_id").
+		Joins("JOIN users u ON u.id = attempts.user_id").
 		Where("attempts.user_id = ? AND attempts.deleted_at IS NULL", userID)
 
 	// apply filter
@@ -785,7 +785,7 @@ func (r *attemptRepository) ListAttemptByUserAndAssessmentID(userID uint, assess
 	var attempts []models.Attempt
 	var total int64
 
-	query := r.db.Model(&models.Attempt{}).Joins("users on users.id = user_id").Where("user_id = ? AND assessment_id = ? AND deleted_at IS NULL", userID, assessmentID)
+	query := r.db.Model(&models.Attempt{}).Joins("JOIN users ON users.id = user_id").Where("user_id = ? AND assessment_id = ? AND attempts.deleted_at IS NULL", userID, assessmentID)
 
 	// apply filter
 	if params.Filters != nil {

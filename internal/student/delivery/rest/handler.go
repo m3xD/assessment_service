@@ -445,24 +445,13 @@ func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Reque
 }
 
 func (h *StudentHandler) GetAllAttemptForUser(w http.ResponseWriter, r *http.Request) {
-	// Get user ID from context
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
-	if !exists {
-		h.log.Error("[SubmitMonitorEvent] userID not found in context")
-		util.ResponseMap(w, map[string]interface{}{
-			"status":  "UNAUTHORIZED",
-			"message": "User ID not found in context",
-		}, http.StatusUnauthorized)
-		return
-	}
-	// parse userID to unit
-	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	userID, err := strconv.ParseUint(mux.Vars(r)["userID"], 10, 32)
 	if err != nil {
-		h.log.Error("[SubmitMonitorEvent] failed to convert userID", zap.Error(err))
+		h.log.Error("[GetListAttemptByUserAndAssessment] invalid user ID", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
-			"status":  "ERROR",
-			"message": "Failed to convert userID",
-		}, http.StatusInternalServerError)
+			"status":  "BAD_REQUEST",
+			"message": "Invalid userID",
+		}, http.StatusBadRequest)
 		return
 	}
 
@@ -470,7 +459,7 @@ func (h *StudentHandler) GetAllAttemptForUser(w http.ResponseWriter, r *http.Req
 	params := util.GetPaginationParams(r)
 
 	// Get all attempts for user
-	attempts, total, err := h.studentService.GetAllAttemptByUserID(uint(userIDUnit), params)
+	attempts, total, err := h.studentService.GetAllAttemptByUserID(uint(userID), params)
 	if err != nil {
 		h.log.Error("[GetAllAttemptForUser] failed to fetch attempts", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
