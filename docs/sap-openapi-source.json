@@ -2308,9 +2308,9 @@
             "tags": [
             "Admin"
             ],
-            "summary": "Get attempt details for admin",
-            "description": "Returns the details of an assessment attempt for admin",
-            "operationId": "getAttemptDetailsForAdmin",
+            "summary": "Get attempt of user for admin",
+            "description": "Returns the list of an assessment attempt for admin",
+            "operationId": "getListAttemptOfUser",
             "parameters": [
             {
                 "name": "assessmentID",
@@ -2363,7 +2363,7 @@
             "tags": [
             "Admin"
             ],
-            "summary": "Get attempt details for admin",
+            "summary": "Get attempt details of users for admin",
             "description": "Returns the details of an assessment attempt for admin",
             "operationId": "getAttemptDetailsForAdmin",
             "parameters": [
@@ -2417,9 +2417,9 @@
             "tags": [
             "Admin"
             ],
-            "summary": "Get attempt details for admin",
-            "description": "Returns the details of an assessment attempt for admin",
-            "operationId": "getAttemptDetailsForAdmin",
+            "summary": "Get attempt of user for admin",
+            "description": "Returns the list of attempt attempt for admin",
+            "operationId": "getAllAttemptsOfUser",
             "parameters": [
             {
                 "name": "userID",
