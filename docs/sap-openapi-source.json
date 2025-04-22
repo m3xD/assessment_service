@@ -1,0 +1,5176 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Secure Assessment Platform API",
+    "description": "API for managing secure online assessments with proctoring features",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Secure Assessment Platform Support",
+      "email": "support@secureassessment.example"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api",
+      "description": "Development server"
+    },
+    {
+      "url": "https://api.secureassessment.example/api",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Authentication operations"
+    },
+    {
+      "name": "Users",
+      "description": "User management operations"
+    },
+    {
+      "name": "Assessments",
+      "description": "Assessment management"
+    },
+    {
+      "name": "Questions",
+      "description": "Question management within assessments"
+    },
+    {
+      "name": "Results",
+      "description": "Assessment results and analytics"
+    },
+    {
+      "name": "Student",
+      "description": "Student-facing assessment endpoints"
+    },
+    {
+      "name": "Analytics",
+      "description": "Analytics and monitoring"
+    },
+    {
+      "name": "Admin",
+      "description": "Administrative dashboard operations"
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login with credentials",
+        "description": "Authenticates a user and returns tokens",
+        "operationId": "login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful login",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/refresh-token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Refresh access token",
+        "description": "Obtains a new access token using a refresh token",
+        "operationId": "refreshToken",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token refreshed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshTokenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid or expired refresh token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "description": "Invalidates the refresh token",
+        "operationId": "logout",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogoutRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Logged out successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Request password reset",
+        "description": "Sends a password reset email",
+        "operationId": "forgotPassword",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset email sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Reset password",
+        "description": "Reset password using token from email",
+        "operationId": "resetPassword",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid token or password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Register new user",
+        "description": "Creates a new user account",
+        "operationId": "register",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegisterResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all users",
+        "description": "Returns paginated list of users with optional filters",
+        "operationId": "getAllUsers",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/SizeParam"
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "description": "Filter users by role",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Admin",
+                "Teacher",
+                "Student"
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter users by status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Active",
+                "Inactive"
+              ]
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search term for user name or email",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field and direction",
+            "schema": {
+              "type": "string",
+              "example": "name,asc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create user",
+        "description": "Creates a new user",
+        "operationId": "createUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user by ID",
+        "description": "Returns a specific user by ID",
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update user",
+        "description": "Updates an existing user",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete user",
+        "description": "Deletes a user",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users/{id}/change-password": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Change password",
+        "description": "Changes a user's password",
+        "operationId": "changePassword",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password changed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessMessage"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users/{id}/activity": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user activity logs",
+        "description": "Returns a user's activity logs",
+        "operationId": "getUserActivityLogs",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/SizeParam"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Start date (ISO format)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "End date (ISO format)",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User activity logs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityLogPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/users/{id}/assessments": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user assessments",
+        "description": "Returns assessments taken by a user",
+        "operationId": "getUserAssessments",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/SizeParam"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Passed",
+                "Failed"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User assessments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAssessmentPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments": {
+      "get": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Get all assessments",
+        "description": "Returns paginated list of assessments with optional filters",
+        "operationId": "getAllAssessments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/SizeParam"
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Filter by subject",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filter by status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Draft",
+                "Active",
+                "Expired"
+              ]
+            }
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Search term for assessment title or description",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field and direction",
+            "schema": {
+              "type": "string",
+              "example": "createdAt,desc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of assessments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Create assessment",
+        "description": "Creates a new assessment",
+        "operationId": "createAssessment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAssessmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Assessment created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assessment"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments/{id}": {
+      "get": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Get assessment by ID",
+        "description": "Returns a specific assessment by ID",
+        "operationId": "getAssessmentById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assessment"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Update assessment",
+        "description": "Updates an existing assessment",
+        "operationId": "updateAssessment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAssessmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Assessment updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assessment"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Delete assessment",
+        "description": "Deletes an assessment",
+        "operationId": "deleteAssessment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments/{id}/duplicate": {
+      "post": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Duplicate assessment",
+        "description": "Creates a copy of an assessment",
+        "operationId": "duplicateAssessment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DuplicateAssessmentRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Assessment duplicated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments/{id}/questions": {
+      "get": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Get assessment questions",
+        "description": "Returns all questions for an assessment",
+        "operationId": "getAssessmentQuestions",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of questions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Question"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Add question",
+        "description": "Adds a new question to an assessment",
+        "operationId": "addQuestion",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/MultipleChoiceQuestionRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TrueFalseQuestionRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/EssayQuestionRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Question added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Question"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments/{assessmentId}/questions/{questionId}": {
+      "put": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Update question",
+        "description": "Updates an existing question",
+        "operationId": "updateQuestion",
+        "parameters": [
+          {
+            "name": "assessmentId",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "questionId",
+            "in": "path",
+            "description": "Question ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/MultipleChoiceQuestionRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/TrueFalseQuestionRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/EssayQuestionRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Question updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Question"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Questions"
+        ],
+        "summary": "Delete question",
+        "description": "Deletes a question",
+        "operationId": "deleteQuestion",
+        "parameters": [
+          {
+            "name": "assessmentId",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "questionId",
+            "in": "path",
+            "description": "Question ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Question deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessMessage"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments/{id}/settings": {
+      "put": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Update assessment settings",
+        "description": "Updates the settings for an assessment",
+        "operationId": "updateSettings",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssessmentSettingsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Settings updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentSettingsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments/{id}/results": {
+      "get": {
+        "tags": [
+          "Results"
+        ],
+        "summary": "Get assessment results",
+        "description": "Returns results for an assessment",
+        "operationId": "getAssessmentResults",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/SizeParam"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort field and direction",
+            "schema": {
+              "type": "string",
+              "example": "score,desc"
+            }
+          },
+          {
+            "name": "user",
+            "in": "query",
+            "description": "Filter by username/email",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentResultPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments/{id}/publish": {
+      "post": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Publish assessment",
+        "description": "Changes assessment status to Active",
+        "operationId": "publishAssessment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment published successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishAssessmentResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments/recent": {
+      "get": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Get recent assessments",
+        "description": "Returns most recently created assessments",
+        "operationId": "getRecentAssessments",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of assessments to return",
+            "schema": {
+              "type": "integer",
+              "default": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recent assessments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AssessmentSummary"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/assessments/statistics": {
+      "get": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Get assessment statistics",
+        "description": "Returns statistics about assessments",
+        "operationId": "getAssessmentStatistics",
+        "responses": {
+          "200": {
+            "description": "Assessment statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentStatistics"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/student/assessments/available": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Get available assessments",
+        "description": "Returns assessments available to the current student",
+        "operationId": "getAvailableAssessments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/SizeParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Available assessments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AvailableAssessmentPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/student/assessments/{id}/start": {
+      "post": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Start assessment",
+        "description": "Begins an assessment attempt",
+        "operationId": "startAssessment",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment started successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentAttempt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cannot start assessment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/student/assessments/{id}/results": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Get assessment results history",
+        "description": "Returns a student's results for a specific assessment",
+        "operationId": "getAssessmentResultsHistory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment results history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StudentAssessmentResult"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/student/attempts/{attemptId}": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Get attempt details",
+        "description": "Returns the details of an assessment attempt",
+        "operationId": "getAttemptDetails",
+        "parameters": [
+          {
+            "name": "attemptId",
+            "in": "path",
+            "description": "Attempt ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attempt details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/student/attempts/{attemptId}/answers": {
+      "post": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Save answer",
+        "description": "Saves an answer for a question in an attempt",
+        "operationId": "saveAnswer",
+        "parameters": [
+          {
+            "name": "attemptId",
+            "in": "path",
+            "description": "Attempt ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SaveAnswerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Answer saved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SaveAnswerResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/student/attempts/{attemptId}/submit": {
+      "post": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Submit assessment",
+        "description": "Completes an assessment attempt",
+        "operationId": "submitAssessment",
+        "parameters": [
+          {
+            "name": "attemptId",
+            "in": "path",
+            "description": "Attempt ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessment submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmitAssessmentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Cannot submit assessment",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/student/attempts/{attemptId}/monitor": {
+      "post": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Submit webcam monitor event",
+        "description": "Reports a monitoring event during an assessment",
+        "operationId": "submitMonitorEvent",
+        "parameters": [
+          {
+            "name": "attemptId",
+            "in": "path",
+            "description": "Attempt ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MonitorEventRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Event received successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitorEventResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/analytics/user-activity": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Get user activity analytics",
+        "description": "Returns aggregated analytics on user activity",
+        "operationId": "getUserActivity",
+        "responses": {
+          "200": {
+            "description": "User activity analytics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserActivityAnalytics"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/analytics/assessment-performance": {
+      "get": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Get assessment performance analytics",
+        "description": "Returns analytics on assessment performance",
+        "operationId": "getAssessmentPerformance",
+        "responses": {
+          "200": {
+            "description": "Assessment performance analytics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssessmentPerformanceAnalytics"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/analytics/activity": {
+      "post": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Report activity",
+        "description": "Reports a user activity event",
+        "operationId": "reportActivity",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivityReportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Activity reported successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/analytics/assessments/{id}/session": {
+      "post": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Track assessment session",
+        "description": "Reports a session-related event for an assessment",
+        "operationId": "trackAssessmentSession",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionTrackingRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Session event tracked successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionTrackingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/analytics/suspicious": {
+      "post": {
+        "tags": [
+          "Analytics"
+        ],
+        "summary": "Log suspicious activity",
+        "description": "Reports suspicious activity during an assessment",
+        "operationId": "logSuspiciousActivity",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuspiciousActivityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Suspicious activity logged successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuspiciousActivityResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/admin/dashboard/summary": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Get dashboard summary",
+        "description": "Returns summary statistics for the admin dashboard",
+        "operationId": "getDashboardSummary",
+        "responses": {
+          "200": {
+            "description": "Dashboard summary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardSummary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/admin/dashboard/activity": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Get activity timeline",
+        "description": "Returns recent activity for the admin dashboard",
+        "operationId": "getActivityTimeline",
+        "responses": {
+          "200": {
+            "description": "Activity timeline",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityTimeline"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/admin/system/status": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Get system status",
+        "description": "Returns the current system status",
+        "operationId": "getSystemStatus",
+        "responses": {
+          "200": {
+            "description": "System status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/admin/attempt/grade": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Grade attempt by add feedback and final score.",
+        "description": "Return result of update attempt",
+        "operationId": "gradeAttempt",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttemptDetails"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Grade Attempt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GradeAttemptResult"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/admin/attempts/{assessmentID}/users/{userID}": {
+        "get": {
+            "tags": [
+            "Admin"
+            ],
+            "summary": "Get attempt details for admin",
+            "description": "Returns the details of an assessment attempt for admin",
+            "operationId": "getAttemptDetailsForAdmin",
+            "parameters": [
+            {
+                "name": "assessmentID",
+                "in": "path",
+                "description": "Assessment ID",
+                "required": true,
+                "schema": {
+                "type": "integer",
+                "format": "int64"
+                }
+            },
+            {
+                "name": "userID",
+                "in": "path",
+                "description": "User ID",
+                "required": true,
+                "schema": {
+                "type": "integer",
+                "format": "int64"
+                }
+            },
+              {
+                "$ref": "#/components/parameters/PageParam"
+              },
+              {
+                "$ref": "#/components/parameters/SizeParam"
+              }
+            ],
+
+            "responses": {
+            "200": {
+                "$ref": "#/components/schemas/PageableObject"
+            },
+            "401": {
+                "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+                "$ref": "#/components/responses/Forbidden"
+            }
+            },
+            "security": [
+            {
+                "bearerAuth": []
+            }
+            ]
+        }
+    },
+    "/admin/attempt/{attemptID}/users/{userID}": {
+        "get": {
+            "tags": [
+            "Admin"
+            ],
+            "summary": "Get attempt details for admin",
+            "description": "Returns the details of an assessment attempt for admin",
+            "operationId": "getAttemptDetailsForAdmin",
+            "parameters": [
+            {
+                "name": "attemptID",
+                "in": "path",
+                "description": "Attempt ID",
+                "required": true,
+                "schema": {
+                "type": "integer",
+                "format": "int64"
+                }
+            },
+            {
+                "name": "userID",
+                "in": "path",
+                "description": "User ID",
+                "required": true,
+                "schema": {
+                "type": "integer",
+                "format": "int64"
+                }
+            },
+            {
+                "$ref": "#/components/parameters/PageParam"
+            },
+            {
+                "$ref": "#/components/parameters/SizeParam"
+            }
+            ],
+            "responses": {
+            "200": {
+                "$ref": "#/components/schemas/PageableObject"
+            },
+            "401": {
+                "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+                "$ref": "#/components/responses/Forbidden"
+            }
+            },
+            "security": [
+            {
+                "bearerAuth": []
+            }
+            ]
+        }
+    },
+    "/admin/users/{userID}/attempts": {
+        "get": {
+            "tags": [
+            "Admin"
+            ],
+            "summary": "Get attempt details for admin",
+            "description": "Returns the details of an assessment attempt for admin",
+            "operationId": "getAttemptDetailsForAdmin",
+            "parameters": [
+            {
+                "name": "userID",
+                "in": "path",
+                "description": "User ID",
+                "required": true,
+                "schema": {
+                "type": "integer",
+                "format": "int64"
+                }
+            },
+              {
+                "$ref": "#/components/parameters/PageParam"
+              },
+              {
+                "$ref": "#/components/parameters/SizeParam"
+              }
+            ],
+
+            "responses": {
+            "200": {
+                "$ref": "#/components/schemas/PageableObject"
+            },
+            "401": {
+                "$ref": "#/components/responses/Unauthorized"
+            },
+            "403": {
+                "$ref": "#/components/responses/Forbidden"
+            }
+            },
+            "security": [
+            {
+                "bearerAuth": []
+            }
+            ]
+        }
+    }
+  },
+  "components": {
+    "parameters": {
+      "PageParam": {
+        "name": "page",
+        "in": "query",
+        "description": "Page number (zero-based indexing)",
+        "schema": {
+          "type": "integer",
+          "default": 0,
+          "minimum": 0
+        }
+      },
+      "SizeParam": {
+        "name": "size",
+        "in": "query",
+        "description": "Page size",
+        "schema": {
+          "type": "integer",
+          "default": 10,
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Invalid request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ValidationError"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Not authenticated",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuthenticationError"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Not authorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AuthorizationError"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/NotFoundError"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "LoginRequest": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@example.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "password123"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+          "refreshToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserSummary"
+          }
+        }
+      },
+      "RefreshTokenRequest": {
+        "type": "object",
+        "required": [
+          "refreshToken"
+        ],
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          }
+        }
+      },
+      "RefreshTokenResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          },
+          "refreshToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          }
+        }
+      },
+      "LogoutRequest": {
+        "type": "object",
+        "required": [
+          "refreshToken"
+        ],
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          }
+        }
+      },
+      "ForgotPasswordRequest": {
+        "type": "object",
+        "required": [
+          "email"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@example.com"
+          }
+        }
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "required": [
+          "token",
+          "password"
+        ],
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "reset-token-from-email"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "newPassword123"
+          }
+        }
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "password",
+          "role"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "user@example.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "password123"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Admin",
+              "Teacher",
+              "Student"
+            ],
+            "example": "Student"
+          }
+        }
+      },
+      "RegisterResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "User registered successfully"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserSummary"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john@example.com"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Admin",
+              "Teacher",
+              "Student"
+            ],
+            "example": "Admin"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Active",
+              "Inactive"
+            ],
+            "example": "Active"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+1234567890"
+          },
+          "address": {
+            "type": "string",
+            "example": "123 Main St"
+          },
+          "lastLogin": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-08T14:32:00Z"
+          },
+          "lastActivity": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T10:45:00Z"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-02-15T10:00:00Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-05T16:20:00Z"
+          }
+        }
+      },
+      "UserSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john@example.com"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Admin",
+              "Teacher",
+              "Student"
+            ],
+            "example": "Admin"
+          }
+        }
+      },
+      "UserPage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            }
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "totalPages": {
+            "type": "integer",
+            "example": 5
+          },
+          "totalElements": {
+            "type": "integer",
+            "example": 45
+          },
+          "last": {
+            "type": "boolean",
+            "example": false
+          },
+          "first": {
+            "type": "boolean",
+            "example": true
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "number": {
+            "type": "integer",
+            "example": 0
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "example": 10
+          },
+          "size": {
+            "type": "integer",
+            "example": 10
+          },
+          "empty": {
+            "type": "boolean",
+            "example": false
+          },
+          "activeUsers": {
+            "type": "integer",
+            "example": 40
+          },
+          "inactiveUsers": {
+            "type": "integer",
+            "example": 5
+          }
+        }
+      },
+      "CreateUserRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "email",
+          "role",
+          "status",
+          "password"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Mike Johnson"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "mike@example.com"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Admin",
+              "Teacher",
+              "Student"
+            ],
+            "example": "Student"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Active",
+              "Inactive"
+            ],
+            "example": "Active"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+1122334455"
+          },
+          "address": {
+            "type": "string",
+            "example": "789 Pine St"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "example": "securePassword123"
+          }
+        }
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Michael Johnson"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "mike@example.com"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "Admin",
+              "Teacher",
+              "Student"
+            ],
+            "example": "Student"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Active",
+              "Inactive"
+            ],
+            "example": "Active"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+1122334455"
+          },
+          "address": {
+            "type": "string",
+            "example": "789 Pine St"
+          }
+        }
+      },
+      "ChangePasswordRequest": {
+        "type": "object",
+        "required": [
+          "currentPassword",
+          "newPassword"
+        ],
+        "properties": {
+          "currentPassword": {
+            "type": "string",
+            "format": "password",
+            "example": "oldPassword123"
+          },
+          "newPassword": {
+            "type": "string",
+            "format": "password",
+            "example": "newPassword456"
+          }
+        }
+      },
+      "ActivityLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3
+          },
+          "action": {
+            "type": "string",
+            "example": "LOGIN"
+          },
+          "details": {
+            "type": "string",
+            "example": "User login"
+          },
+          "ipAddress": {
+            "type": "string",
+            "example": "192.168.1.1"
+          },
+          "userAgent": {
+            "type": "string",
+            "example": "Mozilla/5.0..."
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T12:30:45Z"
+          }
+        }
+      },
+      "ActivityLogPage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityLog"
+            }
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "totalPages": {
+            "type": "integer",
+            "example": 3
+          },
+          "totalElements": {
+            "type": "integer",
+            "example": 56
+          },
+          "last": {
+            "type": "boolean",
+            "example": false
+          },
+          "first": {
+            "type": "boolean",
+            "example": true
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "number": {
+            "type": "integer",
+            "example": 0
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "example": 20
+          },
+          "size": {
+            "type": "integer",
+            "example": 20
+          },
+          "empty": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "UserAssessment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Mathematics Midterm"
+          },
+          "subject": {
+            "type": "string",
+            "example": "Mathematics"
+          },
+          "score": {
+            "type": "number",
+            "format": "float",
+            "example": 85
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Passed",
+              "Failed"
+            ],
+            "example": "Passed"
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-08T14:32:00Z"
+          },
+          "duration": {
+            "type": "integer",
+            "example": 48
+          }
+        }
+      },
+      "UserAssessmentPage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserAssessment"
+            }
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "totalPages": {
+            "type": "integer",
+            "example": 1
+          },
+          "totalElements": {
+            "type": "integer",
+            "example": 2
+          },
+          "last": {
+            "type": "boolean",
+            "example": true
+          },
+          "first": {
+            "type": "boolean",
+            "example": true
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "number": {
+            "type": "integer",
+            "example": 0
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "example": 2
+          },
+          "size": {
+            "type": "integer",
+            "example": 10
+          },
+          "empty": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "AssessmentSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Mathematics Midterm"
+          },
+          "subject": {
+            "type": "string",
+            "example": "Mathematics"
+          },
+          "description": {
+            "type": "string",
+            "example": "This midterm assessment covers algebra, geometry, and basic calculus."
+          },
+          "duration": {
+            "type": "integer",
+            "example": 60
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Draft",
+              "Active",
+              "Expired"
+            ],
+            "example": "Active"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-03-15"
+          },
+          "createdBy": {
+            "type": "string",
+            "example": "Mike Johnson"
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-02-15"
+          },
+          "attempts": {
+            "type": "integer",
+            "example": 145
+          },
+          "passingScore": {
+            "type": "integer",
+            "example": 70
+          },
+          "questionsCount": {
+            "type": "integer",
+            "example": 4
+          }
+        }
+      },
+      "Assessment": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AssessmentSummary"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "questions": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Question"
+                }
+              },
+              "settings": {
+                "$ref": "#/components/schemas/AssessmentSettings"
+              }
+            }
+          }
+        ]
+      },
+      "AssessmentPage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssessmentSummary"
+            }
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "totalPages": {
+            "type": "integer",
+            "example": 5
+          },
+          "totalElements": {
+            "type": "integer",
+            "example": 42
+          },
+          "last": {
+            "type": "boolean",
+            "example": false
+          },
+          "first": {
+            "type": "boolean",
+            "example": true
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "number": {
+            "type": "integer",
+            "example": 0
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "example": 10
+          },
+          "size": {
+            "type": "integer",
+            "example": 10
+          },
+          "empty": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "CreateAssessmentRequest": {
+        "type": "object",
+        "required": [
+          "title",
+          "subject",
+          "duration"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Chemistry Final"
+          },
+          "subject": {
+            "type": "string",
+            "example": "Chemistry"
+          },
+          "description": {
+            "type": "string",
+            "example": "Comprehensive final exam covering all topics discussed in class."
+          },
+          "duration": {
+            "type": "integer",
+            "example": 90
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-04-20"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Draft",
+              "Active",
+              "Expired"
+            ],
+            "example": "Draft"
+          },
+          "passingScore": {
+            "type": "integer",
+            "example": 60
+          }
+        }
+      },
+      "UpdateAssessmentRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Chemistry Final Exam"
+          },
+          "subject": {
+            "type": "string",
+            "example": "Chemistry"
+          },
+          "description": {
+            "type": "string",
+            "example": "Comprehensive final exam covering all topics discussed in class including organic chemistry."
+          },
+          "duration": {
+            "type": "integer",
+            "example": 120
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-04-25"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Draft",
+              "Active",
+              "Expired"
+            ],
+            "example": "Draft"
+          },
+          "passingScore": {
+            "type": "integer",
+            "example": 65
+          }
+        }
+      },
+      "AssessmentSettings": {
+        "type": "object",
+        "properties": {
+          "randomizeQuestions": {
+            "type": "boolean",
+            "example": true
+          },
+          "showResults": {
+            "type": "boolean",
+            "example": true
+          },
+          "allowRetake": {
+            "type": "boolean",
+            "example": false
+          },
+          "maxAttempts": {
+            "type": "integer",
+            "example": 1
+          },
+          "timeLimitEnforced": {
+            "type": "boolean",
+            "example": true
+          },
+          "requireWebcam": {
+            "type": "boolean",
+            "example": true
+          },
+          "preventTabSwitching": {
+            "type": "boolean",
+            "example": true
+          },
+          "requireIdentityVerification": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "AssessmentSettingsRequest": {
+        "type": "object",
+        "properties": {
+          "randomizeQuestions": {
+            "type": "boolean",
+            "example": true
+          },
+          "showResults": {
+            "type": "boolean",
+            "example": true
+          },
+          "allowRetake": {
+            "type": "boolean",
+            "example": true
+          },
+          "maxAttempts": {
+            "type": "integer",
+            "example": 3
+          },
+          "timeLimitEnforced": {
+            "type": "boolean",
+            "example": true
+          },
+          "requireWebcam": {
+            "type": "boolean",
+            "example": true
+          },
+          "preventTabSwitching": {
+            "type": "boolean",
+            "example": true
+          },
+          "requireIdentityVerification": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "AssessmentSettingsResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3
+          },
+          "settings": {
+            "$ref": "#/components/schemas/AssessmentSettings"
+          }
+        }
+      },
+      "DuplicateAssessmentRequest": {
+        "type": "object",
+        "properties": {
+          "newTitle": {
+            "type": "string",
+            "example": "Chemistry Final Exam (Copy)"
+          },
+          "copyQuestions": {
+            "type": "boolean",
+            "example": true
+          },
+          "copySettings": {
+            "type": "boolean",
+            "example": true
+          },
+          "setAsDraft": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "PublishAssessmentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3
+          },
+          "title": {
+            "type": "string",
+            "example": "Chemistry Final Exam"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Draft",
+              "Active",
+              "Expired"
+            ],
+            "example": "Active"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T16:15:30Z"
+          }
+        }
+      },
+      "AssessmentStatistics": {
+        "type": "object",
+        "properties": {
+          "totalAssessments": {
+            "type": "integer",
+            "example": 42
+          },
+          "activeAssessments": {
+            "type": "integer",
+            "example": 25
+          },
+          "draftAssessments": {
+            "type": "integer",
+            "example": 10
+          },
+          "expiredAssessments": {
+            "type": "integer",
+            "example": 7
+          },
+          "totalAttempts": {
+            "type": "integer",
+            "example": 2785
+          },
+          "passRate": {
+            "type": "number",
+            "format": "float",
+            "example": 73.5
+          },
+          "averageScore": {
+            "type": "number",
+            "format": "float",
+            "example": 78.2
+          },
+          "bySubject": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "subject": {
+                  "type": "string",
+                  "example": "Mathematics"
+                },
+                "count": {
+                  "type": "integer",
+                  "example": 12
+                }
+              }
+            }
+          }
+        }
+      },
+      "Question": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "multiple-choice",
+              "true-false",
+              "essay"
+            ],
+            "example": "multiple-choice"
+          },
+          "text": {
+            "type": "string",
+            "example": "What is the solution to x² + 5x + 6 = 0?"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionOption"
+            }
+          },
+          "correctAnswer": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "a"
+              },
+              {
+                "type": "boolean",
+                "example": true
+              }
+            ]
+          },
+          "points": {
+            "type": "integer",
+            "example": 5
+          }
+        }
+      },
+      "QuestionOption": {
+        "type": "object",
+        "required": [
+          "id",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "a"
+          },
+          "text": {
+            "type": "string",
+            "example": "x = -2, x = -3"
+          }
+        }
+      },
+      "MultipleChoiceQuestionRequest": {
+        "type": "object",
+        "required": [
+          "type",
+          "text",
+          "options",
+          "correctAnswer"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "multiple-choice"
+            ],
+            "example": "multiple-choice"
+          },
+          "text": {
+            "type": "string",
+            "example": "Which of the following is a noble gas?"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionOption"
+            },
+            "example": [
+              {
+                "id": "a",
+                "text": "Oxygen"
+              },
+              {
+                "id": "b",
+                "text": "Neon"
+              },
+              {
+                "id": "c",
+                "text": "Sodium"
+              },
+              {
+                "id": "d",
+                "text": "Chlorine"
+              }
+            ]
+          },
+          "correctAnswer": {
+            "type": "string",
+            "example": "b"
+          },
+          "points": {
+            "type": "integer",
+            "example": 5
+          }
+        }
+      },
+      "TrueFalseQuestionRequest": {
+        "type": "object",
+        "required": [
+          "type",
+          "text",
+          "correctAnswer"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "true-false"
+            ],
+            "example": "true-false"
+          },
+          "text": {
+            "type": "string",
+            "example": "Water is composed of hydrogen and oxygen."
+          },
+          "correctAnswer": {
+            "type": "boolean",
+            "example": true
+          },
+          "points": {
+            "type": "integer",
+            "example": 3
+          }
+        }
+      },
+      "EssayQuestionRequest": {
+        "type": "object",
+        "required": [
+          "type",
+          "text"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "essay"
+            ],
+            "example": "essay"
+          },
+          "text": {
+            "type": "string",
+            "example": "Describe the process of cellular respiration."
+          },
+          "points": {
+            "type": "integer",
+            "example": 10
+          }
+        }
+      },
+      "AssessmentResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "user": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 5
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-03-08"
+          },
+          "time": {
+            "type": "string",
+            "example": "14:32"
+          },
+          "score": {
+            "type": "number",
+            "format": "float",
+            "example": 85
+          },
+          "duration": {
+            "type": "integer",
+            "example": 48
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Passed",
+              "Failed"
+            ],
+            "example": "Passed"
+          },
+          "submittedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-08T14:32:00Z"
+          }
+        }
+      },
+      "AssessmentResultPage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AssessmentResult"
+            }
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "totalPages": {
+            "type": "integer",
+            "example": 1
+          },
+          "totalElements": {
+            "type": "integer",
+            "example": 5
+          },
+          "last": {
+            "type": "boolean",
+            "example": true
+          },
+          "first": {
+            "type": "boolean",
+            "example": true
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "number": {
+            "type": "integer",
+            "example": 0
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "example": 5
+          },
+          "size": {
+            "type": "integer",
+            "example": 10
+          },
+          "empty": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "AvailableAssessment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Mathematics Midterm"
+          },
+          "subject": {
+            "type": "string",
+            "example": "Mathematics"
+          },
+          "duration": {
+            "type": "integer",
+            "example": 60
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-03-15"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Active",
+              "Expired"
+            ],
+            "example": "Active"
+          },
+          "attempts": {
+            "type": "object",
+            "properties": {
+              "allowed": {
+                "type": "integer",
+                "example": 1
+              },
+              "used": {
+                "type": "integer",
+                "example": 0
+              },
+              "remaining": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          },
+          "lastAttempt": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "example": "2025-03-05"
+              },
+              "score": {
+                "type": "number",
+                "format": "float",
+                "example": 72
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "Passed",
+                  "Failed"
+                ],
+                "example": "Passed"
+              }
+            }
+          }
+        }
+      },
+      "AvailableAssessmentPage": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AvailableAssessment"
+            }
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "example": 8
+          },
+          "totalPages": {
+            "type": "integer",
+            "example": 1
+          },
+          "last": {
+            "type": "boolean",
+            "example": true
+          },
+          "first": {
+            "type": "boolean",
+            "example": true
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "number": {
+            "type": "integer",
+            "example": 0
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "example": 8
+          },
+          "size": {
+            "type": "integer",
+            "example": 10
+          },
+          "empty": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "AssessmentAttempt": {
+        "type": "object",
+        "properties": {
+          "attemptId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 246
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Mathematics Midterm"
+          },
+          "duration": {
+            "type": "integer",
+            "example": 60
+          },
+          "timeLimit": {
+            "type": "boolean",
+            "example": true
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T16:55:12Z"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentQuestion"
+            }
+          },
+          "settings": {
+            "type": "object",
+            "properties": {
+              "randomizeQuestions": {
+                "type": "boolean",
+                "example": true
+              },
+              "showResults": {
+                "type": "boolean",
+                "example": true
+              },
+              "preventTabSwitching": {
+                "type": "boolean",
+                "example": true
+              },
+              "requireWebcam": {
+                "type": "boolean",
+                "example": true
+              }
+            }
+          }
+        }
+      },
+      "StudentQuestion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "multiple-choice",
+              "true-false",
+              "essay"
+            ],
+            "example": "multiple-choice"
+          },
+          "text": {
+            "type": "string",
+            "example": "What is the solution to x² + 5x + 6 = 0?"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuestionOption"
+            }
+          }
+        }
+      },
+      "AttemptDetails": {
+        "type": "object",
+        "properties": {
+          "attemptId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 246
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Mathematics Midterm"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "In Progress",
+              "Completed",
+              "Expired"
+            ],
+            "example": "In Progress"
+          },
+          "startedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:55:12Z"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T16:55:12Z"
+          },
+          "timeRemaining": {
+            "type": "integer",
+            "example": 3357
+          },
+          "progress": {
+            "type": "object",
+            "properties": {
+              "answered": {
+                "type": "integer",
+                "example": 2
+              },
+              "total": {
+                "type": "integer",
+                "example": 4
+              },
+              "percentage": {
+                "type": "integer",
+                "example": 50
+              }
+            }
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudentAnswer"
+            }
+          }
+        }
+      },
+      "StudentAnswer": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "answer": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "a"
+              },
+              {
+                "type": "boolean",
+                "example": true
+              },
+              {
+                "type": "string",
+                "example": "This is my essay answer..."
+              }
+            ]
+          }
+        }
+      },
+      "SaveAnswerRequest": {
+        "type": "object",
+        "required": [
+          "questionId",
+          "answer"
+        ],
+        "properties": {
+          "questionId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "answer": {
+            "oneOf": [
+              {
+                "type": "string",
+                "example": "a"
+              },
+              {
+                "type": "boolean",
+                "example": true
+              },
+              {
+                "type": "string",
+                "example": "This is my essay answer..."
+              }
+            ]
+          }
+        }
+      },
+      "SaveAnswerResponse": {
+        "type": "object",
+        "properties": {
+          "saved": {
+            "type": "boolean",
+            "example": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:58:32Z"
+          }
+        }
+      },
+      "SubmitAssessmentResponse": {
+        "type": "object",
+        "properties": {
+          "attemptId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 246
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "completed": {
+            "type": "boolean",
+            "example": true
+          },
+          "submittedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T16:25:45Z"
+          },
+          "duration": {
+            "type": "integer",
+            "example": 30
+          },
+          "showResults": {
+            "type": "boolean",
+            "example": true
+          },
+          "results": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "float",
+                "example": 85
+              },
+              "totalQuestions": {
+                "type": "integer",
+                "example": 4
+              },
+              "correctAnswers": {
+                "type": "integer",
+                "example": 3
+              },
+              "incorrectAnswers": {
+                "type": "integer",
+                "example": 0
+              },
+              "unanswered": {
+                "type": "integer",
+                "example": 0
+              },
+              "essayQuestions": {
+                "type": "integer",
+                "example": 1
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "Passed",
+                  "Failed"
+                ],
+                "example": "Passed"
+              },
+              "feedback": {
+                "type": "string",
+                "example": "Great work! Your essay will be graded manually."
+              }
+            }
+          }
+        }
+      },
+      "StudentAssessmentResult": {
+        "type": "object",
+        "properties": {
+          "attemptId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 245
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 2
+          },
+          "title": {
+            "type": "string",
+            "example": "Physics Quiz"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "2025-03-05"
+          },
+          "score": {
+            "type": "number",
+            "format": "float",
+            "example": 72
+          },
+          "duration": {
+            "type": "integer",
+            "example": 25
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Passed",
+              "Failed"
+            ],
+            "example": "Passed"
+          },
+          "feedback": {
+            "type": "string",
+            "example": "Good job on the electricity section. Work on improving your understanding of mechanics."
+          }
+        }
+      },
+      "MonitorEventRequest": {
+        "type": "object",
+        "required": [
+          "eventType",
+          "timestamp"
+        ],
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "enum": [
+              "FACE_NOT_DETECTED",
+              "MULTIPLE_FACES",
+              "LOOKING_AWAY",
+              "SUSPICIOUS_OBJECT",
+              "VOICE_DETECTED",
+              "TAB_SWITCH"
+            ],
+            "example": "FACE_NOT_DETECTED"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T16:05:23Z"
+          },
+          "details": {
+            "type": "object",
+            "properties": {
+              "duration": {
+                "type": "number",
+                "format": "float",
+                "example": 5.2
+              },
+              "confidence": {
+                "type": "number",
+                "format": "float",
+                "example": 0.92
+              }
+            }
+          },
+          "imageData": {
+            "type": "string",
+            "format": "byte",
+            "description": "Base64 encoded image",
+            "example": "base64encodedimage..."
+          }
+        }
+      },
+      "MonitorEventResponse": {
+        "type": "object",
+        "properties": {
+          "received": {
+            "type": "boolean",
+            "example": true
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "NONE",
+              "INFO",
+              "WARNING",
+              "CRITICAL"
+            ],
+            "example": "WARNING"
+          },
+          "message": {
+            "type": "string",
+            "example": "Please ensure your face is visible in the webcam at all times."
+          }
+        }
+      },
+      "UserActivityAnalytics": {
+        "type": "object",
+        "properties": {
+          "dailyActiveUsers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "example": "2025-03-03"
+                },
+                "count": {
+                  "type": "integer",
+                  "example": 125
+                }
+              }
+            }
+          },
+          "activityByHour": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "hour": {
+                  "type": "integer",
+                  "example": 0
+                },
+                "count": {
+                  "type": "integer",
+                  "example": 15
+                }
+              }
+            }
+          },
+          "activityByType": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "LOGIN"
+                },
+                "count": {
+                  "type": "integer",
+                  "example": 420
+                }
+              }
+            }
+          },
+          "totalActiveUsers": {
+            "type": "integer",
+            "example": 345
+          },
+          "newUsersLastWeek": {
+            "type": "integer",
+            "example": 42
+          }
+        }
+      },
+      "AssessmentPerformanceAnalytics": {
+        "type": "object",
+        "properties": {
+          "assessmentCompletionRates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 1
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Mathematics Midterm"
+                },
+                "started": {
+                  "type": "integer",
+                  "example": 180
+                },
+                "completed": {
+                  "type": "integer",
+                  "example": 145
+                },
+                "completionRate": {
+                  "type": "number",
+                  "format": "float",
+                  "example": 80.6
+                }
+              }
+            }
+          },
+          "scoreDistribution": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "range": {
+                  "type": "string",
+                  "example": "0-10"
+                },
+                "count": {
+                  "type": "integer",
+                  "example": 12
+                }
+              }
+            }
+          },
+          "averageTimeSpent": {
+            "type": "number",
+            "format": "float",
+            "example": 42.5
+          },
+          "mostChallenging": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "assessmentId": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 3
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Chemistry Final Exam"
+                },
+                "avgScore": {
+                  "type": "number",
+                  "format": "float",
+                  "example": 62.3
+                }
+              }
+            }
+          },
+          "mostSuccessful": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "assessmentId": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 7
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Introduction to Literature"
+                },
+                "avgScore": {
+                  "type": "number",
+                  "format": "float",
+                  "example": 88.7
+                }
+              }
+            }
+          }
+        }
+      },
+      "ActivityReportRequest": {
+        "type": "object",
+        "required": [
+          "userId",
+          "action"
+        ],
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 5
+          },
+          "action": {
+            "type": "string",
+            "example": "ASSESSMENT_VIEW"
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3
+          },
+          "details": {
+            "type": "string",
+            "example": "Viewed assessment details"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:42:18Z"
+          }
+        }
+      },
+      "ActivityReport": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1256
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 5
+          },
+          "action": {
+            "type": "string",
+            "example": "ASSESSMENT_VIEW"
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3
+          },
+          "details": {
+            "type": "string",
+            "example": "Viewed assessment details"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:42:18Z"
+          }
+        }
+      },
+      "SessionTrackingRequest": {
+        "type": "object",
+        "required": [
+          "userId",
+          "action"
+        ],
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 5
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "SESSION_START",
+              "SESSION_END",
+              "TAB_HIDDEN",
+              "TAB_VISIBLE",
+              "QUESTION_VIEWED",
+              "QUESTION_ANSWERED"
+            ],
+            "example": "SESSION_START"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T14:30:00Z"
+          },
+          "userAgent": {
+            "type": "string",
+            "example": "Mozilla/5.0..."
+          },
+          "questionId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          }
+        }
+      },
+      "SessionTrackingResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 123
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 5
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "SESSION_START",
+              "SESSION_END",
+              "TAB_HIDDEN",
+              "TAB_VISIBLE",
+              "QUESTION_VIEWED",
+              "QUESTION_ANSWERED"
+            ],
+            "example": "SESSION_START"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T14:30:00Z"
+          }
+        }
+      },
+      "SuspiciousActivityRequest": {
+        "type": "object",
+        "required": [
+          "userId",
+          "assessmentId",
+          "type"
+        ],
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 5
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "TAB_SWITCHING",
+              "FACE_NOT_DETECTED",
+              "MULTIPLE_FACES",
+              "LOOKING_AWAY",
+              "SUSPICIOUS_OBJECT",
+              "VOICE_DETECTED"
+            ],
+            "example": "TAB_SWITCHING"
+          },
+          "details": {
+            "type": "string",
+            "example": "User switched tabs 3 times"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T14:35:22Z"
+          },
+          "userAgent": {
+            "type": "string",
+            "example": "Mozilla/5.0..."
+          }
+        }
+      },
+      "SuspiciousActivityResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 45
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 5
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "TAB_SWITCHING",
+              "FACE_NOT_DETECTED",
+              "MULTIPLE_FACES",
+              "LOOKING_AWAY",
+              "SUSPICIOUS_OBJECT",
+              "VOICE_DETECTED"
+            ],
+            "example": "TAB_SWITCHING"
+          },
+          "details": {
+            "type": "string",
+            "example": "User switched tabs 3 times"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T14:35:22Z"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ],
+            "example": "MEDIUM"
+          },
+          "reviewed": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "DashboardSummary": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "example": 457
+              },
+              "active": {
+                "type": "integer",
+                "example": 428
+              },
+              "inactive": {
+                "type": "integer",
+                "example": 29
+              },
+              "newThisWeek": {
+                "type": "integer",
+                "example": 15
+              }
+            }
+          },
+          "assessments": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "example": 42
+              },
+              "active": {
+                "type": "integer",
+                "example": 25
+              },
+              "draft": {
+                "type": "integer",
+                "example": 10
+              },
+              "expired": {
+                "type": "integer",
+                "example": 7
+              },
+              "newThisWeek": {
+                "type": "integer",
+                "example": 3
+              }
+            }
+          },
+          "activity": {
+            "type": "object",
+            "properties": {
+              "assessmentAttempts": {
+                "type": "object",
+                "properties": {
+                  "total": {
+                    "type": "integer",
+                    "example": 2785
+                  },
+                  "thisWeek": {
+                    "type": "integer",
+                    "example": 248
+                  },
+                  "passRate": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 73.5
+                  }
+                }
+              },
+              "usersOnline": {
+                "type": "integer",
+                "example": 24
+              },
+              "recentSuspiciousActivity": {
+                "type": "integer",
+                "example": 5
+              }
+            }
+          }
+        }
+      },
+      "ActivityTimelineEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1256
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "USER_REGISTERED",
+              "ASSESSMENT_CREATED",
+              "ASSESSMENT_COMPLETED",
+              "SUSPICIOUS_ACTIVITY"
+            ],
+            "example": "USER_REGISTERED"
+          },
+          "user": {
+            "type": "string",
+            "example": "Emily Brown"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 458
+          },
+          "assessment": {
+            "type": "string",
+            "example": "Chemistry Final Exam"
+          },
+          "assessmentId": {
+            "type": "integer",
+            "format": "int64",
+            "example": 3
+          },
+          "result": {
+            "type": "object",
+            "properties": {
+              "score": {
+                "type": "number",
+                "format": "float",
+                "example": 92
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "Passed",
+                  "Failed"
+                ],
+                "example": "Passed"
+              }
+            }
+          },
+          "details": {
+            "type": "string",
+            "example": "Multiple tab switches detected"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:42:18Z"
+          }
+        }
+      },
+      "ActivityTimeline": {
+        "type": "object",
+        "properties": {
+          "timeline": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityTimelineEvent"
+            }
+          }
+        }
+      },
+      "SystemStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "healthy",
+              "degraded",
+              "down"
+            ],
+            "example": "healthy"
+          },
+          "services": {
+            "type": "object",
+            "properties": {
+              "database": {
+                "type": "string",
+                "enum": [
+                  "operational",
+                  "degraded",
+                  "down"
+                ],
+                "example": "operational"
+              },
+              "storage": {
+                "type": "string",
+                "enum": [
+                  "operational",
+                  "degraded",
+                  "down"
+                ],
+                "example": "operational"
+              },
+              "webcam": {
+                "type": "string",
+                "enum": [
+                  "operational",
+                  "degraded",
+                  "down"
+                ],
+                "example": "operational"
+              },
+              "ai": {
+                "type": "string",
+                "enum": [
+                  "operational",
+                  "degraded",
+                  "down"
+                ],
+                "example": "operational"
+              }
+            }
+          },
+          "statistics": {
+            "type": "object",
+            "properties": {
+              "uptime": {
+                "type": "string",
+                "example": "15 days, 7 hours"
+              },
+              "activeConnections": {
+                "type": "integer",
+                "example": 56
+              },
+              "averageResponseTime": {
+                "type": "integer",
+                "example": 124
+              },
+              "cpuUsage": {
+                "type": "number",
+                "format": "float",
+                "example": 35.2
+              },
+              "memoryUsage": {
+                "type": "number",
+                "format": "float",
+                "example": 42.8
+              }
+            }
+          },
+          "lastChecked": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:54:32Z"
+          }
+        }
+      },
+      "SuccessMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Operation completed successfully"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "ERROR"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:55:12Z"
+          },
+          "message": {
+            "type": "string",
+            "example": "An unexpected error occurred"
+          },
+          "path": {
+            "type": "string",
+            "example": "/api/assessments"
+          },
+          "traceId": {
+            "type": "string",
+            "example": "8a7b6c5d-4e3f-2a1b-9c8d-7e6f5a4b3c2d"
+          }
+        }
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "BAD_REQUEST"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:55:12Z"
+          },
+          "message": {
+            "type": "string",
+            "example": "Validation failed"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Must be a valid email address"
+                }
+              }
+            }
+          }
+        }
+      },
+      "AuthenticationError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "UNAUTHORIZED"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:55:12Z"
+          },
+          "message": {
+            "type": "string",
+            "example": "Invalid credentials"
+          },
+          "path": {
+            "type": "string",
+            "example": "/api/auth/login"
+          }
+        }
+      },
+      "AuthorizationError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "FORBIDDEN"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:55:12Z"
+          },
+          "message": {
+            "type": "string",
+            "example": "You do not have permission to access this resource"
+          },
+          "path": {
+            "type": "string",
+            "example": "/api/admin/dashboard/summary"
+          }
+        }
+      },
+      "NotFoundError": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "NOT_FOUND"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2025-03-09T15:55:12Z"
+          },
+          "message": {
+            "type": "string",
+            "example": "Assessment with ID 999 not found"
+          },
+          "path": {
+            "type": "string",
+            "example": "/api/assessments/999"
+          }
+        }
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "example": 0
+          },
+          "pageSize": {
+            "type": "integer",
+            "example": 10
+          },
+          "offset": {
+            "type": "integer",
+            "example": 0
+          },
+          "paged": {
+            "type": "boolean",
+            "example": true
+          },
+          "unpaged": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "sorted": {
+            "type": "boolean",
+            "example": true
+          },
+          "unsorted": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "GradeAttemptResult": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "OK"
+          },
+          "message": {
+            "type": "string",
+            "example": "Sucessfully graded attempt"
+          }
+        }
+      }
+    }
+  }
+}
