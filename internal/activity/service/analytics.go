@@ -6,6 +6,7 @@ import (
 	repository3 "assessment_service/internal/attempts/repository"
 	models "assessment_service/internal/model"
 	"assessment_service/internal/users/repository"
+	"assessment_service/internal/util"
 	"go.uber.org/zap"
 	"time"
 )
@@ -19,6 +20,7 @@ type AnalyticsService interface {
 	GetDashboardSummary() (map[string]interface{}, error)
 	GetActivityTimeline() (map[string]interface{}, error)
 	GetSystemStatus() (map[string]interface{}, error)
+	GetSuspiciousActivity(userID uint, attemptID uint, params util.PaginationParams) ([]models.SuspiciousActivity, int64, error)
 }
 
 type analyticsService struct {
@@ -294,4 +296,14 @@ func (s *analyticsService) GetSystemStatus() (map[string]interface{}, error) {
 		},
 		"lastChecked": time.Now(),
 	}, nil
+}
+
+func (s *analyticsService) GetSuspiciousActivity(userID uint, attemptID uint, params util.PaginationParams) ([]models.SuspiciousActivity, int64, error) {
+	activities, total, err := s.activityRepo.FindSuspiciousActivity(userID, attemptID, params)
+	if err != nil {
+		s.log.Error("[AnalyticsService][GetSuspiciousActivity] failed to get suspicious activities", zap.Error(err))
+		return nil, 0, err
+	}
+
+	return activities, total, nil
 }

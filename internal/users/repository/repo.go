@@ -18,6 +18,7 @@ type UserRepository interface {
 	GetUserStats() (int64, int64, error)
 	CountAll() (int64, error)
 	GetNewUsersCount(i int) (int64, error)
+	GetListUserByAttempt(params util.PaginationParams, attemptID uint) ([]models.User, int64, error)
 }
 
 type userRepository struct {
@@ -134,4 +135,37 @@ func (r *userRepository) GetNewUsersCount(days int) (int64, error) {
 		return 0, err
 	}
 	return count, nil
+}
+
+func (r *userRepository) GetListUserByAttempt(params util.PaginationParams, attemptID uint) ([]models.User, int64, error) {
+	var users []models.User
+	var total int64
+
+	query := r.db.Model(&models.User{}).
+		Joins("attempts at ON at.user_id = id").Where("at.id = ?", attemptID)
+
+	// Apply filters
+	if params.Search != "" {
+		query = query.Where("name LIKE ? OR email LIKE ?", "%"+params.Search+"%", "%"+params.Search+"%")
+	}
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	// Apply sorting and pagination
+	if params.SortBy != "" {
+		query = query.Order(params.SortBy + " " + params.SortDir)
+	} else {
+		query = query.Order("created_at DESC")
+	}
+
+	query = query.Offset(params.Offset).Limit(params.Limit)
+
+	if err := query.Find(&users).Error; err != nil {
+		return nil, 0, err
+	}
+
+	return users, total, nil
+
 }

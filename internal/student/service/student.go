@@ -22,6 +22,7 @@ type StudentService interface {
 	SubmitAssessment(attemptID, userID uint) (*map[string]interface{}, error)
 	SubmitMonitorEvent(attemptID uint, eventType string, details map[string]interface{}, imageData []byte, userID uint) (*map[string]interface{}, error)
 	AutoSubmitAssessment() error
+	GetAllAttemptByUserID(userID uint, params util.PaginationParams) ([]models.Attempt, int64, error)
 }
 
 type studentService struct {
@@ -559,4 +560,30 @@ func (s *studentService) AutoSubmitAssessment() error {
 		}
 	}
 	return nil
+}
+
+func (s *studentService) GetAllAttemptByUserID(userID uint, params util.PaginationParams) ([]models.Attempt, int64, error) {
+	// check if user is exist
+	user, err := s.userRepo.FindByID(userID)
+	if err != nil {
+		s.log.Error("[GetAllAttemptByUserID] failed to find user", zap.Error(err))
+		return nil, 0, err
+	}
+
+	if user == nil {
+		s.log.Error("[GetAllAttemptByUserID] user not found", zap.Error(err))
+		return nil, 0, errors.New("user not found")
+	}
+
+	if params.Limit == 0 {
+		params.Limit = 10
+	}
+
+	attempt, total, err := s.attemptRepo.GetAllAttemptByUserId(userID, params)
+	if err != nil {
+		s.log.Error("[GetAllAttemptByUserID] failed to get attempts", zap.Error(err))
+		return nil, 0, err
+	}
+
+	return attempt, total, err
 }

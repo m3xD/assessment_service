@@ -29,6 +29,8 @@ type AttemptRepository interface {
 	HasCompletedAssessment(userID, assessmentID uint) (bool, error)
 	CountAttemptsByUserAndAssessment(userID, assessmentID uint) (int, error)
 	FindCompletedAttemptsByUserAndAssessment(userID, assessmentID uint) ([]map[string]interface{}, error)
+	GetAllAttemptByUserId(userID uint, params util.PaginationParams) ([]models.Attempt, int64, error)
+	ListAttemptByUserAndAssessmentID(userID uint, assessmentID uint, params util.PaginationParams) ([]models.Attempt, int64, error)
 
 	// Statistics and analytics
 	GetAssessmentCompletionRates() (map[string]interface{}, error)
@@ -742,4 +744,73 @@ func (r *attemptRepository) IsUserInAttempt(userID uint) (bool, error) {
 	}
 
 	return count > 0, nil
+}
+
+func (r *attemptRepository) GetAllAttemptByUserId(userID uint, params util.PaginationParams) ([]models.Attempt, int64, error) {
+	var attempts []models.Attempt
+	var total int64
+	query := r.db.Model(&models.Attempt{}).
+		Joins("users u ON u.id = attempts.user_id").
+		Where("attempts.user_id = ? AND attempts.deleted_at IS NULL", userID)
+
+	// apply filter
+	if params.Filters != nil {
+		if val, ok := params.Filters["user"].(string); ok && val != "" {
+			query = query.Where("users.name LIKE ? OR users.email LIKE ?", "%"+val+"%", "%"+val+"%")
+		}
+	}
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	// apply sorting and pagination
+	if params.SortBy != "" {
+		query = query.Order(params.SortBy + " " + params.SortDir)
+	} else {
+		query = query.Order("attempts.submitted_at DESC")
+	}
+
+	// apply offset and limit
+	query = query.Offset(params.Offset).Limit(params.Limit)
+
+	if err := query.Find(&attempts).Error; err != nil {
+		return nil, 0, err
+	}
+
+	return attempts, total, nil
+}
+
+func (r *attemptRepository) ListAttemptByUserAndAssessmentID(userID uint, assessmentID uint, params util.PaginationParams) ([]models.Attempt, int64, error) {
+	var attempts []models.Attempt
+	var total int64
+
+	query := r.db.Model(&models.Attempt{}).Joins("users on users.id = user_id").Where("user_id = ? AND assessment_id = ? AND deleted_at IS NULL", userID, assessmentID)
+
+	// apply filter
+	if params.Filters != nil {
+		if val, ok := params.Filters["user"].(string); ok && val != "" {
+			query = query.Where("users.name LIKE ? OR users.email LIKE ?", "%"+val+"%", "%"+val+"%")
+		}
+	}
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	// apply sorting and pagination
+	if params.SortBy != "" {
+		query = query.Order(params.SortBy + " " + params.SortDir)
+	} else {
+		query = query.Order("attempts.submitted_at DESC")
+	}
+
+	// apply offset and limit
+	query = query.Offset(params.Offset).Limit(params.Limit)
+
+	if err := query.Find(&attempts).Error; err != nil {
+		return nil, 0, err
+	}
+
+	return attempts, total, nil
 }

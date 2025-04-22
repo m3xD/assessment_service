@@ -417,3 +417,34 @@ func (h *AssessmentHandler) DuplicateAssessment(w http.ResponseWriter, r *http.R
 
 	util.ResponseInterface(w, assessment, http.StatusCreated)
 }
+
+func (h *AssessmentHandler) GetAssessmentWithUserHasAttempt(w http.ResponseWriter, r *http.Request) {
+	id, err := strconv.ParseUint(mux.Vars(r)["assessmentID"], 10, 32)
+	if err != nil {
+		h.log.Error("[GetAssessmentWithUserHasAttempt] Failed to parse assessment ID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid assessment ID",
+		}, http.StatusBadRequest)
+		return
+	}
+
+	params := util.GetPaginationParams(r)
+
+	assessment, user, total, err := h.assessmentService.GetAssessmentDetailWithUser(uint(id), params)
+	if err != nil {
+		h.log.Error("[GetAssessmentWithUserHasAttempt] Failed to fetch assessment", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to fetch assessment",
+		}, http.StatusInternalServerError)
+		return
+	}
+
+	users := util.CreatePaginationResponse(user, total, params)
+
+	util.ResponseMap(w, map[string]interface{}{
+		"assessment": assessment,
+		"users":      users,
+	}, http.StatusOK)
+}

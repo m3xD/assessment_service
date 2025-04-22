@@ -3,8 +3,10 @@ package service
 import (
 	"assessment_service/internal/assessments/repository"
 	models "assessment_service/internal/model"
+	repository2 "assessment_service/internal/users/repository"
 	"assessment_service/internal/util"
 	"errors"
+	"go.uber.org/zap"
 	"time"
 )
 
@@ -20,10 +22,14 @@ type AssessmentService interface {
 	GetResults(id uint, params util.PaginationParams) ([]map[string]interface{}, int64, error)
 	Publish(id uint) (*models.Assessment, error)
 	Duplicate(id uint, newTitle string, copyQuestions, copySettings, setAsDraft bool) (*models.Assessment, error)
+
+	GetAssessmentDetailWithUser(assessmentID uint, params util.PaginationParams) (*models.Assessment, []models.User, int64, error)
 }
 
 type assessmentService struct {
 	assessmentRepo repository.AssessmentRepository
+	log            *zap.Logger
+	userRepo       repository2.UserRepository
 }
 
 func NewAssessmentService(
@@ -213,4 +219,25 @@ func (s *assessmentService) Duplicate(id uint, newTitle string, copyQuestions, c
 	}
 
 	return &assessments[0], nil
+}
+
+func (s *assessmentService) GetAssessmentDetailWithUser(assessmentID uint, params util.PaginationParams) (*models.Assessment, []models.User, int64, error) {
+	// Get the attempt by ID
+	attempt, err := s.assessmentRepo.FindByID(assessmentID)
+	if err != nil {
+		return nil, nil, 0, err
+	}
+
+	// if params is nil, set default values
+	if params.Limit == 0 {
+		params.Limit = 10
+	}
+
+	// Get the user details for the attempt
+	users, total, err := s.userRepo.GetListUserByAttempt(params, assessmentID)
+	if err != nil {
+		return nil, nil, 0, err
+	}
+
+	return attempt, users, total, nil
 }

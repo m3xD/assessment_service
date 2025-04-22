@@ -5,6 +5,8 @@ import (
 	"assessment_service/internal/activity/service"
 	assessment_handler "assessment_service/internal/assessments/delivery/rest"
 	assessment_service "assessment_service/internal/assessments/service"
+	"assessment_service/internal/attempts/delivery"
+	service3 "assessment_service/internal/attempts/service"
 	"assessment_service/internal/middleware"
 	question_handler "assessment_service/internal/questions/delivery/rest"
 	question_service "assessment_service/internal/questions/service"
@@ -21,6 +23,7 @@ func SetupRoutes(
 	questionService question_service.QuestionService,
 	analyticsService service.AnalyticsService,
 	studentService service2.StudentService,
+	attemptService service3.AttemptService,
 	log *zap.Logger,
 ) *mux.Router {
 	router := mux.NewRouter()
@@ -42,6 +45,7 @@ func SetupRoutes(
 	questionHandler := question_handler.NewQuestionHandler(questionService, log)
 	analyticsHandler := rest.NewAnalyticsHandler(analyticsService)
 	studentHandler := rest2.NewStudentHandler(studentService, log)
+	attemptHandler := delivery.NewAttemptHandler(attemptService, log)
 
 	assessmentsRouter := router.PathPrefix("/assessments").Subrouter()
 	{
@@ -89,6 +93,9 @@ func SetupRoutes(
 	adminRouter.HandleFunc("/dashboard/summary", analyticsHandler.GetDashboardSummary).Methods("GET")
 	adminRouter.HandleFunc("/dashboard/activity", analyticsHandler.GetActivityTimeline).Methods("GET")
 	adminRouter.HandleFunc("/system/status", analyticsHandler.GetSystemStatus).Methods("GET")
+	adminRouter.HandleFunc("/attempt/grade", attemptHandler.GradeAttempt).Methods("POST")
+	adminRouter.HandleFunc("/attempts/{assessmentID:[0-9]+}", attemptHandler.GetListAttemptByUserAndAssessment).Methods("GET")
+	adminRouter.HandleFunc("/attempts/{attemptID:[0-9]+}", attemptHandler.GetAttemptDetail).Methods("GET")
 
 	// Student routes (for taking assessments)
 	studentRouter := router.PathPrefix("/student").Subrouter()
@@ -99,6 +106,6 @@ func SetupRoutes(
 	studentRouter.HandleFunc("/attempts/{attemptId:[0-9]+}/answers", studentHandler.SaveAnswer).Methods("POST")
 	studentRouter.HandleFunc("/attempts/{attemptId:[0-9]+}/submit", studentHandler.SubmitAssessment).Methods("POST")
 	studentRouter.HandleFunc("/attempts/{attemptId:[0-9]+}/monitor", studentHandler.SubmitMonitorEvent).Methods("POST")
-
+	studentRouter.HandleFunc("/attempts", studentHandler.GetAllAttemptForUser).Methods("GET")
 	return router
 }
