@@ -97,6 +97,7 @@ func SetupRoutes(
 	adminRouter.HandleFunc("/attempts/{assessmentID:[0-9]+}/users/{userID:[0-9]+}", attemptHandler.GetListAttemptByUserAndAssessment).Methods("GET")
 	adminRouter.HandleFunc("/attempt/{attemptID:[0-9]+}/users/{userID:[0-9]+}", attemptHandler.GetAttemptDetail).Methods("GET")
 	adminRouter.HandleFunc("/users/{userID:[0-9]+}/attempts", studentHandler.GetAllAttemptForUser).Methods("GET")
+	adminRouter.HandleFunc("/assessments/{assessmentID:[0-9]+}", assessmentHandler.GetAssessmentWithUserHasAttempt).Methods("GET")
 
 	// Student routes (for taking assessments)
 	studentRouter := router.PathPrefix("/student").Subrouter()

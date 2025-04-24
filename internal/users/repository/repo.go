@@ -18,7 +18,7 @@ type UserRepository interface {
 	GetUserStats() (int64, int64, error)
 	CountAll() (int64, error)
 	GetNewUsersCount(i int) (int64, error)
-	GetListUserByAttempt(params util.PaginationParams, attemptID uint) ([]models.User, int64, error)
+	GetListUserByAssessment(params util.PaginationParams, attemptID uint) ([]models.User, int64, error)
 }
 
 type userRepository struct {
@@ -137,12 +137,12 @@ func (r *userRepository) GetNewUsersCount(days int) (int64, error) {
 	return count, nil
 }
 
-func (r *userRepository) GetListUserByAttempt(params util.PaginationParams, attemptID uint) ([]models.User, int64, error) {
+func (r *userRepository) GetListUserByAssessment(params util.PaginationParams, assessmentID uint) ([]models.User, int64, error) {
 	var users []models.User
 	var total int64
 
 	query := r.db.Model(&models.User{}).
-		Joins("attempts at ON at.user_id = id").Where("at.id = ?", attemptID)
+		Joins("JOIN attempts at ON at.user_id = users.id").Where("at.assessment_id = ?", assessmentID)
 
 	// Apply filters
 	if params.Search != "" {

@@ -54,7 +54,7 @@ func (s *Server) Run() error {
 	activityRepo := repository5.NewActivityRepository(s.db)
 
 	// Initialize services
-	assessmentService := service.NewAssessmentService(assessmentRepo)
+	assessmentService := service.NewAssessmentService(assessmentRepo, userRepo)
 	questionService := service2.NewQuestionService(questionRepo, assessmentRepo)
 	studentService := service3.NewStudentService(assessmentRepo, attemptRepo, questionRepo, userRepo, s.log)
 	analyticsService := service4.NewAnalyticsService(userRepo, assessmentRepo, attemptRepo, activityRepo, s.log)

@@ -34,9 +34,11 @@ type assessmentService struct {
 
 func NewAssessmentService(
 	assessmentRepo repository.AssessmentRepository,
+	userRepo repository2.UserRepository,
 ) AssessmentService {
 	return &assessmentService{
 		assessmentRepo: assessmentRepo,
+		userRepo:       userRepo,
 	}
 }
 
@@ -228,13 +230,8 @@ func (s *assessmentService) GetAssessmentDetailWithUser(assessmentID uint, param
 		return nil, nil, 0, err
 	}
 
-	// if params is nil, set default values
-	if params.Limit == 0 {
-		params.Limit = 10
-	}
-
 	// Get the user details for the attempt
-	users, total, err := s.userRepo.GetListUserByAttempt(params, assessmentID)
+	users, total, err := s.userRepo.GetListUserByAssessment(params, assessmentID)
 	if err != nil {
 		return nil, nil, 0, err
 	}
