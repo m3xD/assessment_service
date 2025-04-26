@@ -75,7 +75,7 @@ func (h *AssessmentHandler) CreateAssessment(w http.ResponseWriter, r *http.Requ
 	}
 
 	if req.DueDate != "" {
-		dueDate, err := time.Parse("2006-01-02", req.DueDate)
+		dueDate, err := time.Parse(time.RFC3339, req.DueDate)
 		if err == nil {
 			assessment.DueDate = &dueDate
 		}
