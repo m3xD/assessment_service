@@ -238,12 +238,12 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 		var passingScore float64
 		var createdAt time.Time
 		var dueDate sql.NullTime
-		var shuffleQuestions, showResults, allowRetake, timeLimitEnforcer, requireWebcam, preventTabSwitching, requireIdentifyVerification bool
+		var shuffleQuestions, showResults, allowRetake, timeLimitEnforcer, requireWebcam, preventTabSwitching, requireIdentifyVerification, randomizeQuetions bool
 		var maxAttempts, attemptCount int
 
 		err := rows.Scan(
 			&id, &title, &description, &subject, &duration, &passingScore,
-			&dueDate, &createdAt, &creatorName, &shuffleQuestions,
+			&dueDate, &createdAt, &creatorName, &randomizeQuetions, &shuffleQuestions,
 			&showResults, &allowRetake, &maxAttempts, &timeLimitEnforcer, &requireWebcam, &preventTabSwitching, &requireIdentifyVerification, &attemptCount,
 		)
 		if err != nil {
