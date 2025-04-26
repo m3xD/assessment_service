@@ -3,6 +3,7 @@ package repository
 import (
 	models "assessment_service/internal/model"
 	"assessment_service/internal/util"
+	"database/sql"
 	"errors"
 	"fmt"
 	"time"
@@ -235,7 +236,8 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 		var id, creatorName, title, description, subject string
 		var duration int
 		var passingScore float64
-		var dueDate, createdAt time.Time
+		var createdAt time.Time
+		var dueDate sql.NullTime
 		var shuffleQuestions, showResults, allowRetake, timeLimitEnforcer, requireWebcam, preventTabSwitching, requireIdentifyVerification bool
 		var maxAttempts, attemptCount int
 
