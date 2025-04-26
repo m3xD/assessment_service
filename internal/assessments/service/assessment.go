@@ -197,7 +197,7 @@ func (s *assessmentService) Duplicate(id uint, newTitle string, copyQuestions, c
 	}
 
 	if setAsDraft {
-		originalAssessment.Status = "Draft"
+		originalAssessment.Status = "draft"
 	}
 
 	// Create duplicate
