@@ -448,3 +448,28 @@ func (h *AssessmentHandler) GetAssessmentWithUserHasAttempt(w http.ResponseWrite
 		"users":      users,
 	}, http.StatusOK)
 }
+
+func (h *AssessmentHandler) GetAssessmentHasBeenAttemptByUser(w http.ResponseWriter, r *http.Request) {
+	userID, err := strconv.ParseUint(mux.Vars(r)["userID"], 10, 32)
+	if err != nil {
+		h.log.Error("[GetAssessmentWithUserHasAttempt] Failed to parse assessment ID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid user ID",
+		}, http.StatusBadRequest)
+		return
+	}
+
+	params := util.GetPaginationParams(r)
+
+	assessments, total, err := h.assessmentService.GetAssessmentHasAttempt(uint(userID), params)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to get assessments",
+		}, http.StatusInternalServerError)
+		return
+	}
+
+	util.ResponseInterface(w, util.CreatePaginationResponse(assessments, total, params), http.StatusOK)
+}

@@ -2308,8 +2308,8 @@
             "tags": [
             "Admin"
             ],
-            "summary": "Get attempt of user for admin",
-            "description": "Returns the list of an assessment attempt for admin",
+            "summary": "Get assessment attempt of user on for admin",
+            "description": "Returns the list of an assessment attempt of user for admin",
             "operationId": "getListAttemptOfUser",
             "parameters": [
             {
@@ -2460,6 +2460,46 @@
     "/admin/activity/{userID}": {
       "get": {
         "description": "list all suspicious action from user",
+        "tags": ["admin"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/SizeParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/admin/assessments/attempted/{userID}": {
+      "get": {
+        "description": "get all assessment attempted by user",
         "tags": ["admin"],
         "parameters": [
           {

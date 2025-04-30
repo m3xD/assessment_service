@@ -17,4 +17,5 @@ type AssessmentRepository interface {
 	GetResults(id uint, params util.PaginationParams) ([]map[string]interface{}, int64, error)
 	Publish(id uint) error
 	Duplicate(assessment *models.Assessment) error
+	GetAssessmentHasAttemptByUser(params util.PaginationParams, userID uint) ([]models.Assessment, int64, error)
 }

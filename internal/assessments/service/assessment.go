@@ -22,8 +22,8 @@ type AssessmentService interface {
 	GetResults(id uint, params util.PaginationParams) ([]map[string]interface{}, int64, error)
 	Publish(id uint) (*models.Assessment, error)
 	Duplicate(id uint, newTitle string, copyQuestions, copySettings, setAsDraft bool) (*models.Assessment, error)
-
 	GetAssessmentDetailWithUser(assessmentID uint, params util.PaginationParams) (*models.Assessment, []models.User, int64, error)
+	GetAssessmentHasAttempt(userID uint, params util.PaginationParams) ([]models.Assessment, int64, error)
 }
 
 type assessmentService struct {
@@ -237,4 +237,14 @@ func (s *assessmentService) GetAssessmentDetailWithUser(assessmentID uint, param
 	}
 
 	return attempt, users, total, nil
+}
+
+func (s *assessmentService) GetAssessmentHasAttempt(userID uint, params util.PaginationParams) ([]models.Assessment, int64, error) {
+	assessments, total, err := s.assessmentRepo.GetAssessmentHasAttemptByUser(params, userID)
+	if err != nil {
+		s.log.Error("[GetAssessmentHasAttempt] error when get assessment", zap.Error(err))
+		return nil, 0, err
+	}
+
+	return assessments, total, nil
 }
