@@ -97,7 +97,7 @@ func (h *AttemptHandler) GradeAttempt(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var newAttempt models.Attempt
+	var newAttempt models.AttemptUpdateDTO
 	if err := json.NewDecoder(r.Body).Decode(&newAttempt); err != nil {
 		h.log.Error("[GradeAttempt] failed to parse request body", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{
@@ -107,9 +107,7 @@ func (h *AttemptHandler) GradeAttempt(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	newAttempt.ID = uint(id)
-
-	err = h.attemptService.GradeAttempt(newAttempt)
+	err = h.attemptService.GradeAttempt(newAttempt, uint(id))
 	if err != nil {
 		h.log.Error("[GradeAttempt] failed to grade attempt", zap.Error(err))
 		util.ResponseMap(w, map[string]interface{}{

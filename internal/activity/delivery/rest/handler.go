@@ -319,10 +319,6 @@ func (h *AnalyticsHandler) GetSuspiciousActivity(w http.ResponseWriter, r *http.
 
 	params := util.GetPaginationParams(r)
 
-	if params.Limit == 0 {
-		params.Limit = 10
-	}
-
 	// Get attemptID from path
 	attemptID, err := strconv.ParseUint(mux.Vars(r)["attemptID"], 10, 32)
 	if err != nil {

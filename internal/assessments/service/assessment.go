@@ -95,7 +95,7 @@ func (s *assessmentService) Update(id uint, assessmentData map[string]interface{
 	}
 
 	if dueDateStr, ok := assessmentData["dueDate"].(string); ok && dueDateStr != "" {
-		dueDate, err := time.Parse("2006-01-02", dueDateStr)
+		dueDate, err := time.Parse(time.RFC3339, dueDateStr)
 		if err == nil {
 			assessment.DueDate = &dueDate
 		}

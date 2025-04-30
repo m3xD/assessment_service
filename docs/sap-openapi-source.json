@@ -2273,7 +2273,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AttemptDetails"
+                "$ref": "#/components/schemas/GradeAttempt"
               }
             }
           }
@@ -2456,6 +2456,46 @@
             }
             ]
         }
+    },
+    "/admin/activity/{userID}": {
+      "get": {
+        "description": "list all suspicious action from user",
+        "tags": ["admin"],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "description": "User ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/PageParam"
+          },
+          {
+            "$ref": "#/components/parameters/SizeParam"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -4071,6 +4111,37 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StudentAnswer"
+            }
+          }
+        }
+      },
+      "GradeAttempt": {
+        "type": "object",
+        "properties": {
+          "feedback": {
+            "type": "string",
+            "example": "good work"
+          },
+          "score": {
+            "type": "number",
+            "format": "float",
+            "example": 85
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "example": 1
+                },
+                "isCorrect": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
             }
           }
         }
