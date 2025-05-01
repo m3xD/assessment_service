@@ -299,22 +299,14 @@ func (h *AnalyticsHandler) GetSystemStatus(w http.ResponseWriter, r *http.Reques
 }
 
 func (h *AnalyticsHandler) GetSuspiciousActivity(w http.ResponseWriter, r *http.Request) {
-	userID, exists := r.Context().Value("user").(jwt.MapClaims)["userID"]
-	if !exists {
-		util.ResponseMap(w, map[string]interface{}{
-			"status":  "UNAUTHORIZED",
-			"message": "User ID not found in context",
-		}, http.StatusUnauthorized)
-		return
-	}
-	// parse userID to unit
-	userIDUnit, err := strconv.ParseUint(userID.(string), 10, 32)
+	userID, err := strconv.ParseUint(mux.Vars(r)["userID"], 10, 32)
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
-			"status":  "ERROR",
-			"message": "Failed to convert userID",
-		}, http.StatusInternalServerError)
+			"status":  "BAD_REQUEST",
+			"message": "Invalid user ID",
+		}, http.StatusBadRequest)
 		return
+
 	}
 
 	params := util.GetPaginationParams(r)
@@ -330,7 +322,7 @@ func (h *AnalyticsHandler) GetSuspiciousActivity(w http.ResponseWriter, r *http.
 
 	}
 
-	suspiciousActivity, total, err := h.analyticsService.GetSuspiciousActivity(uint(userIDUnit), uint(attemptID), params)
+	suspiciousActivity, total, err := h.analyticsService.GetSuspiciousActivity(uint(userID), uint(attemptID), params)
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "ERROR",

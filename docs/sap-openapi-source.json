@@ -2469,7 +2469,7 @@
             ]
         }
     },
-    "/admin/activity/{userID}": {
+    "/admin/activity/{userID}/{assessmentID}": {
       "get": {
         "description": "list all suspicious action from user",
         "tags": ["admin"],
@@ -2489,6 +2489,16 @@
           },
           {
             "$ref": "#/components/parameters/SizeParam"
+          },
+          {
+            "name": "assessmentID",
+            "in": "path",
+            "description": "Assessment ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
           }
         ],
         "responses": {
