@@ -104,7 +104,7 @@ func (r *attemptRepository) FindByID(id uint) (*models.Attempt, error) {
 func (r *attemptRepository) Update(attempt *models.Attempt) error {
 	attempt.UpdatedAt = time.Now()
 
-	result := r.db.Save(&attempt)
+	result := r.db.Session(&gorm.Session{FullSaveAssociations: true}).Save(&attempt)
 	if result.Error != nil {
 		return fmt.Errorf("failed to update attempt: %w", result.Error)
 	}
