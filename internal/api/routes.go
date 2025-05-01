@@ -93,7 +93,7 @@ func SetupRoutes(
 	adminRouter.HandleFunc("/dashboard/summary", analyticsHandler.GetDashboardSummary).Methods("GET")
 	adminRouter.HandleFunc("/dashboard/activity", analyticsHandler.GetActivityTimeline).Methods("GET")
 	adminRouter.HandleFunc("/system/status", analyticsHandler.GetSystemStatus).Methods("GET")
-	adminRouter.HandleFunc("/attempt/grade", attemptHandler.GradeAttempt).Methods("POST")
+	adminRouter.HandleFunc("/attempt/grade/{attemptID:[0-9]+}", attemptHandler.GradeAttempt).Methods("POST")
 	adminRouter.HandleFunc("/attempts/{assessmentID:[0-9]+}/users/{userID:[0-9]+}", attemptHandler.GetListAttemptByUserAndAssessment).Methods("GET")
 	adminRouter.HandleFunc("/attempt/{attemptID:[0-9]+}/users/{userID:[0-9]+}", attemptHandler.GetAttemptDetail).Methods("GET")
 	adminRouter.HandleFunc("/users/{userID:[0-9]+}/attempts", studentHandler.GetAllAttemptForUser).Methods("GET")

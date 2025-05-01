@@ -2260,7 +2260,7 @@
         ]
       }
     },
-    "/admin/attempt/grade": {
+    "/admin/attempt/grade/{attemptID}": {
       "post": {
         "tags": [
           "Admin"
@@ -2268,6 +2268,18 @@
         "summary": "Grade attempt by add feedback and final score.",
         "description": "Return result of update attempt",
         "operationId": "gradeAttempt",
+        "parameters": [
+          {
+            "name": "attemptID",
+            "in": "path",
+            "description": "Attempt ID",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
