@@ -182,6 +182,7 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 	}
 
 	var req struct {
+		AttemptID    string `json:"attemptID"`
 		AssessmentID string `json:"assessmentId" binding:"required"`
 		Type         string `json:"type" binding:"required"`
 		Details      string `json:"details"`
@@ -215,8 +216,18 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 		return
 	}
 
+	attemptID, err := strconv.ParseUint(req.AttemptID, 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid attempt ID",
+		}, http.StatusBadRequest)
+		return
+	}
+
 	// Create suspicious activity
 	activity := &models.SuspiciousActivity{
+		AttemptID:    uint(attemptID),
 		UserID:       uint(userIDUINT),
 		AssessmentID: uint(assIDUINT),
 		Type:         req.Type,
@@ -312,7 +323,7 @@ func (h *AnalyticsHandler) GetSuspiciousActivity(w http.ResponseWriter, r *http.
 	params := util.GetPaginationParams(r)
 
 	// Get attemptID from path
-	attemptID, err := strconv.ParseUint(mux.Vars(r)["assessmentID"], 10, 32)
+	attemptID, err := strconv.ParseUint(mux.Vars(r)["attemptID"], 10, 32)
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",

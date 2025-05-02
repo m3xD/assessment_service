@@ -98,7 +98,7 @@ func SetupRoutes(
 	adminRouter.HandleFunc("/attempt/{attemptID:[0-9]+}/users/{userID:[0-9]+}", attemptHandler.GetAttemptDetail).Methods("GET")
 	adminRouter.HandleFunc("/users/{userID:[0-9]+}/attempts", studentHandler.GetAllAttemptForUser).Methods("GET")
 	adminRouter.HandleFunc("/assessments/{assessmentID:[0-9]+}", assessmentHandler.GetAssessmentWithUserHasAttempt).Methods("GET")
-	adminRouter.HandleFunc("/activity/{userID:[0-9]+}/{assessmentID:[0-9]+}", analyticsHandler.GetSuspiciousActivity).Methods("GET")
+	adminRouter.HandleFunc("/activity/{userID:[0-9]+}/{attemptID:[0-9]+}", analyticsHandler.GetSuspiciousActivity).Methods("GET")
 	adminRouter.HandleFunc("/assessments/attempted/{userID:[0-9]+}", assessmentHandler.GetAssessmentHasBeenAttemptByUser).Methods("GET")
 
 	// Student routes (for taking assessments)

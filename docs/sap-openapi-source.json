@@ -2469,7 +2469,7 @@
             ]
         }
     },
-    "/admin/activity/{userID}/{assessmentID}": {
+    "/admin/activity/{userID}/{attemptID}": {
       "get": {
         "description": "list all suspicious action from user",
         "tags": ["admin"],
@@ -2491,9 +2491,9 @@
             "$ref": "#/components/parameters/SizeParam"
           },
           {
-            "name": "assessmentID",
+            "name": "attemptID",
             "in": "path",
-            "description": "Assessment ID",
+            "description": "Attempt ID",
             "required": true,
             "schema": {
               "type": "integer",
@@ -4779,7 +4779,7 @@
           "type"
         ],
         "properties": {
-          "userId": {
+          "attemptID": {
             "type": "integer",
             "format": "int64",
             "example": 5
@@ -4796,8 +4796,7 @@
               "FACE_NOT_DETECTED",
               "MULTIPLE_FACES",
               "LOOKING_AWAY",
-              "SUSPICIOUS_OBJECT",
-              "VOICE_DETECTED"
+              "SUSPICIOUS_OBJECT"
             ],
             "example": "TAB_SWITCHING"
           },
