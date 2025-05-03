@@ -141,8 +141,8 @@ func (r *userRepository) GetListUserByAssessment(params util.PaginationParams, a
 	var users []models.User
 	var total int64
 
-	query := r.db.Model(&models.User{}).
-		Joins("JOIN attempts at ON at.user_id = users.id").Where("at.assessment_id = ?", assessmentID)
+	query := r.db.Model(&models.User{}).Select("DISTINCT ON (\"users\".\"id\") \"users\".id,\"users\".\"name\",\"users\".\"email\",\"users\".\"password\",\"users\".\"role\",\"users\".\"status\",\"users\".\"phone\",\"users\".\"address\",\"users\".\"last_login\",\"users\".\"created_at\",\"users\".\"updated_at\",\"users\".\"deleted_at\"").
+		Joins("JOIN attempts at ON at.user_id = users.id").Where("at.assessment_id = ?", assessmentID).Order("users.id ASC")
 
 	// Apply filters
 	if params.Search != "" {
@@ -151,13 +151,6 @@ func (r *userRepository) GetListUserByAssessment(params util.PaginationParams, a
 
 	if err := query.Count(&total).Error; err != nil {
 		return nil, 0, err
-	}
-
-	// Apply sorting and pagination
-	if params.SortBy != "" {
-		query = query.Order(params.SortBy + " " + params.SortDir)
-	} else {
-		query = query.Order("created_at DESC")
 	}
 
 	query = query.Offset(params.Offset).Limit(params.Limit)
