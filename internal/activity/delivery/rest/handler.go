@@ -4,6 +4,7 @@ import (
 	"assessment_service/internal/activity/service"
 	models "assessment_service/internal/model"
 	"assessment_service/internal/util"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"github.com/golang-jwt/jwt/v5"
@@ -188,6 +189,7 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 		Details      string `json:"details"`
 		Timestamp    string `json:"timestamp"`
 		UserAgent    string `json:"userAgent"`
+		Image        string `json:"imageData"`
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -225,6 +227,15 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 		return
 	}
 
+	imageData, err := base64.StdEncoding.DecodeString(req.Image)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid image data",
+		}, http.StatusBadRequest)
+		return
+	}
+
 	// Create suspicious activity
 	activity := &models.SuspiciousActivity{
 		AttemptID:    uint(attemptID),
@@ -232,6 +243,7 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 		AssessmentID: uint(assIDUINT),
 		Type:         req.Type,
 		Details:      req.Details,
+		ImageData:    imageData,
 	}
 
 	if req.Timestamp != "" {
