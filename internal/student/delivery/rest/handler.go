@@ -10,6 +10,7 @@ import (
 	"go.uber.org/zap"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -419,7 +420,7 @@ func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Reque
 	var imageData []byte
 	var decodeErr error
 	if req.ImageData != "" {
-		imageData, decodeErr = base64.StdEncoding.DecodeString(req.ImageData)
+		imageData, decodeErr = base64.StdEncoding.DecodeString(strings.Split(req.ImageData, "base64,")[1])
 		if decodeErr != nil {
 			h.log.Error("[SubmitMonitorEvent] failed to decode image data", zap.Error(decodeErr))
 			util.ResponseMap(w, map[string]interface{}{
