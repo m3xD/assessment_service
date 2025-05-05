@@ -11,6 +11,7 @@ import (
 	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -227,7 +228,7 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 		return
 	}
 
-	imageData, err := base64.StdEncoding.DecodeString(req.Image)
+	imageData, err := base64.StdEncoding.DecodeString(strings.Split(req.Image, "base64,")[1])
 	if err != nil {
 		util.ResponseMap(w, map[string]interface{}{
 			"status":  "BAD_REQUEST",
