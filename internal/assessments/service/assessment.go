@@ -3,8 +3,10 @@ package service
 import (
 	"assessment_service/internal/assessments/repository"
 	models "assessment_service/internal/model"
+	repository2 "assessment_service/internal/users/repository"
 	"assessment_service/internal/util"
 	"errors"
+	"go.uber.org/zap"
 	"time"
 )
 
@@ -20,17 +22,23 @@ type AssessmentService interface {
 	GetResults(id uint, params util.PaginationParams) ([]map[string]interface{}, int64, error)
 	Publish(id uint) (*models.Assessment, error)
 	Duplicate(id uint, newTitle string, copyQuestions, copySettings, setAsDraft bool) (*models.Assessment, error)
+	GetAssessmentDetailWithUser(assessmentID uint, params util.PaginationParams) (*models.Assessment, []models.User, int64, error)
+	GetAssessmentHasAttempt(userID uint, params util.PaginationParams) ([]models.Assessment, int64, error)
 }
 
 type assessmentService struct {
 	assessmentRepo repository.AssessmentRepository
+	log            *zap.Logger
+	userRepo       repository2.UserRepository
 }
 
 func NewAssessmentService(
 	assessmentRepo repository.AssessmentRepository,
+	userRepo repository2.UserRepository,
 ) AssessmentService {
 	return &assessmentService{
 		assessmentRepo: assessmentRepo,
+		userRepo:       userRepo,
 	}
 }
 
@@ -87,7 +95,7 @@ func (s *assessmentService) Update(id uint, assessmentData map[string]interface{
 	}
 
 	if dueDateStr, ok := assessmentData["dueDate"].(string); ok && dueDateStr != "" {
-		dueDate, err := time.Parse("2006-01-02", dueDateStr)
+		dueDate, err := time.Parse(time.RFC3339, dueDateStr)
 		if err == nil {
 			assessment.DueDate = &dueDate
 		}
@@ -189,7 +197,7 @@ func (s *assessmentService) Duplicate(id uint, newTitle string, copyQuestions, c
 	}
 
 	if setAsDraft {
-		originalAssessment.Status = "Draft"
+		originalAssessment.Status = "draft"
 	}
 
 	// Create duplicate
@@ -213,4 +221,30 @@ func (s *assessmentService) Duplicate(id uint, newTitle string, copyQuestions, c
 	}
 
 	return &assessments[0], nil
+}
+
+func (s *assessmentService) GetAssessmentDetailWithUser(assessmentID uint, params util.PaginationParams) (*models.Assessment, []models.User, int64, error) {
+	// Get the attempt by ID
+	attempt, err := s.assessmentRepo.FindByID(assessmentID)
+	if err != nil {
+		return nil, nil, 0, err
+	}
+
+	// Get the user details for the attempt
+	users, total, err := s.userRepo.GetListUserByAssessment(params, assessmentID)
+	if err != nil {
+		return nil, nil, 0, err
+	}
+
+	return attempt, users, total, nil
+}
+
+func (s *assessmentService) GetAssessmentHasAttempt(userID uint, params util.PaginationParams) ([]models.Assessment, int64, error) {
+	assessments, total, err := s.assessmentRepo.GetAssessmentHasAttemptByUser(params, userID)
+	if err != nil {
+		s.log.Error("[GetAssessmentHasAttempt] error when get assessment", zap.Error(err))
+		return nil, 0, err
+	}
+
+	return assessments, total, nil
 }

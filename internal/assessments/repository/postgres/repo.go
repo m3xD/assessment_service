@@ -331,6 +331,39 @@ func (a assessmentRepository) Duplicate(assessment *models.Assessment) error {
 	})
 }
 
+func (a assessmentRepository) GetAssessmentHasAttemptByUser(params util.PaginationParams, userID uint) ([]models.Assessment, int64, error) {
+	var assessments []models.Assessment
+	var total int64
+
+	query := a.db.Model(&models.Assessment{}).
+		Joins("JOIN attempts at ON at.assessment_id = assessments.id").
+		Where("at.user_id = ?", userID)
+
+	// Apply filters
+	if params.Search != "" {
+		query = query.Where("assessments.title LIKE ?", "%"+params.Search+"%")
+	}
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	// Apply sorting and pagination
+	if params.SortBy != "" {
+		query = query.Order(params.SortBy + " " + params.SortDir)
+	} else {
+		query = query.Order("created_at DESC")
+	}
+
+	query = query.Offset(params.Offset).Limit(params.Limit)
+
+	if err := query.Find(&assessments).Error; err != nil {
+		return nil, 0, err
+	}
+
+	return assessments, total, nil
+}
+
 func NewAssessmentRepository(db *gorm.DB) repository.AssessmentRepository {
 	return &assessmentRepository{db: db}
 }

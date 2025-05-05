@@ -182,11 +182,13 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 	}
 
 	var req struct {
+		AttemptID    string `json:"attemptID"`
 		AssessmentID string `json:"assessmentId" binding:"required"`
 		Type         string `json:"type" binding:"required"`
 		Details      string `json:"details"`
 		Timestamp    string `json:"timestamp"`
 		UserAgent    string `json:"userAgent"`
+		Image        string `json:"imageData"`
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -215,8 +217,18 @@ func (h *AnalyticsHandler) LogSuspiciousActivity(w http.ResponseWriter, r *http.
 		return
 	}
 
+	attemptID, err := strconv.ParseUint(req.AttemptID, 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid attempt ID",
+		}, http.StatusBadRequest)
+		return
+	}
+
 	// Create suspicious activity
 	activity := &models.SuspiciousActivity{
+		AttemptID:    uint(attemptID),
 		UserID:       uint(userIDUINT),
 		AssessmentID: uint(assIDUINT),
 		Type:         req.Type,
@@ -296,4 +308,40 @@ func (h *AnalyticsHandler) GetSystemStatus(w http.ResponseWriter, r *http.Reques
 	}
 
 	util.ResponseInterface(w, status, http.StatusOK)
+}
+
+func (h *AnalyticsHandler) GetSuspiciousActivity(w http.ResponseWriter, r *http.Request) {
+	userID, err := strconv.ParseUint(mux.Vars(r)["userID"], 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid user ID",
+		}, http.StatusBadRequest)
+		return
+
+	}
+
+	params := util.GetPaginationParams(r)
+
+	// Get attemptID from path
+	attemptID, err := strconv.ParseUint(mux.Vars(r)["attemptID"], 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid assessment ID",
+		}, http.StatusBadRequest)
+		return
+
+	}
+
+	suspiciousActivity, total, err := h.analyticsService.GetSuspiciousActivity(uint(userID), uint(attemptID), params)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to fetch suspicious activity",
+		}, http.StatusInternalServerError)
+		return
+	}
+
+	util.ResponseInterface(w, util.CreatePaginationResponse(suspiciousActivity, total, params), http.StatusOK)
 }

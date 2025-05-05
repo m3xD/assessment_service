@@ -3,6 +3,7 @@ package repository
 import (
 	models "assessment_service/internal/model"
 	"assessment_service/internal/util"
+	"database/sql"
 	"errors"
 	"fmt"
 	"time"
@@ -29,6 +30,8 @@ type AttemptRepository interface {
 	HasCompletedAssessment(userID, assessmentID uint) (bool, error)
 	CountAttemptsByUserAndAssessment(userID, assessmentID uint) (int, error)
 	FindCompletedAttemptsByUserAndAssessment(userID, assessmentID uint) ([]map[string]interface{}, error)
+	GetAllAttemptByUserId(userID uint, params util.PaginationParams) ([]models.Attempt, int64, error)
+	ListAttemptByUserAndAssessmentID(userID uint, assessmentID uint, params util.PaginationParams) ([]models.Attempt, int64, error)
 
 	// Statistics and analytics
 	GetAssessmentCompletionRates() (map[string]interface{}, error)
@@ -101,7 +104,7 @@ func (r *attemptRepository) FindByID(id uint) (*models.Attempt, error) {
 func (r *attemptRepository) Update(attempt *models.Attempt) error {
 	attempt.UpdatedAt = time.Now()
 
-	result := r.db.Save(&attempt)
+	result := r.db.Session(&gorm.Session{FullSaveAssociations: true}).Save(&attempt)
 	if result.Error != nil {
 		return fmt.Errorf("failed to update attempt: %w", result.Error)
 	}
@@ -194,7 +197,7 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 		Joins("JOIN users ON assessments.created_by_id = users.id").
 		Joins("LEFT JOIN assessment_settings ON assessments.id = assessment_settings.assessment_id").
 		Where("assessments.status = ? AND assessments.created_at <= ? AND (assessments.due_date IS NULL OR assessments.due_date >= ?)",
-			"Active", time.Now(), time.Now())
+			"active", time.Now().UTC(), time.Now().UTC())
 
 	// Apply search filter if provided
 	if search, ok := params.Filters["search"].(string); ok && search != "" {
@@ -233,7 +236,8 @@ func (r *attemptRepository) FindAvailableAssessments(userID uint, params util.Pa
 		var id, creatorName, title, description, subject string
 		var duration int
 		var passingScore float64
-		var dueDate, createdAt time.Time
+		var createdAt time.Time
+		var dueDate sql.NullTime
 		var shuffleQuestions, showResults, allowRetake, timeLimitEnforcer, requireWebcam, preventTabSwitching, requireIdentifyVerification bool
 		var maxAttempts, attemptCount int
 
@@ -742,4 +746,73 @@ func (r *attemptRepository) IsUserInAttempt(userID uint) (bool, error) {
 	}
 
 	return count > 0, nil
+}
+
+func (r *attemptRepository) GetAllAttemptByUserId(userID uint, params util.PaginationParams) ([]models.Attempt, int64, error) {
+	var attempts []models.Attempt
+	var total int64
+	query := r.db.Model(&models.Attempt{}).
+		Joins("JOIN users u ON u.id = attempts.user_id").
+		Where("attempts.user_id = ? AND attempts.deleted_at IS NULL", userID)
+
+	// apply filter
+	if params.Filters != nil {
+		if val, ok := params.Filters["user"].(string); ok && val != "" {
+			query = query.Where("users.name LIKE ? OR users.email LIKE ?", "%"+val+"%", "%"+val+"%")
+		}
+	}
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	// apply sorting and pagination
+	if params.SortBy != "" {
+		query = query.Order(params.SortBy + " " + params.SortDir)
+	} else {
+		query = query.Order("attempts.submitted_at DESC")
+	}
+
+	// apply offset and limit
+	query = query.Offset(params.Offset).Limit(params.Limit)
+
+	if err := query.Find(&attempts).Error; err != nil {
+		return nil, 0, err
+	}
+
+	return attempts, total, nil
+}
+
+func (r *attemptRepository) ListAttemptByUserAndAssessmentID(userID uint, assessmentID uint, params util.PaginationParams) ([]models.Attempt, int64, error) {
+	var attempts []models.Attempt
+	var total int64
+
+	query := r.db.Model(&models.Attempt{}).Joins("JOIN users ON users.id = user_id").Where("user_id = ? AND assessment_id = ? AND attempts.deleted_at IS NULL", userID, assessmentID)
+
+	// apply filter
+	if params.Filters != nil {
+		if val, ok := params.Filters["user"].(string); ok && val != "" {
+			query = query.Where("users.name LIKE ? OR users.email LIKE ?", "%"+val+"%", "%"+val+"%")
+		}
+	}
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	// apply sorting and pagination
+	if params.SortBy != "" {
+		query = query.Order(params.SortBy + " " + params.SortDir)
+	} else {
+		query = query.Order("attempts.submitted_at DESC")
+	}
+
+	// apply offset and limit
+	query = query.Offset(params.Offset).Limit(params.Limit)
+
+	if err := query.Find(&attempts).Error; err != nil {
+		return nil, 0, err
+	}
+
+	return attempts, total, nil
 }

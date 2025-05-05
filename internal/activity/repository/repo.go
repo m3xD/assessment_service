@@ -21,6 +21,7 @@ type ActivityRepository interface {
 	GetActiveUsers(minutes int) (int64, error)
 	BulkCreate(activities []models.Activity) error
 	FindByAssessmentID(assessmentID uint, params util.PaginationParams) ([]models.Activity, int64, error)
+	FindSuspiciousActivity(userID uint, attemptID uint, params util.PaginationParams) ([]models.SuspiciousActivity, int64, error)
 	CountByPeriod(days int) (int64, error)
 	GetTrending() ([]map[string]interface{}, error)
 }
@@ -305,4 +306,29 @@ func (r *activityRepository) GetTrending() ([]map[string]interface{}, error) {
 	}
 
 	return result, nil
+}
+
+func (r *activityRepository) FindSuspiciousActivity(userID uint, attemptID uint, params util.PaginationParams) ([]models.SuspiciousActivity, int64, error) {
+	var suspiciousActivity []models.SuspiciousActivity
+	var total int64
+
+	query := r.db.Model(&models.SuspiciousActivity{}).Where("user_id = ? AND attempt_id = ?", userID, attemptID)
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	query = query.Offset(params.Offset).Limit(params.Limit)
+
+	if params.SortBy != "" {
+		query = query.Order(params.SortBy + " " + params.SortDir)
+	} else {
+		query = query.Order("suspicious_activities.created_at DESC")
+	}
+
+	if err := query.Find(&suspiciousActivity).Error; err != nil {
+		return nil, 0, err
+	}
+
+	return suspiciousActivity, total, nil
 }

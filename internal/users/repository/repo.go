@@ -18,6 +18,7 @@ type UserRepository interface {
 	GetUserStats() (int64, int64, error)
 	CountAll() (int64, error)
 	GetNewUsersCount(i int) (int64, error)
+	GetListUserByAssessment(params util.PaginationParams, attemptID uint) ([]models.User, int64, error)
 }
 
 type userRepository struct {
@@ -134,4 +135,30 @@ func (r *userRepository) GetNewUsersCount(days int) (int64, error) {
 		return 0, err
 	}
 	return count, nil
+}
+
+func (r *userRepository) GetListUserByAssessment(params util.PaginationParams, assessmentID uint) ([]models.User, int64, error) {
+	var users []models.User
+	var total int64
+
+	query := r.db.Model(&models.User{}).Select("DISTINCT ON (\"users\".\"id\") \"users\".id,\"users\".\"name\",\"users\".\"email\",\"users\".\"password\",\"users\".\"role\",\"users\".\"status\",\"users\".\"phone\",\"users\".\"address\",\"users\".\"last_login\",\"users\".\"created_at\",\"users\".\"updated_at\",\"users\".\"deleted_at\"").
+		Joins("JOIN attempts at ON at.user_id = users.id").Where("at.assessment_id = ?", assessmentID).Order("users.id ASC")
+
+	// Apply filters
+	if params.Search != "" {
+		query = query.Where("name LIKE ? OR email LIKE ?", "%"+params.Search+"%", "%"+params.Search+"%")
+	}
+
+	if err := query.Count(&total).Error; err != nil {
+		return nil, 0, err
+	}
+
+	query = query.Offset(params.Offset).Limit(params.Limit)
+
+	if err := query.Find(&users).Error; err != nil {
+		return nil, 0, err
+	}
+
+	return users, total, nil
+
 }

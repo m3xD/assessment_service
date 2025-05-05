@@ -26,11 +26,20 @@ type Attempt struct {
 }
 
 type Answer struct {
-	ID         uint      `json:"id" gorm:"primaryKey"`
+	ID         uint      `json:"id" gorm:"primaryKey;unique;not null"`
 	AttemptID  uint      `json:"attemptId" gorm:"not null;index"`
 	QuestionID uint      `json:"questionId" gorm:"not null"`
 	Answer     string    `json:"answer" gorm:"type:text"`
 	IsCorrect  *bool     `json:"isCorrect"`
 	CreatedAt  time.Time `json:"createdAt" gorm:"autoCreateTime"`
 	UpdatedAt  time.Time `json:"updatedAt" gorm:"autoUpdateTime"`
+}
+
+type AttemptUpdateDTO struct {
+	Score    float64 `json:"score"`
+	Feedback string  `json:"feedback"`
+	Answers  []struct {
+		ID        uint `json:"id"`
+		IsCorrect bool `json:"isCorrect"`
+	} `json:"answers"`
 }

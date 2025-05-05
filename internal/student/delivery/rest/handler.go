@@ -10,6 +10,7 @@ import (
 	"go.uber.org/zap"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -419,7 +420,7 @@ func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Reque
 	var imageData []byte
 	var decodeErr error
 	if req.ImageData != "" {
-		imageData, decodeErr = base64.StdEncoding.DecodeString(req.ImageData)
+		imageData, decodeErr = base64.StdEncoding.DecodeString(strings.Split(req.ImageData, "base64,")[1])
 		if decodeErr != nil {
 			h.log.Error("[SubmitMonitorEvent] failed to decode image data", zap.Error(decodeErr))
 			util.ResponseMap(w, map[string]interface{}{
@@ -440,6 +441,37 @@ func (h *StudentHandler) SubmitMonitorEvent(w http.ResponseWriter, r *http.Reque
 		}, http.StatusInternalServerError)
 		return
 	}
+
+	util.ResponseInterface(w, result, http.StatusOK)
+}
+
+func (h *StudentHandler) GetAllAttemptForUser(w http.ResponseWriter, r *http.Request) {
+	userID, err := strconv.ParseUint(mux.Vars(r)["userID"], 10, 32)
+	if err != nil {
+		h.log.Error("[GetListAttemptByUserAndAssessment] invalid user ID", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid userID",
+		}, http.StatusBadRequest)
+		return
+	}
+
+	// Parse pagination parameters
+	params := util.GetPaginationParams(r)
+
+	// Get all attempts for user
+	attempts, total, err := h.studentService.GetAllAttemptByUserID(uint(userID), params)
+	if err != nil {
+		h.log.Error("[GetAllAttemptForUser] failed to fetch attempts", zap.Error(err))
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "ERROR",
+			"message": "Failed to fetch attempts",
+		}, http.StatusInternalServerError)
+		return
+	}
+
+	// Prepare pagination response
+	result := util.CreatePaginationResponse(attempts, total, params)
 
 	util.ResponseInterface(w, result, http.StatusOK)
 }
