@@ -37,7 +37,7 @@ func SetupRoutes(
 	})
 
 	router.Use(loggingMiddleware.LoggingMiddleware)
-	// router.Use(authMiddleware.AuthMiddleware())
+	router.Use(authMiddleware.AuthMiddleware())
 	// router.Use(middleware.CORSMiddleware)
 	// router.Use(authMiddleware.OwnerMiddleware())
 	// Assessments
