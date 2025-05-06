@@ -28,7 +28,7 @@ func (j JwtImpl) GenerateToken(userID string, role string) (string, error) {
 		"exp":    expireTime.Unix(),
 	})
 
-	tokenString, err := token.SignedString(os.Getenv("SECRET_KEY"))
+	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET_KEY")))
 	if err != nil {
 		return "", err
 	}

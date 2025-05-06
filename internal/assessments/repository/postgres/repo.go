@@ -251,7 +251,7 @@ func (a assessmentRepository) GetResults(id uint, params util.PaginationParams) 
 	// apply offset and limit
 	query = query.Offset(params.Offset).Limit(params.Limit)
 
-	if err := a.db.Find(&result).Error; err != nil {
+	if err := a.db.Table("attempts").Find(&result).Error; err != nil {
 		return nil, 0, err
 	}
 
@@ -352,7 +352,7 @@ func (a assessmentRepository) GetAssessmentHasAttemptByUser(params util.Paginati
 	if params.SortBy != "" {
 		query = query.Order(params.SortBy + " " + params.SortDir)
 	} else {
-		query = query.Order("created_at DESC")
+		query = query.Order("assessments.created_at DESC")
 	}
 
 	query = query.Offset(params.Offset).Limit(params.Limit)
