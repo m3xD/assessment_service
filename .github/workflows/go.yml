@@ -20,18 +20,18 @@ jobs:
         with:
           go-version: '1.23.7' # Chỉ định phiên bản Go bạn đang sử dụng (ví dụ: 1.21)
           cache: true # Bật caching cho các Go module để tăng tốc độ build sau này
+          
+      - name: Set up directory for Go tests
+        run: mkdir -p /home/runner/work/assessment_service/assessment_service/GO/go-test-coverage
 
       - name: Run unit tests with coverage
-        run: |
-          mkdir -p .qodana/code-coverage 
-          go test -v -race -coverprofile .qodana/code-coverage/coverage.out -covermode=atomic ./...
-        working-directory: GO/go-test-coverage
+        run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
           name: go-coverage-data
-          path: GO/go-test-coverage/.qodana/code-coverage       
+          path: coverage.out       
           if-no-files-found: error
           
       - name: Qodana Scan
