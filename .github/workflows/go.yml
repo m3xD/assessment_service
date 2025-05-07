@@ -25,13 +25,16 @@ jobs:
         run: mkdir -p /home/runner/work/assessment_service/assessment_service/GO/go-test-coverage
 
       - name: Run unit tests with coverage
-        run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
-
+        run: |
+          mkdir -p .qodana/code-coverage 
+          go test -v -race -coverprofile .qodana/code-coverage/coverage.out
+        working-directory: GO/go-test-coverage
+        
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
           name: go-coverage-data
-          path: coverage.out       
+          path: GO/go-test-coverage/.qodana/code-coverage       
           if-no-files-found: error
           
       - name: Qodana Scan
