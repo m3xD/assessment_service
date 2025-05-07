@@ -74,9 +74,19 @@ func (h *AnalyticsHandler) ReportActivity(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	userIDUINT, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid user ID",
+		}, http.StatusBadRequest)
+		return
+
+	}
+
 	// Create activity
 	activity := &models.Activity{
-		UserID:       userID.(uint),
+		UserID:       uint(userIDUINT),
 		Action:       req.Action,
 		AssessmentID: req.AssessmentID,
 		Details:      req.Details,
@@ -139,9 +149,19 @@ func (h *AnalyticsHandler) TrackAssessmentSession(w http.ResponseWriter, r *http
 		return
 	}
 
+	userIDUINT, err := strconv.ParseUint(userID.(string), 10, 32)
+	if err != nil {
+		util.ResponseMap(w, map[string]interface{}{
+			"status":  "BAD_REQUEST",
+			"message": "Invalid user ID",
+		}, http.StatusBadRequest)
+		return
+
+	}
+
 	// Create session data
 	sessionData := &models.SessionData{
-		UserID:       userID.(uint),
+		UserID:       uint(userIDUINT),
 		AssessmentID: uint(id),
 		Action:       req.Action,
 		UserAgent:    req.UserAgent,
