@@ -21,20 +21,17 @@ jobs:
           go-version: '1.23.7' # Chỉ định phiên bản Go bạn đang sử dụng (ví dụ: 1.21)
           cache: true # Bật caching cho các Go module để tăng tốc độ build sau này
           
-      - name: Create working directory
-        run: mkdir -p GO/go-test-coverage
-
       - name: Run unit tests with coverage
         run: |
           mkdir -p .qodana/code-coverage 
           go test -v -race -coverprofile .qodana/code-coverage/coverage.out
-        working-directory: GO/go-test-coverage
+        working-directory: .
         
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
           name: go-coverage-data
-          path: GO/go-test-coverage/.qodana/code-coverage       
+          path: .qodana/code-coverage       
           if-no-files-found: error
           
       - name: Qodana Scan
@@ -42,5 +39,5 @@ jobs:
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_148180999 }}
         with:
-          args: "-i,GO/go-test-coverage,--linter,jetbrains/qodana-go:latest"
+          args: "-i,.,--linter,jetbrains/qodana-go:latest"
           pr-mode: false
