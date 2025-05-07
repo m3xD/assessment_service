@@ -20,9 +20,6 @@ jobs:
         with:
           go-version: '1.23.7' # Chỉ định phiên bản Go bạn đang sử dụng (ví dụ: 1.21)
           cache: true # Bật caching cho các Go module để tăng tốc độ build sau này
-          
-      - name: Set up directory for Go tests
-        run: mkdir -p /home/runner/work/assessment_service/assessment_service/GO/go-test-coverage
 
       - name: Run unit tests with coverage
         run: |
