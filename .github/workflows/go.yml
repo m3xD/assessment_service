@@ -24,7 +24,7 @@ jobs:
       - name: Run unit tests with coverage
         run: |
           mkdir -p .qodana/code-coverage 
-          go test -v -race -coverprofile .qodana/code-coverage/coverage.out
+          go test -v -race -coverprofile .qodana/code-coverage/coverage.out -covermode=atomic ./...
         working-directory: .
         
       - name: Upload coverage report
