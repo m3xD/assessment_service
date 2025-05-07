@@ -1,7 +1,5 @@
-# Tên của workflow, sẽ hiển thị trên tab Actions của GitHub
 name: Go Unit Tests
 
-# Các sự kiện kích hoạt workflow
 on:
   push:
     branches: [ "main", "develop" ] # Chạy khi push lên nhánh main hoặc develop
@@ -10,42 +8,36 @@ on:
 
 # Định nghĩa các jobs sẽ chạy
 jobs:
-  test: # Tên của job
-    runs-on: ubuntu-latest # Chỉ định hệ điều hành cho máy ảo chạy job
+  test: 
+    runs-on: ubuntu-latest 
 
     steps:
-      # Bước 1: Checkout mã nguồn từ repository
       - name: Checkout code
         uses: actions/checkout@v4 # Sử dụng action checkout phiên bản 4
 
-      # Bước 2: Thiết lập môi trường Go
       - name: Set up Go
         uses: actions/setup-go@v5 # Sử dụng action setup-go phiên bản 5
         with:
           go-version: '1.23.7' # Chỉ định phiên bản Go bạn đang sử dụng (ví dụ: 1.21)
           cache: true # Bật caching cho các Go module để tăng tốc độ build sau này
-
-      # Bước 3: Tải các dependencies (nếu cần, go test thường tự động làm việc này)
-      # - name: Get dependencies
-      #   run: go get -v -t -d ./...
-
-      # Bước 4: Chạy unit tests và tạo báo cáo coverage
+          
       - name: Run unit tests with coverage
-        run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
-        # ./... để chạy test cho tất cả các package trong dự án
-
-      # Bước 5: Hiển thị tóm tắt coverage trong log của workflow
-      - name: Show coverage summary
-        run: go tool cover -func=coverage.out
-
-      # (Tùy chọn) Bước 6: Tải lên báo cáo coverage làm artifact
-      # Bạn có thể dùng action này để lưu file coverage.out
-      # hoặc một báo cáo HTML nếu bạn tạo ra (ví dụ: go tool cover -html=coverage.out -o coverage.html)
+        run: |
+          mkdir -p .qodana/code-coverage 
+          go test -v -race -coverprofile .qodana/code-coverage/coverage.out -covermode=atomic ./...
+        working-directory: .
+        
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
-          name: go-coverage-report # Tên của artifact
-          path: coverage.out       # Đường dẫn đến file hoặc thư mục cần tải lên
-          # Nếu bạn muốn tải lên báo cáo HTML:
-          # path: coverage.html
-          if-no-files-found: error # Báo lỗi nếu không tìm thấy file
+          name: go-coverage-data
+          path: .qodana/code-coverage       
+          if-no-files-found: error
+          
+      - name: Qodana Scan
+        uses: JetBrains/qodana-action@main
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_148180999 }}
+        with:
+          args: "-i,.,--linter,jetbrains/qodana-go:latest"
+          pr-mode: false
