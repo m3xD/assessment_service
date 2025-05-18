@@ -15,13 +15,10 @@ func NewLogger() *Logger {
 	encodeConfig.EncoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
 	encodeConfig.EncoderConfig.EncodeLevel = zapcore.CapitalLevelEncoder
 	encodeConfig.EncoderConfig.EncodeCaller = zapcore.ShortCallerEncoder
-
-	file, _ := os.OpenFile("./log/log.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, os.ModePerm)
-	syncFile := zapcore.AddSync(file)
 	syncConsole := zapcore.AddSync(os.Stderr)
 
 	core := zapcore.NewCore(zapcore.NewJSONEncoder(encodeConfig.EncoderConfig), zapcore.NewMultiWriteSyncer(
-		syncFile, syncConsole), zapcore.InfoLevel)
+		syncConsole), zapcore.InfoLevel)
 	logger := zap.New(core, zap.AddCaller())
 
 	return &Logger{Logger: logger}
