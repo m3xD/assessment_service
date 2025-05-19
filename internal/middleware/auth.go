@@ -45,7 +45,7 @@ func (auth *AuthMiddleware) AuthMiddleware() func(next http.Handler) http.Handle
 			if err != nil {
 				util.ResponseError(w, util.Response{
 					StatusCode: http.StatusUnauthorized,
-					Message:    "unauthorized",
+					Message:    "unauthorized " + err.Error(),
 					Data:       nil,
 				})
 				return
