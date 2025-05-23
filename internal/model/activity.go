@@ -26,6 +26,6 @@ type SuspiciousActivity struct {
 	Timestamp    time.Time `json:"timestamp" gorm:"not null"`
 	Severity     string    `json:"severity" gorm:"size:50;not null;default:MEDIUM"` // LOW, MEDIUM, HIGH
 	Reviewed     bool      `json:"reviewed" gorm:"not null;default:false"`
-	ImageData    []byte    `json:"-" gorm:"type:bytea"`
+	ImageData    []byte    `json:"imageData" gorm:"type:bytea"`
 	CreatedAt    time.Time `json:"createdAt" gorm:"autoCreateTime"`
 }
