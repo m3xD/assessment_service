@@ -31,13 +31,12 @@ func SetupRoutes(
 
 	loggingMiddleware := middleware.NewLogMiddleware(log)
 	authMiddleware := middleware.NewAuthMiddleware(jwtService)
+
 	router.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Welcome to the Assessment Service!"))
 	})
 
-	router.Use(loggingMiddleware.LoggingMiddleware)
-	router.Use(authMiddleware.AuthMiddleware())
 	// router.Use(middleware.CORSMiddleware)
 	// router.Use(authMiddleware.OwnerMiddleware())
 	// Assessments
@@ -49,6 +48,8 @@ func SetupRoutes(
 
 	assessmentsRouter := router.PathPrefix("/assessments").Subrouter()
 	{
+		assessmentsRouter.Use(authMiddleware.AuthMiddleware())
+		assessmentsRouter.Use(loggingMiddleware.LoggingMiddleware)
 		// General assessment routes
 		assessmentsRouter.HandleFunc("", assessmentHandler.ListAssessments).Methods("GET")
 		assessmentsRouter.HandleFunc("", assessmentHandler.CreateAssessment).Methods("POST")
@@ -75,6 +76,8 @@ func SetupRoutes(
 
 	// Analytics
 	analyticsRouter := router.PathPrefix("/analytics").Subrouter()
+	analyticsRouter.Use(authMiddleware.AuthMiddleware())
+	analyticsRouter.Use(loggingMiddleware.LoggingMiddleware)
 
 	// Analytics routes for teachers and admins
 	analyticsTeacherRouter := analyticsRouter.PathPrefix("").Subrouter()
@@ -90,6 +93,8 @@ func SetupRoutes(
 	// Admin dashboard routes
 	adminRouter := router.PathPrefix("/admin").Subrouter()
 	adminRouter.Use(authMiddleware.ACLMiddleware("admin"))
+	adminRouter.Use(authMiddleware.AuthMiddleware())
+	adminRouter.Use(loggingMiddleware.LoggingMiddleware)
 	adminRouter.HandleFunc("/dashboard/summary", analyticsHandler.GetDashboardSummary).Methods("GET")
 	adminRouter.HandleFunc("/dashboard/activity", analyticsHandler.GetActivityTimeline).Methods("GET")
 	adminRouter.HandleFunc("/system/status", analyticsHandler.GetSystemStatus).Methods("GET")
@@ -103,6 +108,8 @@ func SetupRoutes(
 
 	// Student routes (for taking assessments)
 	studentRouter := router.PathPrefix("/student").Subrouter()
+	studentRouter.Use(authMiddleware.AuthMiddleware())
+	studentRouter.Use(loggingMiddleware.LoggingMiddleware)
 	studentRouter.HandleFunc("/assessments/available", studentHandler.GetAvailableAssessments).Methods("GET")
 	studentRouter.HandleFunc("/assessments/{id:[0-9]+}/start", studentHandler.StartAssessment).Methods("POST")
 	studentRouter.HandleFunc("/assessments/{id:[0-9]+}/results", studentHandler.GetAssessmentResultsHistory).Methods("GET")
